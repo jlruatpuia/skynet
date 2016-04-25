@@ -28,18 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.bbNewProduct = new DevExpress.XtraBars.BarButtonItem();
+            this.bbExtProduct = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgSales = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgProduct = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.splt = new DevExpress.XtraEditors.SplitContainerControl();
-            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
-            this.rpgProduct = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rpgSales = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.bbSellProduct = new DevExpress.XtraBars.BarButtonItem();
+            this.bbPurchaseProduct = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splt)).BeginInit();
             this.splt.SuspendLayout();
@@ -52,14 +58,49 @@
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
             this.skinRibbonGalleryBarItem1,
-            this.barButtonItem1});
+            this.barButtonItem1,
+            this.bbNewProduct,
+            this.bbExtProduct,
+            this.barButtonItem2,
+            this.bbSellProduct,
+            this.bbPurchaseProduct});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 3;
+            this.ribbonControl1.MaxItemId = 8;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
             this.ribbonControl1.Size = new System.Drawing.Size(758, 143);
+            // 
+            // skinRibbonGalleryBarItem1
+            // 
+            this.skinRibbonGalleryBarItem1.Caption = "skinRibbonGalleryBarItem1";
+            this.skinRibbonGalleryBarItem1.Id = 1;
+            this.skinRibbonGalleryBarItem1.Name = "skinRibbonGalleryBarItem1";
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "barButtonItem1";
+            this.barButtonItem1.Id = 2;
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
+            // bbNewProduct
+            // 
+            this.bbNewProduct.Caption = "Add New";
+            this.bbNewProduct.Glyph = ((System.Drawing.Image)(resources.GetObject("bbNewProduct.Glyph")));
+            this.bbNewProduct.Id = 3;
+            this.bbNewProduct.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bbNewProduct.LargeGlyph")));
+            this.bbNewProduct.Name = "bbNewProduct";
+            this.bbNewProduct.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbNewProduct_ItemClick);
+            // 
+            // bbExtProduct
+            // 
+            this.bbExtProduct.Caption = "Add Existing";
+            this.bbExtProduct.Glyph = ((System.Drawing.Image)(resources.GetObject("bbExtProduct.Glyph")));
+            this.bbExtProduct.Id = 4;
+            this.bbExtProduct.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bbExtProduct.LargeGlyph")));
+            this.bbExtProduct.Name = "bbExtProduct";
+            this.bbExtProduct.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbExtProduct_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -71,6 +112,36 @@
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Main";
+            // 
+            // ribbonPageGroup5
+            // 
+            this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem2);
+            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
+            this.ribbonPageGroup5.ShowCaptionButton = false;
+            this.ribbonPageGroup5.Text = "Home";
+            // 
+            // rpgSales
+            // 
+            this.rpgSales.ItemLinks.Add(this.bbSellProduct);
+            this.rpgSales.ItemLinks.Add(this.bbPurchaseProduct);
+            this.rpgSales.Name = "rpgSales";
+            this.rpgSales.ShowCaptionButton = false;
+            this.rpgSales.Text = "Sales";
+            // 
+            // rpgProduct
+            // 
+            this.rpgProduct.ItemLinks.Add(this.bbNewProduct);
+            this.rpgProduct.ItemLinks.Add(this.bbExtProduct);
+            this.rpgProduct.Name = "rpgProduct";
+            this.rpgProduct.ShowCaptionButton = false;
+            this.rpgProduct.Text = "Products";
+            // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.skinRibbonGalleryBarItem1);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.ShowCaptionButton = false;
+            this.ribbonPageGroup2.Text = "Skins";
             // 
             // ribbonPageGroup1
             // 
@@ -91,43 +162,6 @@
             this.splt.TabIndex = 1;
             this.splt.Text = "splitContainerControl1";
             // 
-            // ribbonPageGroup2
-            // 
-            this.ribbonPageGroup2.ItemLinks.Add(this.skinRibbonGalleryBarItem1);
-            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            this.ribbonPageGroup2.ShowCaptionButton = false;
-            this.ribbonPageGroup2.Text = "Skins";
-            // 
-            // skinRibbonGalleryBarItem1
-            // 
-            this.skinRibbonGalleryBarItem1.Caption = "skinRibbonGalleryBarItem1";
-            this.skinRibbonGalleryBarItem1.Id = 1;
-            this.skinRibbonGalleryBarItem1.Name = "skinRibbonGalleryBarItem1";
-            // 
-            // rpgProduct
-            // 
-            this.rpgProduct.Name = "rpgProduct";
-            this.rpgProduct.ShowCaptionButton = false;
-            this.rpgProduct.Text = "Products";
-            // 
-            // rpgSales
-            // 
-            this.rpgSales.Name = "rpgSales";
-            this.rpgSales.ShowCaptionButton = false;
-            this.rpgSales.Text = "Sales";
-            // 
-            // ribbonPageGroup5
-            // 
-            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-            this.ribbonPageGroup5.ShowCaptionButton = false;
-            this.ribbonPageGroup5.Text = "Home";
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "barButtonItem1";
-            this.barButtonItem1.Id = 2;
-            this.barButtonItem1.Name = "barButtonItem1";
-            // 
             // navBarControl1
             // 
             this.navBarControl1.ActiveGroup = this.navBarGroup1;
@@ -136,6 +170,7 @@
             this.navBarGroup1});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 234;
             this.navBarControl1.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
             this.navBarControl1.Size = new System.Drawing.Size(234, 372);
             this.navBarControl1.TabIndex = 0;
@@ -146,6 +181,29 @@
             this.navBarGroup1.Caption = "navBarGroup1";
             this.navBarGroup1.Expanded = true;
             this.navBarGroup1.Name = "navBarGroup1";
+            // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "barButtonItem2";
+            this.barButtonItem2.Id = 5;
+            this.barButtonItem2.Name = "barButtonItem2";
+            // 
+            // bbSellProduct
+            // 
+            this.bbSellProduct.Caption = "&Sell";
+            this.bbSellProduct.Glyph = ((System.Drawing.Image)(resources.GetObject("bbSellProduct.Glyph")));
+            this.bbSellProduct.Id = 6;
+            this.bbSellProduct.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bbSellProduct.LargeGlyph")));
+            this.bbSellProduct.Name = "bbSellProduct";
+            this.bbSellProduct.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbSellProduct_ItemClick);
+            // 
+            // bbPurchaseProduct
+            // 
+            this.bbPurchaseProduct.Caption = "Purchase";
+            this.bbPurchaseProduct.Glyph = ((System.Drawing.Image)(resources.GetObject("bbPurchaseProduct.Glyph")));
+            this.bbPurchaseProduct.Id = 7;
+            this.bbPurchaseProduct.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bbPurchaseProduct.LargeGlyph")));
+            this.bbPurchaseProduct.Name = "bbPurchaseProduct";
             // 
             // MainForm
             // 
@@ -181,6 +239,11 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
+        private DevExpress.XtraBars.BarButtonItem bbNewProduct;
+        private DevExpress.XtraBars.BarButtonItem bbExtProduct;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem bbSellProduct;
+        private DevExpress.XtraBars.BarButtonItem bbPurchaseProduct;
     }
 }
 
