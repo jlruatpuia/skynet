@@ -44,6 +44,18 @@ namespace Skynet.Classes
             return sc;
         }
 
+        public Server2Client GetProductValues()
+        {
+            Server2Client sc = new Server2Client();
+            OleDbCommand cmd = new OleDbCommand("SELECT CategoryName, ProductName, BuyingValue, SellingValue, SUM(Quantity) AS TotalQuantity FROM Category INNER JOIN Product ON Category.ID = Product.CategoryID GROUP BY CategoryName, ProductName, BuyingValue, SellingValue", cm);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sc.Count = ds.Tables[0].Rows.Count;
+            sc.dataTable = ds.Tables[0];
+            return sc;
+        }
+
         public Server2Client GetProductByCategory(int CategoryID)
         {
             Server2Client sc = new Server2Client();
@@ -81,6 +93,7 @@ namespace Skynet.Classes
         public Product GetProductByBarCode(string BarCode)
         {
             Product prd = new Product();
+            prd.Message = null;
             OleDbCommand cmd = new OleDbCommand("SELECT TOP 1 ID, CategoryID, ProductName, BuyingValue, SellingValue, BarCode FROM Product WHERE BarCode='" + BarCode + "' ORDER BY ID", cm);
             try
             {
@@ -92,10 +105,10 @@ namespace Skynet.Classes
                 prd.ProductName = rd[2].ToString();
                 prd.BuyingValue = Convert.ToDouble(rd[3]);
                 prd.SellingValue = Convert.ToDouble(rd[4]);
-                prd.Quantity = Convert.ToInt32(rd[5]);
-                prd.BarCode = rd[6].ToString();
+                //prd.Quantity = Convert.ToInt32(rd[5]);
+                prd.BarCode = rd[5].ToString();
             }
-            catch(Exception ex) { throw ex; }
+            catch(Exception ex) { prd.Message = ex.Message; }
             finally { cm.Close(); }
             return prd;
         }
@@ -124,9 +137,12 @@ namespace Skynet.Classes
         public Server2Client updateProduct(Product prd)
         {
             Server2Client sc = new Server2Client();
-            OleDbCommand cmd = new OleDbCommand("UPDATE Product SET CategoryID=@CID, ProductName=@PNM, BarCode=@BCD WHERE ID=" + prd.ProductID, cm);
+            OleDbCommand cmd = new OleDbCommand("UPDATE Product SET CategoryID=@CID, ProductName=@PNM, BuyingValue=@BVL, SellingValue=@SVL, Quantity=@QTY, BarCode=@BCD WHERE ID=" + prd.ProductID, cm);
             cmd.Parameters.AddWithValue("@CID", prd.CategoryID);
             cmd.Parameters.AddWithValue("@PNM", prd.ProductName);
+            cmd.Parameters.AddWithValue("@BVL", prd.BuyingValue);
+            cmd.Parameters.AddWithValue("@SVL", prd.SellingValue);
+            cmd.Parameters.AddWithValue("@BVL", prd.Quantity);
             cmd.Parameters.AddWithValue("@BCD", prd.BarCode);
             try
             {

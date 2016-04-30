@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewProduct));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule6 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewProduct));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.grd = new DevExpress.XtraGrid.GridControl();
@@ -80,6 +80,8 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxVP = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.btnNew = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grd)).BeginInit();
@@ -109,10 +111,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxVP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnNew);
             this.layoutControl1.Controls.Add(this.btnAdd);
             this.layoutControl1.Controls.Add(this.grd);
             this.layoutControl1.Controls.Add(this.btnCancel);
@@ -128,15 +132,15 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(660, 274, 250, 350);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(644, 441);
+            this.layoutControl1.Size = new System.Drawing.Size(640, 437);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(403, 122);
+            this.btnAdd.Location = new System.Drawing.Point(408, 122);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(217, 22);
+            this.btnAdd.Size = new System.Drawing.Size(208, 22);
             this.btnAdd.StyleController = this.layoutControl1;
             this.btnAdd.TabIndex = 15;
             this.btnAdd.Text = "&Add";
@@ -149,7 +153,7 @@
             this.grd.Name = "grd";
             this.grd.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repEdit});
-            this.grd.Size = new System.Drawing.Size(620, 233);
+            this.grd.Size = new System.Drawing.Size(616, 229);
             this.grd.TabIndex = 14;
             this.grd.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grv});
@@ -260,7 +264,7 @@
             // 
             this.repEdit.AutoHeight = false;
             this.repEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.repEdit.Name = "repEdit";
             this.repEdit.ReadOnly = true;
             this.repEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
@@ -269,7 +273,7 @@
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(547, 399);
+            this.btnCancel.Location = new System.Drawing.Point(543, 395);
             this.btnCancel.MaximumSize = new System.Drawing.Size(85, 30);
             this.btnCancel.MinimumSize = new System.Drawing.Size(85, 30);
             this.btnCancel.Name = "btnCancel";
@@ -281,7 +285,7 @@
             // btnSave
             // 
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.Location = new System.Drawing.Point(448, 399);
+            this.btnSave.Location = new System.Drawing.Point(444, 395);
             this.btnSave.MaximumSize = new System.Drawing.Size(85, 30);
             this.btnSave.MinimumSize = new System.Drawing.Size(85, 30);
             this.btnSave.Name = "btnSave";
@@ -293,24 +297,24 @@
             // 
             // txtBCD
             // 
-            this.txtBCD.Location = new System.Drawing.Point(407, 96);
+            this.txtBCD.Location = new System.Drawing.Point(405, 96);
             this.txtBCD.Name = "txtBCD";
             this.txtBCD.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtBCD.Properties.Appearance.Options.UseBackColor = true;
             this.txtBCD.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("txtBCD.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
-            this.txtBCD.Size = new System.Drawing.Size(213, 22);
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("txtBCD.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            this.txtBCD.Size = new System.Drawing.Size(211, 22);
             this.txtBCD.StyleController = this.layoutControl1;
-            toolTipTitleItem1.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            toolTipTitleItem1.Appearance.Options.UseImage = true;
-            toolTipTitleItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolTipTitleItem1.Image")));
-            toolTipTitleItem1.Text = "Scan Barcode Here";
-            toolTipItem1.LeftIndent = 6;
-            toolTipItem1.Text = "When Barcode is scanned, Product is automatically added.\r\n(No need to click \"Add\"" +
+            toolTipTitleItem2.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            toolTipTitleItem2.Appearance.Options.UseImage = true;
+            toolTipTitleItem2.Image = ((System.Drawing.Image)(resources.GetObject("toolTipTitleItem2.Image")));
+            toolTipTitleItem2.Text = "Scan Barcode Here";
+            toolTipItem2.LeftIndent = 6;
+            toolTipItem2.Text = "When Barcode is scanned, Product is automatically added.\r\n(No need to click \"Add\"" +
     " Button)";
-            superToolTip1.Items.Add(toolTipTitleItem1);
-            superToolTip1.Items.Add(toolTipItem1);
-            this.txtBCD.SuperTip = superToolTip1;
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            superToolTip2.Items.Add(toolTipItem2);
+            this.txtBCD.SuperTip = superToolTip2;
             this.txtBCD.TabIndex = 9;
             this.txtBCD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBCD_KeyDown);
             // 
@@ -325,13 +329,13 @@
             this.txtQTY.Name = "txtQTY";
             this.txtQTY.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtQTY.Size = new System.Drawing.Size(211, 20);
+            this.txtQTY.Size = new System.Drawing.Size(209, 20);
             this.txtQTY.StyleController = this.layoutControl1;
             this.txtQTY.TabIndex = 8;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Greater;
-            conditionValidationRule1.ErrorText = "Please enter valid Quantity";
-            conditionValidationRule1.Value1 = 0;
-            this.dxVP.SetValidationRule(this.txtQTY, conditionValidationRule1);
+            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Greater;
+            conditionValidationRule6.ErrorText = "Please enter valid Quantity";
+            conditionValidationRule6.Value1 = 0;
+            this.dxVP.SetValidationRule(this.txtQTY, conditionValidationRule6);
             // 
             // txtSVL
             // 
@@ -340,17 +344,17 @@
             0,
             0,
             0});
-            this.txtSVL.Location = new System.Drawing.Point(407, 72);
+            this.txtSVL.Location = new System.Drawing.Point(405, 72);
             this.txtSVL.Name = "txtSVL";
             this.txtSVL.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtSVL.Size = new System.Drawing.Size(213, 20);
+            this.txtSVL.Size = new System.Drawing.Size(211, 20);
             this.txtSVL.StyleController = this.layoutControl1;
             this.txtSVL.TabIndex = 7;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.GreaterOrEqual;
-            conditionValidationRule2.ErrorText = "Please enter valid Selling Value";
-            conditionValidationRule2.Value1 = 0;
-            this.dxVP.SetValidationRule(this.txtSVL, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.GreaterOrEqual;
+            conditionValidationRule1.ErrorText = "Please enter valid Selling Value";
+            conditionValidationRule1.Value1 = 0;
+            this.dxVP.SetValidationRule(this.txtSVL, conditionValidationRule1);
             // 
             // txtBVL
             // 
@@ -363,24 +367,24 @@
             this.txtBVL.Name = "txtBVL";
             this.txtBVL.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtBVL.Size = new System.Drawing.Size(211, 20);
+            this.txtBVL.Size = new System.Drawing.Size(209, 20);
             this.txtBVL.StyleController = this.layoutControl1;
             this.txtBVL.TabIndex = 6;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.GreaterOrEqual;
-            conditionValidationRule3.ErrorText = "Please enter valid Buying Value";
-            conditionValidationRule3.Value1 = 0;
-            this.dxVP.SetValidationRule(this.txtBVL, conditionValidationRule3);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.GreaterOrEqual;
+            conditionValidationRule2.ErrorText = "Please enter valid Buying Value";
+            conditionValidationRule2.Value1 = 0;
+            this.dxVP.SetValidationRule(this.txtBVL, conditionValidationRule2);
             // 
             // txtPNM
             // 
             this.txtPNM.Location = new System.Drawing.Point(108, 48);
             this.txtPNM.Name = "txtPNM";
-            this.txtPNM.Size = new System.Drawing.Size(512, 20);
+            this.txtPNM.Size = new System.Drawing.Size(508, 20);
             this.txtPNM.StyleController = this.layoutControl1;
             this.txtPNM.TabIndex = 5;
-            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule4.ErrorText = "Please enter Product Name";
-            this.dxVP.SetValidationRule(this.txtPNM, conditionValidationRule4);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Please enter Product Name";
+            this.dxVP.SetValidationRule(this.txtPNM, conditionValidationRule3);
             // 
             // lueCAT
             // 
@@ -391,12 +395,12 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
             this.lueCAT.Properties.NullText = "[Select Category]";
             this.lueCAT.Properties.View = this.slv;
-            this.lueCAT.Size = new System.Drawing.Size(536, 20);
+            this.lueCAT.Size = new System.Drawing.Size(532, 20);
             this.lueCAT.StyleController = this.layoutControl1;
             this.lueCAT.TabIndex = 4;
-            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule5.ErrorText = "Please select Category";
-            this.dxVP.SetValidationRule(this.lueCAT, conditionValidationRule5);
+            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule4.ErrorText = "Please select Category";
+            this.dxVP.SetValidationRule(this.lueCAT, conditionValidationRule4);
             // 
             // slv
             // 
@@ -437,10 +441,11 @@
             this.layoutControlItem10,
             this.emptySpaceItem2,
             this.emptySpaceItem3,
-            this.layoutControlItem7});
+            this.layoutControlItem7,
+            this.layoutControlItem11});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(644, 441);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(640, 437);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -448,7 +453,7 @@
             this.layoutControlItem1.Control = this.lueCAT;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(624, 24);
+            this.layoutControlItem1.Size = new System.Drawing.Size(620, 24);
             this.layoutControlItem1.Text = "Select Category:";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(81, 13);
             // 
@@ -464,15 +469,15 @@
             this.emptySpaceItem1});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 24);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(624, 124);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(620, 124);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.txtBCD;
-            this.layoutControlItem6.Location = new System.Drawing.Point(299, 48);
+            this.layoutControlItem6.Location = new System.Drawing.Point(297, 48);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(301, 26);
+            this.layoutControlItem6.Size = new System.Drawing.Size(299, 26);
             this.layoutControlItem6.Text = "Bar Code:";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(81, 13);
             // 
@@ -481,16 +486,16 @@
             this.layoutControlItem5.Control = this.txtQTY;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(299, 26);
+            this.layoutControlItem5.Size = new System.Drawing.Size(297, 26);
             this.layoutControlItem5.Text = "Quantity:";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(81, 13);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtSVL;
-            this.layoutControlItem4.Location = new System.Drawing.Point(299, 24);
+            this.layoutControlItem4.Location = new System.Drawing.Point(297, 24);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(301, 24);
+            this.layoutControlItem4.Size = new System.Drawing.Size(299, 24);
             this.layoutControlItem4.Text = "Selling Value:";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(81, 13);
             // 
@@ -499,7 +504,7 @@
             this.layoutControlItem3.Control = this.txtBVL;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(299, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(297, 24);
             this.layoutControlItem3.Text = "Buying Value:";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(81, 13);
             // 
@@ -508,16 +513,16 @@
             this.layoutControlItem2.Control = this.txtPNM;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(600, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(596, 24);
             this.layoutControlItem2.Text = "Product Name:";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(81, 13);
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnAdd;
-            this.layoutControlItem8.Location = new System.Drawing.Point(379, 74);
+            this.layoutControlItem8.Location = new System.Drawing.Point(384, 74);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(221, 26);
+            this.layoutControlItem8.Size = new System.Drawing.Size(212, 26);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
@@ -526,7 +531,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 74);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(379, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(384, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // simpleSeparator1
@@ -534,12 +539,12 @@
             this.simpleSeparator1.AllowHotTrack = false;
             this.simpleSeparator1.Location = new System.Drawing.Point(0, 148);
             this.simpleSeparator1.Name = "simpleSeparator1";
-            this.simpleSeparator1.Size = new System.Drawing.Size(624, 2);
+            this.simpleSeparator1.Size = new System.Drawing.Size(620, 2);
             // 
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnSave;
-            this.layoutControlItem9.Location = new System.Drawing.Point(436, 387);
+            this.layoutControlItem9.Location = new System.Drawing.Point(432, 383);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Size = new System.Drawing.Size(89, 34);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
@@ -548,7 +553,7 @@
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.btnCancel;
-            this.layoutControlItem10.Location = new System.Drawing.Point(535, 387);
+            this.layoutControlItem10.Location = new System.Drawing.Point(531, 383);
             this.layoutControlItem10.Name = "layoutControlItem10";
             this.layoutControlItem10.Size = new System.Drawing.Size(89, 34);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
@@ -557,7 +562,7 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(525, 387);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(521, 383);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Size = new System.Drawing.Size(10, 34);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
@@ -565,9 +570,9 @@
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 387);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(82, 383);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(436, 34);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(350, 34);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem7
@@ -575,9 +580,31 @@
             this.layoutControlItem7.Control = this.grd;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 150);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(624, 237);
+            this.layoutControlItem7.Size = new System.Drawing.Size(620, 233);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
+            // 
+            // btnNew
+            // 
+            this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
+            this.btnNew.Location = new System.Drawing.Point(12, 395);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(78, 30);
+            this.btnNew.StyleController = this.layoutControl1;
+            this.btnNew.TabIndex = 16;
+            this.btnNew.Text = "&New";
+            // 
+            // layoutControlItem11
+            // 
+            this.layoutControlItem11.Control = this.btnNew;
+            this.layoutControlItem11.Location = new System.Drawing.Point(0, 383);
+            this.layoutControlItem11.MaxSize = new System.Drawing.Size(82, 34);
+            this.layoutControlItem11.MinSize = new System.Drawing.Size(82, 34);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Size = new System.Drawing.Size(82, 34);
+            this.layoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem11.TextVisible = false;
             // 
             // frmNewProduct
             // 
@@ -585,7 +612,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(644, 441);
+            this.ClientSize = new System.Drawing.Size(640, 437);
             this.ControlBox = false;
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -625,6 +652,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxVP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -671,5 +699,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraGrid.Columns.GridColumn colEDT;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repEdit;
+        private DevExpress.XtraEditors.SimpleButton btnNew;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
     }
 }

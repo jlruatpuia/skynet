@@ -29,11 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.MainRibbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.bbNewProduct = new DevExpress.XtraBars.BarButtonItem();
             this.bbExtProduct = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.bbSellProduct = new DevExpress.XtraBars.BarButtonItem();
+            this.bbPurchaseProduct = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgSales = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -43,20 +46,19 @@
             this.splt = new DevExpress.XtraEditors.SplitContainerControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
-            this.bbSellProduct = new DevExpress.XtraBars.BarButtonItem();
-            this.bbPurchaseProduct = new DevExpress.XtraBars.BarButtonItem();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
+            this.nbiViewProducts = new DevExpress.XtraNavBar.NavBarItem();
+            this.nbiViewCustomer = new DevExpress.XtraNavBar.NavBarItem();
+            ((System.ComponentModel.ISupportInitialize)(this.MainRibbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splt)).BeginInit();
             this.splt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.SuspendLayout();
             // 
-            // ribbonControl1
+            // MainRibbon
             // 
-            this.ribbonControl1.ExpandCollapseItem.Id = 0;
-            this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ribbonControl1.ExpandCollapseItem,
+            this.MainRibbon.ExpandCollapseItem.Id = 0;
+            this.MainRibbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.MainRibbon.ExpandCollapseItem,
             this.skinRibbonGalleryBarItem1,
             this.barButtonItem1,
             this.bbNewProduct,
@@ -64,13 +66,13 @@
             this.barButtonItem2,
             this.bbSellProduct,
             this.bbPurchaseProduct});
-            this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 8;
-            this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.MainRibbon.Location = new System.Drawing.Point(0, 0);
+            this.MainRibbon.MaxItemId = 8;
+            this.MainRibbon.Name = "MainRibbon";
+            this.MainRibbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
-            this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
-            this.ribbonControl1.Size = new System.Drawing.Size(758, 143);
+            this.MainRibbon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
+            this.MainRibbon.Size = new System.Drawing.Size(758, 143);
             // 
             // skinRibbonGalleryBarItem1
             // 
@@ -101,6 +103,30 @@
             this.bbExtProduct.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bbExtProduct.LargeGlyph")));
             this.bbExtProduct.Name = "bbExtProduct";
             this.bbExtProduct.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbExtProduct_ItemClick);
+            // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "barButtonItem2";
+            this.barButtonItem2.Id = 5;
+            this.barButtonItem2.Name = "barButtonItem2";
+            // 
+            // bbSellProduct
+            // 
+            this.bbSellProduct.Caption = "&Sell";
+            this.bbSellProduct.Glyph = ((System.Drawing.Image)(resources.GetObject("bbSellProduct.Glyph")));
+            this.bbSellProduct.Id = 6;
+            this.bbSellProduct.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bbSellProduct.LargeGlyph")));
+            this.bbSellProduct.Name = "bbSellProduct";
+            this.bbSellProduct.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbSellProduct_ItemClick);
+            // 
+            // bbPurchaseProduct
+            // 
+            this.bbPurchaseProduct.Caption = "Purchase";
+            this.bbPurchaseProduct.Glyph = ((System.Drawing.Image)(resources.GetObject("bbPurchaseProduct.Glyph")));
+            this.bbPurchaseProduct.Id = 7;
+            this.bbPurchaseProduct.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bbPurchaseProduct.LargeGlyph")));
+            this.bbPurchaseProduct.Name = "bbPurchaseProduct";
+            this.bbPurchaseProduct.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbPurchaseProduct_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -168,6 +194,9 @@
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup1});
+            this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
+            this.nbiViewProducts,
+            this.nbiViewCustomer});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 234;
@@ -178,32 +207,29 @@
             // 
             // navBarGroup1
             // 
-            this.navBarGroup1.Caption = "navBarGroup1";
+            this.navBarGroup1.Caption = "Products";
             this.navBarGroup1.Expanded = true;
+            this.navBarGroup1.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsList;
+            this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.nbiViewProducts),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.nbiViewCustomer)});
             this.navBarGroup1.Name = "navBarGroup1";
             // 
-            // barButtonItem2
+            // nbiViewProducts
             // 
-            this.barButtonItem2.Caption = "barButtonItem2";
-            this.barButtonItem2.Id = 5;
-            this.barButtonItem2.Name = "barButtonItem2";
+            this.nbiViewProducts.Caption = "View";
+            this.nbiViewProducts.LargeImage = ((System.Drawing.Image)(resources.GetObject("nbiViewProducts.LargeImage")));
+            this.nbiViewProducts.Name = "nbiViewProducts";
+            this.nbiViewProducts.SmallImage = ((System.Drawing.Image)(resources.GetObject("nbiViewProducts.SmallImage")));
+            this.nbiViewProducts.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiViewProducts_LinkClicked);
             // 
-            // bbSellProduct
+            // nbiViewCustomer
             // 
-            this.bbSellProduct.Caption = "&Sell";
-            this.bbSellProduct.Glyph = ((System.Drawing.Image)(resources.GetObject("bbSellProduct.Glyph")));
-            this.bbSellProduct.Id = 6;
-            this.bbSellProduct.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bbSellProduct.LargeGlyph")));
-            this.bbSellProduct.Name = "bbSellProduct";
-            this.bbSellProduct.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbSellProduct_ItemClick);
-            // 
-            // bbPurchaseProduct
-            // 
-            this.bbPurchaseProduct.Caption = "Purchase";
-            this.bbPurchaseProduct.Glyph = ((System.Drawing.Image)(resources.GetObject("bbPurchaseProduct.Glyph")));
-            this.bbPurchaseProduct.Id = 7;
-            this.bbPurchaseProduct.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bbPurchaseProduct.LargeGlyph")));
-            this.bbPurchaseProduct.Name = "bbPurchaseProduct";
+            this.nbiViewCustomer.Caption = "Customers";
+            this.nbiViewCustomer.LargeImage = ((System.Drawing.Image)(resources.GetObject("nbiViewCustomer.LargeImage")));
+            this.nbiViewCustomer.Name = "nbiViewCustomer";
+            this.nbiViewCustomer.SmallImage = ((System.Drawing.Image)(resources.GetObject("nbiViewCustomer.SmallImage")));
+            this.nbiViewCustomer.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiViewCustomer_LinkClicked);
             // 
             // MainForm
             // 
@@ -212,11 +238,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(758, 515);
             this.Controls.Add(this.splt);
-            this.Controls.Add(this.ribbonControl1);
+            this.Controls.Add(this.MainRibbon);
             this.Name = "MainForm";
-            this.Ribbon = this.ribbonControl1;
+            this.Ribbon = this.MainRibbon;
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MainRibbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splt)).EndInit();
             this.splt.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
@@ -227,7 +253,7 @@
 
         #endregion
 
-        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
+        private DevExpress.XtraBars.Ribbon.RibbonControl MainRibbon;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraEditors.SplitContainerControl splt;
@@ -244,6 +270,8 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem bbSellProduct;
         private DevExpress.XtraBars.BarButtonItem bbPurchaseProduct;
+        private DevExpress.XtraNavBar.NavBarItem nbiViewProducts;
+        private DevExpress.XtraNavBar.NavBarItem nbiViewCustomer;
     }
 }
 

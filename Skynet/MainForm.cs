@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Skynet.Forms;
+using Skynet.Controls;
+using DevExpress.XtraEditors;
 
 namespace Skynet
 {
@@ -17,6 +19,12 @@ namespace Skynet
             InitializeComponent();
         }
 
+        private void LoadControl(XtraUserControl ctrl)
+        {
+            ctrl.Dock = DockStyle.Fill;
+            splt.Panel2.Controls.Clear();
+            splt.Panel2.Controls.Add(ctrl);
+        }
         private void bbNewProduct_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             frmNewProduct frm = new frmNewProduct();
@@ -33,6 +41,28 @@ namespace Skynet
         {
             frmSellProduct frm = new frmSellProduct();
             frm.ShowDialog();
+        }
+
+        private void nbiViewProducts_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            ucProducts uc = new ucProducts() { Dock = DockStyle.Fill };
+            LoadControl(uc);
+            MainRibbon.MergeRibbon(uc.ribbonControl);
+            MainRibbon.SelectedPage = MainRibbon.MergedRibbon.SelectedPage;
+        }
+
+        private void bbPurchaseProduct_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Utils u = new Utils();
+            Clipboard.SetText(u.GUID());
+        }
+
+        private void nbiViewCustomer_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            ucCustomers uc = new ucCustomers() { Dock = DockStyle.Fill };
+            LoadControl(uc);
+            MainRibbon.MergeRibbon(uc.ribbonControl);
+            MainRibbon.SelectedPage = MainRibbon.MergedRibbon.SelectedPage;
         }
     }
 }

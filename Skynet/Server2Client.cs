@@ -53,6 +53,7 @@ namespace Skynet
         public double SellingValue { get; set; }
         public int Quantity { get; set; }
         public string BarCode { get; set; }
+        public string Message { get; set; }
     }
     class ProductDetail
     {

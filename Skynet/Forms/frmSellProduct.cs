@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using Skynet.Classes;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraReports.UI;
 
 namespace Skynet.Forms
 {
@@ -18,6 +19,7 @@ namespace Skynet.Forms
     {
         DataTable dt = new DataTable();
         public double CustomerBalance;
+        Customer cc = new Customer();
         
         void InitDataTable()
         {
@@ -71,6 +73,18 @@ namespace Skynet.Forms
             txtQTY.EditValue = 0;
         }
 
+        void Reset()
+        {
+            lueCNM.EditValue = null;
+            //luePNM.EditValue = null;
+            txtSVL.EditValue = 0;
+            txtQTY.EditValue = 0;
+            txtAMT.EditValue = 0;
+            txtAMT.EditValue = 0;
+            txtPAM.EditValue = 0;
+            txtBAL.EditValue = 0;
+        }
+
         public frmSellProduct()
         {
             InitializeComponent();
@@ -98,18 +112,25 @@ namespace Skynet.Forms
                 Product p = new Product();
                 Products prd = new Products();
                 p = prd.GetProductByBarCode(txtBCD.Text);
+                if (p.Message == null)
+                {
+                    DataRow r = dt.NewRow();
+                    r["ProductID"] = p.ProductID;
+                    r["ProductName"] = p.ProductName;
+                    r["BuyingValue"] = p.BuyingValue;
+                    r["SellingValue"] = p.SellingValue;
+                    r["Quantity"] = 1;
+                    r["Amount"] = 1 * p.SellingValue;
 
-                DataRow r = dt.NewRow();
-                r["ProductID"] = p.ProductID;
-                r["ProductName"] = p.ProductName;
-                r["BuyingValue"] = p.BuyingValue;
-                r["SellingValue"] = p.SellingValue;
-                r["Quantity"] = 1;
-                r["Amount"] = 1 * p.SellingValue;
-
-                dt.Rows.Add(r);
-                grd.DataSource = dt;
-                grd.Refresh();
+                    dt.Rows.Add(r);
+                    grd.DataSource = dt;
+                    grd.Refresh();
+                }
+                else
+                {
+                    lblInfo.Text = p.Message;
+                }
+              
             }
         }
 
@@ -280,6 +301,29 @@ namespace Skynet.Forms
                 sc = sls.AddSaleDetails(sd);
                 sc = prd.updateQuantity(sd.ProductID, sd.Quantity, "-");
             }
+
+            if (XtraMessageBox.Show("Do you want to print receipt?", "Print Receipt", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                rptCashMemo rpt = new rptCashMemo() { DataSource = dt };
+                rpt.lblCNM.Text = cc.CustomerName;
+                rpt.lblADR.Text = cc.Address;
+                rpt.lblPHN.Text = cc.Phone;
+
+                rpt.lblINV.Text = txtINV.Text;
+                rpt.lblSDT.Text = dtpSDT.DateTime.ToShortDateString();
+
+                rpt.lblPNM.DataBindings.Add("Text", null, "ProductName");
+                rpt.lblQTY.DataBindings.Add("Text", null, "Quantity");
+                rpt.lblPRC.DataBindings.Add("Text", null, "SellingValue", "{0:c}");
+                rpt.lblAMT.DataBindings.Add("Text", null, "Amount", "{0:c}");
+                rpt.lblTTL.Text = s.Amount.ToString("c2");
+                rpt.lblAMW.Text = "Rupees " + Utils.NumbersToWords(Convert.ToInt32(s.Amount)) + " only";
+
+                rpt.ShowPreviewDialog();
+
+            }
+            grd.DataSource = null;
+            Reset();
         }
 
         private void lueCNM_EditValueChanged(object sender, EventArgs e)
@@ -289,8 +333,14 @@ namespace Skynet.Forms
                 int CID = Convert.ToInt32(lueCNM.EditValue);
                 Server2Client sc = new Server2Client();
                 CustomerAccounts ca = new CustomerAccounts();
+
+
                 sc = ca.getCustomerBalance(CID);
                 CustomerBalance = sc.Value;
+
+                Customers cust = new Customers();
+                cc = cust.getCustomer(CID);
+
             }
         }
     }
