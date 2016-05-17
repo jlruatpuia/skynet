@@ -204,5 +204,31 @@ namespace Skynet.Controls
                 rpt().ExportToXlsx(sfd.FileName);
             }
         }
+
+        private void grv_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator)
+            {
+                string rowno = null;
+                if (e.RowHandle == -1)
+                    rowno = "";
+                else
+                    rowno = (e.RowHandle + 1).ToString();
+                e.Info.DisplayText = rowno;
+            }
+        }
+
+        private void grvD_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator)
+            {
+                string rowno = null;
+                if (e.RowHandle == -1)
+                    rowno = "";
+                else
+                    rowno = (e.RowHandle + 1).ToString();
+                e.Info.DisplayText = rowno;
+            }
+        }
     }
 }

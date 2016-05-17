@@ -31,14 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainRibbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.bbNewProduct = new DevExpress.XtraBars.BarButtonItem();
             this.bbExtProduct = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.bbSellProduct = new DevExpress.XtraBars.BarButtonItem();
             this.bbPurchaseProduct = new DevExpress.XtraBars.BarButtonItem();
+            this.bCreditPayment = new DevExpress.XtraBars.BarButtonItem();
+            this.bDebitPayment = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgSales = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgProduct = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -60,14 +59,14 @@
             this.MainRibbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.MainRibbon.ExpandCollapseItem,
             this.skinRibbonGalleryBarItem1,
-            this.barButtonItem1,
             this.bbNewProduct,
             this.bbExtProduct,
-            this.barButtonItem2,
             this.bbSellProduct,
-            this.bbPurchaseProduct});
+            this.bbPurchaseProduct,
+            this.bCreditPayment,
+            this.bDebitPayment});
             this.MainRibbon.Location = new System.Drawing.Point(0, 0);
-            this.MainRibbon.MaxItemId = 8;
+            this.MainRibbon.MaxItemId = 10;
             this.MainRibbon.Name = "MainRibbon";
             this.MainRibbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -79,12 +78,6 @@
             this.skinRibbonGalleryBarItem1.Caption = "skinRibbonGalleryBarItem1";
             this.skinRibbonGalleryBarItem1.Id = 1;
             this.skinRibbonGalleryBarItem1.Name = "skinRibbonGalleryBarItem1";
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "barButtonItem1";
-            this.barButtonItem1.Id = 2;
-            this.barButtonItem1.Name = "barButtonItem1";
             // 
             // bbNewProduct
             // 
@@ -104,12 +97,6 @@
             this.bbExtProduct.Name = "bbExtProduct";
             this.bbExtProduct.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbExtProduct_ItemClick);
             // 
-            // barButtonItem2
-            // 
-            this.barButtonItem2.Caption = "barButtonItem2";
-            this.barButtonItem2.Id = 5;
-            this.barButtonItem2.Name = "barButtonItem2";
-            // 
             // bbSellProduct
             // 
             this.bbSellProduct.Caption = "&Sell";
@@ -128,10 +115,27 @@
             this.bbPurchaseProduct.Name = "bbPurchaseProduct";
             this.bbPurchaseProduct.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbPurchaseProduct_ItemClick);
             // 
+            // bCreditPayment
+            // 
+            this.bCreditPayment.Caption = "Credit Payment";
+            this.bCreditPayment.Glyph = ((System.Drawing.Image)(resources.GetObject("bCreditPayment.Glyph")));
+            this.bCreditPayment.Id = 8;
+            this.bCreditPayment.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bCreditPayment.LargeGlyph")));
+            this.bCreditPayment.Name = "bCreditPayment";
+            this.bCreditPayment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bCreditPayment_ItemClick);
+            // 
+            // bDebitPayment
+            // 
+            this.bDebitPayment.Caption = "Debit Payment";
+            this.bDebitPayment.Glyph = ((System.Drawing.Image)(resources.GetObject("bDebitPayment.Glyph")));
+            this.bDebitPayment.Id = 9;
+            this.bDebitPayment.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bDebitPayment.LargeGlyph")));
+            this.bDebitPayment.Name = "bDebitPayment";
+            this.bDebitPayment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bDebitPayment_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup5,
             this.rpgSales,
             this.rpgProduct,
             this.ribbonPageGroup2,
@@ -139,20 +143,15 @@
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Main";
             // 
-            // ribbonPageGroup5
-            // 
-            this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem2);
-            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-            this.ribbonPageGroup5.ShowCaptionButton = false;
-            this.ribbonPageGroup5.Text = "Home";
-            // 
             // rpgSales
             // 
             this.rpgSales.ItemLinks.Add(this.bbSellProduct);
             this.rpgSales.ItemLinks.Add(this.bbPurchaseProduct);
+            this.rpgSales.ItemLinks.Add(this.bCreditPayment, true);
+            this.rpgSales.ItemLinks.Add(this.bDebitPayment);
             this.rpgSales.Name = "rpgSales";
             this.rpgSales.ShowCaptionButton = false;
-            this.rpgSales.Text = "Sales";
+            this.rpgSales.Text = "Transactions";
             // 
             // rpgProduct
             // 
@@ -258,8 +257,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraEditors.SplitContainerControl splt;
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgSales;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgProduct;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
@@ -267,11 +264,12 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         private DevExpress.XtraBars.BarButtonItem bbNewProduct;
         private DevExpress.XtraBars.BarButtonItem bbExtProduct;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem bbSellProduct;
         private DevExpress.XtraBars.BarButtonItem bbPurchaseProduct;
         private DevExpress.XtraNavBar.NavBarItem nbiViewProducts;
         private DevExpress.XtraNavBar.NavBarItem nbiViewCustomer;
+        private DevExpress.XtraBars.BarButtonItem bCreditPayment;
+        private DevExpress.XtraBars.BarButtonItem bDebitPayment;
     }
 }
 

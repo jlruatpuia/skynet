@@ -53,8 +53,8 @@ namespace Skynet
 
         private void bbPurchaseProduct_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Utils u = new Utils();
-            Clipboard.SetText(u.GUID());
+            frmPurchase frm = new frmPurchase();
+            frm.ShowDialog();
         }
 
         private void nbiViewCustomer_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -63,6 +63,18 @@ namespace Skynet
             LoadControl(uc);
             MainRibbon.MergeRibbon(uc.ribbonControl);
             MainRibbon.SelectedPage = MainRibbon.MergedRibbon.SelectedPage;
+        }
+
+        private void bCreditPayment_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmCreditPayment frm = new frmCreditPayment();
+            frm.ShowDialog();
+        }
+
+        private void bDebitPayment_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmDebitPayment frm = new frmDebitPayment();
+            frm.ShowDialog();
         }
     }
 }

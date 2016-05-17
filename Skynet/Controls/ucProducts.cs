@@ -71,10 +71,10 @@ namespace Skynet.Controls
 
         private void bFind_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (bFind.Checked)
-                grv.ShowFindPanel();
+            if (bFind.Down)
+                grv.OptionsFind.AlwaysVisible = true;
             else
-                grv.HideFindPanel();
+                grv.OptionsFind.AlwaysVisible = false;
         }
 
         private void bPrint_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -97,6 +97,41 @@ namespace Skynet.Controls
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 grv.ExportToXls(sfd.FileName);
+            }
+        }
+
+        private void grv_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            if (!grv.IsGroupRow(e.RowHandle))
+            {
+                if (e.Info.IsRowIndicator)
+                {
+                    string rowno = null;
+                    if (e.RowHandle == -1)
+                        rowno = "";
+                    else
+                        rowno = (e.RowHandle + 1).ToString();
+                    e.Info.DisplayText = rowno;
+                }
+            }
+        }
+
+        private void bExpand_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (bExpand.Checked)
+            {
+                grv.ExpandAllGroups();
+                bExpand.Caption = "Collapse";
+                bExpand.Glyph = DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/squeeze_16x16.png");
+                bExpand.LargeGlyph = DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/squeeze_32x32.png");
+                //bExpand.Glyph = DevExpress.Images.ImageResourceCache.ImagesAssembly.
+            }
+            else
+            {
+                grv.CollapseAllGroups();
+                bExpand.Caption = "Expand";
+                bExpand.Glyph = DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/stretch_16x16.png");
+                bExpand.LargeGlyph = DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/stretch_32x32.png");
             }
         }
     }

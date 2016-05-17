@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucCustomers));
             this.grvD = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -78,8 +78,10 @@
             this.gridColumn6,
             this.gridColumn7});
             this.grvD.GridControl = this.grd;
+            this.grvD.IndicatorWidth = 35;
             this.grvD.Name = "grvD";
             this.grvD.OptionsView.ShowGroupPanel = false;
+            this.grvD.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grvD_CustomDrawRowIndicator);
             // 
             // gridColumn1
             // 
@@ -163,10 +165,10 @@
             // grd
             // 
             this.grd.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.grvD;
-            gridLevelNode1.RelationName = "pk_fk";
+            gridLevelNode2.LevelTemplate = this.grvD;
+            gridLevelNode2.RelationName = "pk_fk";
             this.grd.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode2});
             this.grd.Location = new System.Drawing.Point(0, 141);
             this.grd.MainView = this.grv;
             this.grd.MenuManager = this.ribbonControl;
@@ -186,8 +188,10 @@
             this.colPhone,
             this.colEmail});
             this.grv.GridControl = this.grd;
+            this.grv.IndicatorWidth = 30;
             this.grv.Name = "grv";
             this.grv.OptionsView.ShowGroupPanel = false;
+            this.grv.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grv_CustomDrawRowIndicator);
             // 
             // colID
             // 

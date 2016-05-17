@@ -12,6 +12,7 @@ using Skynet.Classes;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace Skynet.Forms
 {
@@ -20,7 +21,9 @@ namespace Skynet.Forms
         DataTable dt = new DataTable();
         public double CustomerBalance;
         Customer cc = new Customer();
-        
+
+        public double TotalAmount { get; private set; }
+
         void InitDataTable()
         {
             dt.Columns.Add("ProductID", typeof(int));
@@ -341,6 +344,21 @@ namespace Skynet.Forms
                 Customers cust = new Customers();
                 cc = cust.getCustomer(CID);
 
+            }
+        }
+
+        private void grv_Click(object sender, EventArgs e)
+        {
+            GridHitInfo hi = grv.CalcHitInfo(grd.PointToClient(MousePosition));
+            if (hi.InRowCell && hi.Column == colDel)
+            {
+                if (XtraMessageBox.Show("Do you really want to remove this product from Sales list?", "Confirm remove", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    grv.DeleteRow(hi.RowHandle);
+                    TotalAmount = Convert.ToDouble(colAMT.SummaryText);
+                    txtAMT.EditValue = TotalAmount;
+                    txtPAM.EditValue = TotalAmount;
+                }
             }
         }
     }

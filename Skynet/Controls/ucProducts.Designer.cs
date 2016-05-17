@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucProducts));
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.bAddNew = new DevExpress.XtraBars.BarButtonItem();
@@ -36,9 +37,16 @@
             this.bDelete = new DevExpress.XtraBars.BarButtonItem();
             this.beiView = new DevExpress.XtraBars.BarEditItem();
             this.rdoView = new DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.bFind = new DevExpress.XtraBars.BarCheckItem();
+            this.bPrint = new DevExpress.XtraBars.BarButtonItem();
+            this.bExport = new DevExpress.XtraBars.BarSubItem();
+            this.bPDF = new DevExpress.XtraBars.BarButtonItem();
+            this.bXLS = new DevExpress.XtraBars.BarButtonItem();
             this.rpProducts = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgProducts = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgView = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgPrint = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.grd = new DevExpress.XtraGrid.GridControl();
             this.grv = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCAT = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -48,17 +56,15 @@
             this.colQTY = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTBV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTSV = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.bFind = new DevExpress.XtraBars.BarCheckItem();
-            this.rpgPrint = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.bPrint = new DevExpress.XtraBars.BarButtonItem();
-            this.bExport = new DevExpress.XtraBars.BarSubItem();
-            this.bPDF = new DevExpress.XtraBars.BarButtonItem();
-            this.bXLS = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.bExpand = new DevExpress.XtraBars.BarCheckItem();
+            this.imgCollSmall = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCollSmall)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -76,9 +82,12 @@
             this.bPrint,
             this.bExport,
             this.bPDF,
-            this.bXLS});
+            this.bXLS,
+            this.barButtonItem2,
+            this.barButtonItem3,
+            this.bExpand});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 12;
+            this.ribbonControl.MaxItemId = 15;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpProducts});
@@ -91,6 +100,7 @@
             this.bAddNew.Caption = "Add New";
             this.bAddNew.Glyph = ((System.Drawing.Image)(resources.GetObject("bAddNew.Glyph")));
             this.bAddNew.Id = 1;
+            this.bAddNew.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N));
             this.bAddNew.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bAddNew.LargeGlyph")));
             this.bAddNew.Name = "bAddNew";
             // 
@@ -99,6 +109,8 @@
             this.bAddExt.Caption = "Add Existing";
             this.bAddExt.Glyph = ((System.Drawing.Image)(resources.GetObject("bAddExt.Glyph")));
             this.bAddExt.Id = 2;
+            this.bAddExt.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+                | System.Windows.Forms.Keys.N));
             this.bAddExt.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bAddExt.LargeGlyph")));
             this.bAddExt.Name = "bAddExt";
             // 
@@ -107,6 +119,7 @@
             this.bEdit.Caption = "Edit";
             this.bEdit.Glyph = ((System.Drawing.Image)(resources.GetObject("bEdit.Glyph")));
             this.bEdit.Id = 3;
+            this.bEdit.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D));
             this.bEdit.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bEdit.LargeGlyph")));
             this.bEdit.Name = "bEdit";
             this.bEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bEdit_ItemClick);
@@ -116,6 +129,7 @@
             this.bDelete.Caption = "Delete";
             this.bDelete.Glyph = ((System.Drawing.Image)(resources.GetObject("bDelete.Glyph")));
             this.bDelete.Id = 4;
+            this.bDelete.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete));
             this.bDelete.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bDelete.LargeGlyph")));
             this.bDelete.Name = "bDelete";
             // 
@@ -146,6 +160,61 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem(0, "Uncategorized")});
             this.rdoView.Name = "rdoView";
             // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "barButtonItem1";
+            this.barButtonItem1.Id = 6;
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
+            // bFind
+            // 
+            this.bFind.Caption = "Find";
+            this.bFind.Glyph = ((System.Drawing.Image)(resources.GetObject("bFind.Glyph")));
+            this.bFind.Id = 7;
+            this.bFind.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F));
+            this.bFind.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bFind.LargeGlyph")));
+            this.bFind.Name = "bFind";
+            this.bFind.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.bFind_CheckedChanged);
+            // 
+            // bPrint
+            // 
+            this.bPrint.Caption = "Print";
+            this.bPrint.Glyph = ((System.Drawing.Image)(resources.GetObject("bPrint.Glyph")));
+            this.bPrint.Id = 8;
+            this.bPrint.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P));
+            this.bPrint.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bPrint.LargeGlyph")));
+            this.bPrint.Name = "bPrint";
+            this.bPrint.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bPrint_ItemClick);
+            // 
+            // bExport
+            // 
+            this.bExport.Caption = "Export";
+            this.bExport.Glyph = ((System.Drawing.Image)(resources.GetObject("bExport.Glyph")));
+            this.bExport.Id = 9;
+            this.bExport.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bExport.LargeGlyph")));
+            this.bExport.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.bPDF),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bXLS)});
+            this.bExport.Name = "bExport";
+            // 
+            // bPDF
+            // 
+            this.bPDF.Caption = "PDF";
+            this.bPDF.Glyph = ((System.Drawing.Image)(resources.GetObject("bPDF.Glyph")));
+            this.bPDF.Id = 10;
+            this.bPDF.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bPDF.LargeGlyph")));
+            this.bPDF.Name = "bPDF";
+            this.bPDF.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bPDF_ItemClick);
+            // 
+            // bXLS
+            // 
+            this.bXLS.Caption = "XLS";
+            this.bXLS.Glyph = ((System.Drawing.Image)(resources.GetObject("bXLS.Glyph")));
+            this.bXLS.Id = 11;
+            this.bXLS.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bXLS.LargeGlyph")));
+            this.bXLS.Name = "bXLS";
+            this.bXLS.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bXLS_ItemClick);
+            // 
             // rpProducts
             // 
             this.rpProducts.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -169,9 +238,18 @@
             // rpgView
             // 
             this.rpgView.ItemLinks.Add(this.bFind);
+            this.rpgView.ItemLinks.Add(this.bExpand);
             this.rpgView.Name = "rpgView";
             this.rpgView.ShowCaptionButton = false;
             this.rpgView.Text = "View";
+            // 
+            // rpgPrint
+            // 
+            this.rpgPrint.ItemLinks.Add(this.bPrint);
+            this.rpgPrint.ItemLinks.Add(this.bExport);
+            this.rpgPrint.Name = "rpgPrint";
+            this.rpgPrint.ShowCaptionButton = false;
+            this.rpgPrint.Text = "Print && Export";
             // 
             // grd
             // 
@@ -200,11 +278,13 @@
             this.grv.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalBuyingValue", this.colTBV, "{0:C2}"),
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSellingValue", this.colTSV, "{0:C2}")});
+            this.grv.IndicatorWidth = 40;
             this.grv.Name = "grv";
             this.grv.OptionsView.ShowFooter = true;
             this.grv.OptionsView.ShowGroupPanel = false;
             this.grv.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colCAT, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.grv.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grv_CustomDrawRowIndicator);
             // 
             // colCAT
             // 
@@ -295,66 +375,41 @@
             this.colTSV.Visible = true;
             this.colTSV.VisibleIndex = 5;
             // 
-            // barButtonItem1
+            // barButtonItem2
             // 
-            this.barButtonItem1.Caption = "barButtonItem1";
-            this.barButtonItem1.Id = 6;
-            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem2.Caption = "Expand";
+            this.barButtonItem2.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.Glyph")));
+            this.barButtonItem2.Id = 12;
+            this.barButtonItem2.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.LargeGlyph")));
+            this.barButtonItem2.Name = "barButtonItem2";
             // 
-            // bFind
+            // barButtonItem3
             // 
-            this.bFind.Caption = "Find";
-            this.bFind.Glyph = ((System.Drawing.Image)(resources.GetObject("bFind.Glyph")));
-            this.bFind.Id = 7;
-            this.bFind.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bFind.LargeGlyph")));
-            this.bFind.Name = "bFind";
-            this.bFind.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.bFind_CheckedChanged);
+            this.barButtonItem3.Caption = "barButtonItem3";
+            this.barButtonItem3.Id = 13;
+            this.barButtonItem3.Name = "barButtonItem3";
             // 
-            // rpgPrint
+            // bExpand
             // 
-            this.rpgPrint.ItemLinks.Add(this.bPrint);
-            this.rpgPrint.ItemLinks.Add(this.bExport);
-            this.rpgPrint.Name = "rpgPrint";
-            this.rpgPrint.ShowCaptionButton = false;
-            this.rpgPrint.Text = "Print && Export";
+            this.bExpand.Caption = "Expand";
+            this.bExpand.Glyph = ((System.Drawing.Image)(resources.GetObject("bExpand.Glyph")));
+            this.bExpand.Id = 14;
+            this.bExpand.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E));
+            this.bExpand.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bExpand.LargeGlyph")));
+            this.bExpand.Name = "bExpand";
+            this.bExpand.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.bExpand_CheckedChanged);
             // 
-            // bPrint
+            // imgCollSmall
             // 
-            this.bPrint.Caption = "Print";
-            this.bPrint.Glyph = ((System.Drawing.Image)(resources.GetObject("bPrint.Glyph")));
-            this.bPrint.Id = 8;
-            this.bPrint.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bPrint.LargeGlyph")));
-            this.bPrint.Name = "bPrint";
-            this.bPrint.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bPrint_ItemClick);
-            // 
-            // bExport
-            // 
-            this.bExport.Caption = "Export";
-            this.bExport.Glyph = ((System.Drawing.Image)(resources.GetObject("bExport.Glyph")));
-            this.bExport.Id = 9;
-            this.bExport.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bExport.LargeGlyph")));
-            this.bExport.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.bPDF),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bXLS)});
-            this.bExport.Name = "bExport";
-            // 
-            // bPDF
-            // 
-            this.bPDF.Caption = "PDF";
-            this.bPDF.Glyph = ((System.Drawing.Image)(resources.GetObject("bPDF.Glyph")));
-            this.bPDF.Id = 10;
-            this.bPDF.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bPDF.LargeGlyph")));
-            this.bPDF.Name = "bPDF";
-            this.bPDF.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bPDF_ItemClick);
-            // 
-            // bXLS
-            // 
-            this.bXLS.Caption = "XLS";
-            this.bXLS.Glyph = ((System.Drawing.Image)(resources.GetObject("bXLS.Glyph")));
-            this.bXLS.Id = 11;
-            this.bXLS.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bXLS.LargeGlyph")));
-            this.bXLS.Name = "bXLS";
-            this.bXLS.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bXLS_ItemClick);
+            this.imgCollSmall.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imgCollSmall.ImageStream")));
+            this.imgCollSmall.InsertGalleryImage("squeeze_16x16.png", "office2013/actions/squeeze_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/squeeze_16x16.png"), 0);
+            this.imgCollSmall.Images.SetKeyName(0, "squeeze_16x16.png");
+            this.imgCollSmall.InsertGalleryImage("stretch_16x16.png", "office2013/actions/stretch_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/stretch_16x16.png"), 1);
+            this.imgCollSmall.Images.SetKeyName(1, "stretch_16x16.png");
+            this.imgCollSmall.InsertGalleryImage("squeeze_32x32.png", "office2013/actions/squeeze_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/squeeze_32x32.png"), 2);
+            this.imgCollSmall.Images.SetKeyName(2, "squeeze_32x32.png");
+            this.imgCollSmall.InsertGalleryImage("stretch_32x32.png", "office2013/actions/stretch_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/stretch_32x32.png"), 3);
+            this.imgCollSmall.Images.SetKeyName(3, "stretch_32x32.png");
             // 
             // ucProducts
             // 
@@ -368,6 +423,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.rdoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCollSmall)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,5 +456,9 @@
         private DevExpress.XtraBars.BarSubItem bExport;
         private DevExpress.XtraBars.BarButtonItem bPDF;
         private DevExpress.XtraBars.BarButtonItem bXLS;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraBars.BarCheckItem bExpand;
+        private DevExpress.Utils.ImageCollection imgCollSmall;
     }
 }

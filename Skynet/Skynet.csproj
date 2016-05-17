@@ -56,6 +56,7 @@
     <Reference Include="DevExpress.BonusSkins.v15.1" />
     <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v15.1" />
+    <Reference Include="DevExpress.Images.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.1.Core" />
@@ -91,7 +92,10 @@
     <Compile Include="Classes\Customers.cs" />
     <Compile Include="Classes\ProductDetails.cs" />
     <Compile Include="Classes\Products.cs" />
+    <Compile Include="Classes\Purchases.cs" />
     <Compile Include="Classes\Sales.cs" />
+    <Compile Include="Classes\SupplierAccounts.cs" />
+    <Compile Include="Classes\Suppliers.cs" />
     <Compile Include="Controls\ucCustomers.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -116,6 +120,12 @@
     <Compile Include="Forms\frmCustomer.Designer.cs">
       <DependentUpon>frmCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmDebitPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDebitPayment.Designer.cs">
+      <DependentUpon>frmDebitPayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmEditProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,11 +144,29 @@
     <Compile Include="Forms\frmNewProduct.Designer.cs">
       <DependentUpon>frmNewProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmPurchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPurchase.Designer.cs">
+      <DependentUpon>frmPurchase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmRowEdit.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmRowEdit.Designer.cs">
       <DependentUpon>frmRowEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSelectCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSelectCustomer.Designer.cs">
+      <DependentUpon>frmSelectCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSelectSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSelectSupplier.Designer.cs">
+      <DependentUpon>frmSelectSupplier.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmSellProduct.cs">
       <SubType>Form</SubType>
@@ -160,7 +188,13 @@
     <Compile Include="Reports\rptCashMemo.Designer.cs">
       <DependentUpon>rptCashMemo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptCreditPayment.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\rptCustomers.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptDebitPayment.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\XtraReport1.cs">
@@ -183,6 +217,9 @@
     <EmbeddedResource Include="Forms\frmCustomer.resx">
       <DependentUpon>frmCustomer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDebitPayment.resx">
+      <DependentUpon>frmDebitPayment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmEditProduct.resx">
       <DependentUpon>frmEditProduct.cs</DependentUpon>
     </EmbeddedResource>
@@ -192,8 +229,17 @@
     <EmbeddedResource Include="Forms\frmNewProduct.resx">
       <DependentUpon>frmNewProduct.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPurchase.resx">
+      <DependentUpon>frmPurchase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmRowEdit.resx">
       <DependentUpon>frmRowEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSelectCustomer.resx">
+      <DependentUpon>frmSelectCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSelectSupplier.resx">
+      <DependentUpon>frmSelectSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSellProduct.resx">
       <DependentUpon>frmSellProduct.cs</DependentUpon>
@@ -214,8 +260,14 @@
     <EmbeddedResource Include="Reports\rptCashMemo.resx">
       <DependentUpon>rptCashMemo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptCreditPayment.resx">
+      <DependentUpon>rptCreditPayment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptCustomers.resx">
       <DependentUpon>rptCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptDebitPayment.resx">
+      <DependentUpon>rptDebitPayment.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
@@ -228,7 +280,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="bin\x86\Debug\ims.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

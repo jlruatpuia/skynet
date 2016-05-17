@@ -48,6 +48,7 @@ namespace Skynet
     {
         public int ProductID { get; set; }
         public int CategoryID { get; set; }
+        public int SupplierID { get; set; }
         public string ProductName { get; set; }
         public double BuyingValue { get; set; }
         public double SellingValue { get; set; }
