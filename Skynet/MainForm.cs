@@ -76,5 +76,13 @@ namespace Skynet
             frmDebitPayment frm = new frmDebitPayment();
             frm.ShowDialog();
         }
+
+        private void nbiViewReports_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            ucReports uc = new ucReports() { Dock = DockStyle.Fill };
+            LoadControl(uc);
+            MainRibbon.MergeRibbon(uc.ribbonControl1);
+            MainRibbon.SelectedPage = MainRibbon.MergedRibbon.SelectedPage;
+        }
     }
 }

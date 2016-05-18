@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace Skynet.Classes
         {
             string inv = null;
             OleDbCommand cmd = new OleDbCommand("SELECT TOP 1 InvoiceNo FROM Sale ORDER BY InvoiceNo DESC", cm);
+            //OleDbCommand cmd = new OleDbCommand("SELECT MAX(InvoiceNo) FROM Sale", cm);
             try
             {
                 cm.Open();
@@ -68,6 +70,36 @@ namespace Skynet.Classes
                 sc.Message = ex.Message;
             }
             finally { cm.Close(); }
+            return sc;
+        }
+
+        public Server2Client getSoldProducts(DateTime dt)
+        {
+            Server2Client sc = new Server2Client();
+            OleDbCommand cmd = new OleDbCommand("SELECT Sale.SaleDate, Product.ProductName, IIF(Product.BarCode IS NOT NULL, 'ID: ' + Product.BarCode, ' ') AS BarCode, Sum(SaleDetail.SellingValue) AS SumOfSellingValue, Sum(SaleDetail.Quantity) AS SumOfQuantity, Sum(SaleDetail.Amount) AS SumOfAmount FROM Sale INNER JOIN(Product INNER JOIN SaleDetail ON Product.ID = SaleDetail.ProductID) ON Sale.InvoiceNo = SaleDetail.InvoiceNo WHERE Sale.SaleDate = #" + dt + "# GROUP BY Sale.SaleDate, Product.ProductName, Product.BarCode", cm);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sc.Count = ds.Tables[0].Rows.Count;
+            sc.dataTable = ds.Tables[0];
+            return sc;
+        }
+
+        public Server2Client getSoldProducts(DateTime dtFR, DateTime dtTO)
+        {
+            Server2Client sc = new Server2Client();
+            OleDbCommand cmd = new OleDbCommand("SELECT Sale.SaleDate, Product.ProductName, IIF(Product.BarCode IS NOT NULL, 'ID: ' + Product.BarCode, ' ') AS BarCode, Sum(SaleDetail.SellingValue) AS SumOfSellingValue, Sum(SaleDetail.Quantity) AS SumOfQuantity, Sum(SaleDetail.Amount) AS SumOfAmount FROM Sale INNER JOIN(Product INNER JOIN SaleDetail ON Product.ID = SaleDetail.ProductID) ON Sale.InvoiceNo = SaleDetail.InvoiceNo WHERE Sale.SaleDate BETWEEN #" + dtFR + "# AND #" + dtTO + "# GROUP BY Sale.SaleDate, Product.ProductName, Product.BarCode", cm);
+            //OleDbCommand cmd = new OleDbCommand();
+            //cmd.Connection = cm;
+            //cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.CommandText = "SoldProducts";
+            //cmd.Parameters.AddWithValue("FromDate", dtFR);
+            //cmd.Parameters.AddWithValue("ToDate", dtTO);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sc.Count = ds.Tables[0].Rows.Count;
+            sc.dataTable = ds.Tables[0];
             return sc;
         }
     }

@@ -47,6 +47,7 @@
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.nbiViewProducts = new DevExpress.XtraNavBar.NavBarItem();
             this.nbiViewCustomer = new DevExpress.XtraNavBar.NavBarItem();
+            this.nbiViewReports = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainRibbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splt)).BeginInit();
             this.splt.SuspendLayout();
@@ -195,7 +196,8 @@
             this.navBarGroup1});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.nbiViewProducts,
-            this.nbiViewCustomer});
+            this.nbiViewCustomer,
+            this.nbiViewReports});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 234;
@@ -211,7 +213,8 @@
             this.navBarGroup1.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsList;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.nbiViewProducts),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.nbiViewCustomer)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.nbiViewCustomer),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.nbiViewReports)});
             this.navBarGroup1.Name = "navBarGroup1";
             // 
             // nbiViewProducts
@@ -229,6 +232,14 @@
             this.nbiViewCustomer.Name = "nbiViewCustomer";
             this.nbiViewCustomer.SmallImage = ((System.Drawing.Image)(resources.GetObject("nbiViewCustomer.SmallImage")));
             this.nbiViewCustomer.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiViewCustomer_LinkClicked);
+            // 
+            // nbiViewReports
+            // 
+            this.nbiViewReports.Caption = "Reports";
+            this.nbiViewReports.LargeImage = ((System.Drawing.Image)(resources.GetObject("nbiViewReports.LargeImage")));
+            this.nbiViewReports.Name = "nbiViewReports";
+            this.nbiViewReports.SmallImage = ((System.Drawing.Image)(resources.GetObject("nbiViewReports.SmallImage")));
+            this.nbiViewReports.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiViewReports_LinkClicked);
             // 
             // MainForm
             // 
@@ -270,6 +281,7 @@
         private DevExpress.XtraNavBar.NavBarItem nbiViewCustomer;
         private DevExpress.XtraBars.BarButtonItem bCreditPayment;
         private DevExpress.XtraBars.BarButtonItem bDebitPayment;
+        private DevExpress.XtraNavBar.NavBarItem nbiViewReports;
     }
 }
 

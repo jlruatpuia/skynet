@@ -97,6 +97,7 @@ namespace Skynet.Controls
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 fillGrid();
+                FillGridControl();
             }
         }
 
@@ -107,6 +108,7 @@ namespace Skynet.Controls
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 fillGrid();
+                FillGridControl();
             }
         }
 
@@ -160,10 +162,6 @@ namespace Skynet.Controls
             Utils u = new Utils();
 
             rptCustomers rpt = new rptCustomers() { DataSource = sc.dataTable };
-
-            rpt.lbShopName.Text = "Skynet Computers";
-            rpt.lbAddress.Text = "P & Sons Building, Chanmari, Aizawl";
-            rpt.lbPhone.Text = "2342228/9862310857";
 
             XRSummary tbal = new XRSummary();
 

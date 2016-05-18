@@ -33,8 +33,6 @@ public class rptCreditPayment : DevExpress.XtraReports.UI.XtraReport
     private XRTableCell xrTableCell3;
     private XRLine xrLine1;
     private XRLabel xrLabel3;
-    public XRLabel lbAddress;
-    public XRLabel lbShopName;
     private XRTable xrTable3;
     private XRTableRow xrTableRow3;
     private XRTableCell xrTableCell8;
@@ -49,7 +47,11 @@ public class rptCreditPayment : DevExpress.XtraReports.UI.XtraReport
     private XRTableRow xrTableRow6;
     private XRTableCell xrTableCell15;
     public XRTableCell lbEML;
-    public XRLabel lbPhone;
+    private XRPictureBox xrPictureBox1;
+    private XRLabel xrLabel2;
+    private XRLabel xrLabel1;
+    private XRLabel xrLabel4;
+    private XRLabel xrLabel5;
 
     /// <summary>
     /// Required designer variable.
@@ -86,6 +88,7 @@ public class rptCreditPayment : DevExpress.XtraReports.UI.XtraReport
     private void InitializeComponent()
     {
             DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rptCreditPayment));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -100,8 +103,6 @@ public class rptCreditPayment : DevExpress.XtraReports.UI.XtraReport
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
-            this.lbAddress = new DevExpress.XtraReports.UI.XRLabel();
-            this.lbShopName = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrTable4 = new DevExpress.XtraReports.UI.XRTable();
@@ -126,7 +127,11 @@ public class rptCreditPayment : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbPhone = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
@@ -236,53 +241,31 @@ public class rptCreditPayment : DevExpress.XtraReports.UI.XtraReport
             // ReportHeader
             // 
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.lbPhone,
+            this.xrPictureBox1,
+            this.xrLabel2,
+            this.xrLabel1,
+            this.xrLabel4,
+            this.xrLabel5,
             this.xrLabel3,
-            this.lbAddress,
-            this.lbShopName,
             this.xrLine1});
-            this.ReportHeader.HeightF = 104.3333F;
+            this.ReportHeader.HeightF = 137F;
             this.ReportHeader.Name = "ReportHeader";
             // 
             // xrLabel3
             // 
             this.xrLabel3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 79.33334F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(100F, 112F);
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(677F, 23F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(577F, 23F);
             this.xrLabel3.StylePriority.UseFont = false;
             this.xrLabel3.StylePriority.UseTextAlignment = false;
             this.xrLabel3.Text = "Customer Credit Payment Details";
             this.xrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
-            // lbAddress
-            // 
-            this.lbAddress.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lbAddress.LocationFloat = new DevExpress.Utils.PointFloat(0F, 23F);
-            this.lbAddress.Name = "lbAddress";
-            this.lbAddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbAddress.SizeF = new System.Drawing.SizeF(677F, 23F);
-            this.lbAddress.StylePriority.UseFont = false;
-            this.lbAddress.StylePriority.UseTextAlignment = false;
-            this.lbAddress.Text = "Bazar Veng, Lunglei";
-            this.lbAddress.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
-            // lbShopName
-            // 
-            this.lbShopName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lbShopName.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.lbShopName.Name = "lbShopName";
-            this.lbShopName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbShopName.SizeF = new System.Drawing.SizeF(677F, 23F);
-            this.lbShopName.StylePriority.UseFont = false;
-            this.lbShopName.StylePriority.UseTextAlignment = false;
-            this.lbShopName.Text = "SR HOME CONCEPT";
-            this.lbShopName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
             // xrLine1
             // 
-            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 102.3333F);
+            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 135F);
             this.xrLine1.Name = "xrLine1";
             this.xrLine1.SizeF = new System.Drawing.SizeF(677F, 2F);
             // 
@@ -461,17 +444,55 @@ public class rptCreditPayment : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell3.Text = "Balance";
             this.xrTableCell3.Weight = 0.403064992614476D;
             // 
-            // lbPhone
+            // xrPictureBox1
             // 
-            this.lbPhone.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lbPhone.LocationFloat = new DevExpress.Utils.PointFloat(0F, 46F);
-            this.lbPhone.Name = "lbPhone";
-            this.lbPhone.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.lbPhone.SizeF = new System.Drawing.SizeF(677F, 23F);
-            this.lbPhone.StylePriority.UseFont = false;
-            this.lbPhone.StylePriority.UseTextAlignment = false;
-            this.lbPhone.Text = "lbPhone";
-            this.lbPhone.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrPictureBox1.Name = "xrPictureBox1";
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(100F, 112F);
+            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage;
+            // 
+            // xrLabel2
+            // 
+            this.xrLabel2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(100F, 0F);
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(576.9999F, 29F);
+            this.xrLabel2.StylePriority.UseFont = false;
+            this.xrLabel2.StylePriority.UseTextAlignment = false;
+            this.xrLabel2.Text = "SKYNET COMPUTERS";
+            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(100F, 30.99992F);
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(576.9999F, 27.00008F);
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
+            this.xrLabel1.Text = "Chanmari (P & Sons Building)";
+            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // xrLabel4
+            // 
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(100F, 58.99994F);
+            this.xrLabel4.Name = "xrLabel4";
+            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(576.9999F, 28.00003F);
+            this.xrLabel4.StylePriority.UseTextAlignment = false;
+            this.xrLabel4.Text = "Aizawl 796007, Mizoram";
+            this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // xrLabel5
+            // 
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(100F, 86.99995F);
+            this.xrLabel5.Name = "xrLabel5";
+            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(576.9999F, 24.99999F);
+            this.xrLabel5.StylePriority.UseTextAlignment = false;
+            this.xrLabel5.Text = "Phone - 9862310857";
+            this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // rptCreditPayment
             // 

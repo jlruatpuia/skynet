@@ -52,6 +52,8 @@
             this.colSVL = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colQTY = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAMT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDel = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repDel = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.txtQTY = new DevExpress.XtraEditors.SpinEdit();
             this.txtSVL = new DevExpress.XtraEditors.SpinEdit();
@@ -97,8 +99,6 @@
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.colDel = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repDel = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBAL.Properties)).BeginInit();
@@ -109,6 +109,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtAMT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repDel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQTY.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSVL.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBVL.Properties)).BeginInit();
@@ -147,7 +148,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repDel)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -355,7 +355,7 @@
             // colPID
             // 
             this.colPID.Caption = "gridColumn1";
-            this.colPID.FieldName = "ID";
+            this.colPID.FieldName = "ProductID";
             this.colPID.Name = "colPID";
             this.colPID.OptionsColumn.AllowEdit = false;
             this.colPID.OptionsColumn.AllowFocus = false;
@@ -423,6 +423,26 @@
             this.colAMT.Visible = true;
             this.colAMT.VisibleIndex = 3;
             this.colAMT.Width = 123;
+            // 
+            // colDel
+            // 
+            this.colDel.Caption = "Remove";
+            this.colDel.ColumnEdit = this.repDel;
+            this.colDel.Name = "colDel";
+            this.colDel.OptionsColumn.AllowEdit = false;
+            this.colDel.OptionsColumn.AllowFocus = false;
+            this.colDel.OptionsColumn.ReadOnly = true;
+            this.colDel.Visible = true;
+            this.colDel.VisibleIndex = 4;
+            this.colDel.Width = 54;
+            // 
+            // repDel
+            // 
+            this.repDel.AutoHeight = false;
+            this.repDel.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.repDel.Name = "repDel";
+            this.repDel.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // btnAdd
             // 
@@ -508,7 +528,7 @@
             // colProductID
             // 
             this.colProductID.Caption = "gridColumn1";
-            this.colProductID.FieldName = "ID";
+            this.colProductID.FieldName = "ProductID";
             this.colProductID.Name = "colProductID";
             this.colProductID.OptionsColumn.AllowEdit = false;
             this.colProductID.OptionsColumn.AllowFocus = false;
@@ -907,26 +927,6 @@
             this.emptySpaceItem4.Size = new System.Drawing.Size(10, 39);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // colDel
-            // 
-            this.colDel.Caption = "Remove";
-            this.colDel.ColumnEdit = this.repDel;
-            this.colDel.Name = "colDel";
-            this.colDel.OptionsColumn.AllowEdit = false;
-            this.colDel.OptionsColumn.AllowFocus = false;
-            this.colDel.OptionsColumn.ReadOnly = true;
-            this.colDel.Visible = true;
-            this.colDel.VisibleIndex = 4;
-            this.colDel.Width = 54;
-            // 
-            // repDel
-            // 
-            this.repDel.AutoHeight = false;
-            this.repDel.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
-            this.repDel.Name = "repDel";
-            this.repDel.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
             // frmSellProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -951,6 +951,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtAMT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repDel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQTY.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSVL.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBVL.Properties)).EndInit();
@@ -989,7 +990,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repDel)).EndInit();
             this.ResumeLayout(false);
 
         }

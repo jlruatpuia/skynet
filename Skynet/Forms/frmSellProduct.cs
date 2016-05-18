@@ -269,6 +269,11 @@ namespace Skynet.Forms
             Sales sls = new Sales();
 
             sc = sls.AddSale(s);
+            if (sc.Message != null)
+            {
+                XtraMessageBox.Show(sc.Message);
+                return;
+            }
 
             CustomerAccounts cas = new CustomerAccounts();
             CustomerAccount ca = new CustomerAccount();
