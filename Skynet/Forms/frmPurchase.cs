@@ -202,18 +202,17 @@ namespace Skynet.Forms
                 string bcd = grv.GetRowCellValue(i, colBCD).ToString();
 
                 //PurchaseDetail pdt = new PurchaseDetail();
-
                 //pdt.InvoiceNo = txtINV.Text;
                 //pdt.ProductID = 
 
-                Product p = new Product();
-                p.CategoryID = cid;
-                p.ProductName = pnm;
-                p.BuyingValue = bvl;
-                p.SellingValue = svl;
-                p.SupplierID = Convert.ToInt32(lueSUP.EditValue);
-                p.Quantity = qty;
-                p.BarCode = bcd;
+                //Product p = new Product();
+                //p.CategoryID = cid;
+                //p.ProductName = pnm;
+                //p.BuyingValue = bvl;
+                //p.SellingValue = svl;
+                //p.SupplierID = Convert.ToInt32(lueSUP.EditValue);
+                //p.Quantity = qty;
+                //p.BarCode = bcd;
                 
             }
         }

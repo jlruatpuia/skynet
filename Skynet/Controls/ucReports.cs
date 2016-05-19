@@ -106,5 +106,42 @@ namespace Skynet.Controls
                 }
             }
         }
+
+        private void bCreditPayment_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmSelectCustomer frm = new frmSelectCustomer();
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                Server2Client sc = new Server2Client();
+                CustomerAccounts ca = new CustomerAccounts();
+
+                sc = ca.getTransactionDetails(frm.CustomerID);
+
+                rptCreditPayment rpt = new rptCreditPayment() { DataSource = sc.dataTable };
+
+                rpt.lbCNM.DataBindings.Add("Text", null, "CustomerName");
+                rpt.lbADR.DataBindings.Add("Text", null, "Address");
+                rpt.lbPHN.DataBindings.Add("Text", null, "Phone");
+                rpt.lbEML.DataBindings.Add("Text", null, "Email");
+
+                rpt.lbTDT.DataBindings.Add("Text", null, "TransDate", "{0:dd-MM-yyyy}");
+                rpt.lbRMK.DataBindings.Add("Text", null, "Description");
+                rpt.lbTDR.DataBindings.Add("Text", null, "Debit", "{0:c}");
+                rpt.lbTCR.DataBindings.Add("Text", null, "Credit", "{0:c}");
+                rpt.lbBAL.DataBindings.Add("Text", null, "Balance", "{0:c}");
+
+                dv.PrintingSystem = rpt.PrintingSystem;
+                rpt.CreateDocument(true);
+            }
+        }
+
+        private void dv_DocumentChanged(object sender, EventArgs e)
+        {
+            if(dv.Document != null)
+            {
+                rpPreview.Visible = true;
+                ribbonControl1.SelectedPage = rpPreview;
+            }
+        }
     }
 }

@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using Skynet.Classes;
+﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraReports.UI;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraReports.UI;
+using Skynet.Classes;
+using System;
+using System.Data;
+using System.Windows.Forms;
 
 namespace Skynet.Forms
 {
@@ -22,12 +16,14 @@ namespace Skynet.Forms
         public double CustomerBalance;
         Customer cc = new Customer();
 
+        public string BarCode { get; set; }
         public double TotalAmount { get; private set; }
 
         void InitDataTable()
         {
             dt.Columns.Add("ProductID", typeof(int));
             dt.Columns.Add("ProductName", typeof(string));
+            dt.Columns.Add("BarCode", typeof(string));
             dt.Columns.Add("BuyingValue", typeof(double));
             dt.Columns.Add("SellingValue", typeof(double));
             dt.Columns.Add("Quantity", typeof(int));
@@ -120,6 +116,7 @@ namespace Skynet.Forms
                     DataRow r = dt.NewRow();
                     r["ProductID"] = p.ProductID;
                     r["ProductName"] = p.ProductName;
+                    r["BarCode"] = p.BarCode;
                     r["BuyingValue"] = p.BuyingValue;
                     r["SellingValue"] = p.SellingValue;
                     r["Quantity"] = 1;
@@ -172,6 +169,7 @@ namespace Skynet.Forms
                 txtBVL.EditValue = p.BuyingValue;
                 txtSVL.EditValue = p.SellingValue;
                 txtQTY.Properties.MaxValue = p.Quantity;
+                BarCode = p.BarCode;
             }
         }
 
@@ -180,6 +178,7 @@ namespace Skynet.Forms
             DataRow r = dt.NewRow();
             r["ProductID"] = Convert.ToInt32(luePNM.EditValue);
             r["ProductName"] = luePNM.Text;
+            r["BarCode"] = BarCode;
             r["BuyingValue"] = Convert.ToDouble(txtBVL.EditValue);
             r["SellingValue"] = Convert.ToDouble(txtSVL.EditValue);
             r["Quantity"] = Convert.ToInt32(txtQTY.EditValue);
@@ -321,6 +320,7 @@ namespace Skynet.Forms
                 rpt.lblSDT.Text = dtpSDT.DateTime.ToShortDateString();
 
                 rpt.lblPNM.DataBindings.Add("Text", null, "ProductName");
+                rpt.lbSNO.DataBindings.Add("Text", null, "BarCode");
                 rpt.lblQTY.DataBindings.Add("Text", null, "Quantity");
                 rpt.lblPRC.DataBindings.Add("Text", null, "SellingValue", "{0:c}");
                 rpt.lblAMT.DataBindings.Add("Text", null, "Amount", "{0:c}");
@@ -365,6 +365,11 @@ namespace Skynet.Forms
                     txtPAM.EditValue = TotalAmount;
                 }
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,18 @@ namespace Skynet.Classes
                 sc.Message = ex.Message;
             }
             finally { cm.Close(); }
+            return sc;
+        }
+
+        public Server2Client getTransactionDetails(int CustomerID)
+        {
+            sc = new Server2Client();
+            OleDbCommand cmd = new OleDbCommand("SELECT Customer.CustomerName, Customer.Address, Customer.Phone, Customer.Email, CustomerAccount.TransDate, CustomerAccount.Description, iif([CustomerAccount.Debit] = 0, Null, [CustomerAccount.Debit]) AS Debit, iif([CustomerAccount.Credit] = 0, Null, [CustomerAccount.Credit]) AS Credit, CustomerAccount.Balance FROM Customer INNER JOIN CustomerAccount ON Customer.ID = CustomerAccount.CustomerID WHERE CustomerID=" + CustomerID, cm);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sc.dataTable = ds.Tables[0];
+            sc.Count = ds.Tables[0].Rows.Count;
             return sc;
         }
     }

@@ -28,7 +28,7 @@ namespace Skynet.Classes
         public Server2Client addPurchase(Purchase p)
         {
             Server2Client sc = new Server2Client();
-            OleDbCommand cmd = new OleDbCommand("INSERT INTO Purchase (InvoiceNo, PurchaseDate, SupplierID, TotalAmount, TotalPayment, TotalBalance) VALUES (@INV, @PDT, @SID, @TAM, @TPM, @TBL)", cm);
+            OleDbCommand cmd = new OleDbCommand("INSERT INTO Purchase (InvoiceNo, PurchaseDate, SupplierID, Amount, Payment, Balance) VALUES (@INV, @PDT, @SID, @TAM, @TPM, @TBL)", cm);
             cmd.Parameters.AddWithValue("@INV", p.InvoiceNo);
             cmd.Parameters.AddWithValue("@PDT", p.PurchaseDate);
             cmd.Parameters.AddWithValue("@SID", p.SupplierID);
