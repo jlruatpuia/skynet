@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucCustomers));
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.grvD = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -38,6 +39,8 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDetails = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repDetails = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.grd = new DevExpress.XtraGrid.GridControl();
             this.grv = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -62,6 +65,7 @@
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.grvD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
@@ -76,7 +80,8 @@
             this.gridColumn4,
             this.gridColumn5,
             this.gridColumn6,
-            this.gridColumn7});
+            this.gridColumn7,
+            this.colDetails});
             this.grvD.GridControl = this.grd;
             this.grvD.IndicatorWidth = 35;
             this.grvD.Name = "grvD";
@@ -111,6 +116,7 @@
             this.gridColumn3.OptionsColumn.ReadOnly = true;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 0;
+            this.gridColumn3.Width = 112;
             // 
             // gridColumn4
             // 
@@ -122,6 +128,7 @@
             this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 1;
+            this.gridColumn4.Width = 186;
             // 
             // gridColumn5
             // 
@@ -135,6 +142,7 @@
             this.gridColumn5.OptionsColumn.ReadOnly = true;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 2;
+            this.gridColumn5.Width = 105;
             // 
             // gridColumn6
             // 
@@ -148,6 +156,7 @@
             this.gridColumn6.OptionsColumn.ReadOnly = true;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 3;
+            this.gridColumn6.Width = 93;
             // 
             // gridColumn7
             // 
@@ -161,18 +170,40 @@
             this.gridColumn7.OptionsColumn.ReadOnly = true;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 4;
+            this.gridColumn7.Width = 106;
+            // 
+            // colDetails
+            // 
+            this.colDetails.Caption = "Details";
+            this.colDetails.ColumnEdit = this.repDetails;
+            this.colDetails.Name = "colDetails";
+            this.colDetails.OptionsColumn.AllowEdit = false;
+            this.colDetails.OptionsColumn.AllowFocus = false;
+            this.colDetails.OptionsColumn.ReadOnly = true;
+            this.colDetails.Visible = true;
+            this.colDetails.VisibleIndex = 5;
+            // 
+            // repDetails
+            // 
+            this.repDetails.AutoHeight = false;
+            this.repDetails.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repDetails.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "View Details", null, null, true)});
+            this.repDetails.Name = "repDetails";
+            this.repDetails.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // grd
             // 
             this.grd.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode2.LevelTemplate = this.grvD;
-            gridLevelNode2.RelationName = "pk_fk";
+            gridLevelNode1.LevelTemplate = this.grvD;
+            gridLevelNode1.RelationName = "pk_fk";
             this.grd.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.grd.Location = new System.Drawing.Point(0, 141);
             this.grd.MainView = this.grv;
             this.grd.MenuManager = this.ribbonControl;
             this.grd.Name = "grd";
+            this.grd.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repDetails});
             this.grd.Size = new System.Drawing.Size(762, 355);
             this.grd.TabIndex = 3;
             this.grd.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -419,6 +450,7 @@
             this.Name = "ucCustomers";
             this.Size = new System.Drawing.Size(762, 496);
             ((System.ComponentModel.ISupportInitialize)(this.grvD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
@@ -459,5 +491,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAddress;
         private DevExpress.XtraGrid.Columns.GridColumn colPhone;
         private DevExpress.XtraGrid.Columns.GridColumn colEmail;
+        private DevExpress.XtraGrid.Columns.GridColumn colDetails;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repDetails;
     }
 }

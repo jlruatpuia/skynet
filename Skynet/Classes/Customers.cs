@@ -29,7 +29,7 @@ namespace Skynet.Classes
         public Server2Client getCustomersFull()
         {
             sc = new Server2Client();
-            OleDbCommand cmd = new OleDbCommand("SELECT Customer.ID, Customer.CustomerName, Customer.Address, Customer.Phone, Customer.Email, SUM(CustomerAccount.Debit) - SUM(CustomerAccount.Credit) AS Balance FROM Customer INNER JOIN CustomerAccount ON Customer.ID=CustomerAccount.CustomerID GROUP BY Customer.ID, Customer.CustomerName, Customer.Address, Customer.Phone, Customer.Email", cm);
+            OleDbCommand cmd = new OleDbCommand("SELECT Customer.ID, Customer.CustomerName, Customer.Address, Customer.Phone, Customer.Email, SUM(CustomerAccount.Debit) - SUM(CustomerAccount.Credit) AS Balance FROM Customer LEFT OUTER JOIN CustomerAccount ON Customer.ID=CustomerAccount.CustomerID GROUP BY Customer.ID, Customer.CustomerName, Customer.Address, Customer.Phone, Customer.Email", cm);
             OleDbDataAdapter da = new OleDbDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);

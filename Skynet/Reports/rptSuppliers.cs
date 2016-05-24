@@ -6,9 +6,9 @@ using DevExpress.XtraReports.UI;
 
 namespace Skynet.Reports
 {
-    public partial class XtraReport1 : DevExpress.XtraReports.UI.XtraReport
+    public partial class rptSuppliers : DevExpress.XtraReports.UI.XtraReport
     {
-        public XtraReport1()
+        public rptSuppliers()
         {
             InitializeComponent();
         }

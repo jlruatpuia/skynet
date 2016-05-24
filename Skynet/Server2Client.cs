@@ -47,6 +47,7 @@ namespace Skynet
     class Product
     {
         public int ProductID { get; set; }
+        public string ProductCode { get; set; }
         public int CategoryID { get; set; }
         public int SupplierID { get; set; }
         public string ProductName { get; set; }
@@ -78,7 +79,7 @@ namespace Skynet
     {
         public int PurchaseDetailID { get; set; }
         public string InvoiceNo { get; set; }
-        public int ProductID { get; set; }
+        public string ProductCode { get; set; }
         public double BuyingValue { get; set; }
         public double SellingValue { get; set; }
         public int Quantity { get; set; }

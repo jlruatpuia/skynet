@@ -102,5 +102,29 @@ namespace Skynet.Classes
             sc.dataTable = ds.Tables[0];
             return sc;
         }
+
+        public Server2Client getProfitLoss(DateTime dt)
+        {
+            Server2Client sc = new Server2Client();
+            OleDbCommand cmd = new OleDbCommand("SELECT Sale.SaleDate, SUM(Product.SellingValue*SaleDetail.Quantity) AS TotalSellingValue, SUM(Product.BuyingValue*SaleDetail.Quantity) AS TotalBuyingValue, TotalSellingValue -  TotalBuyingValue AS Profit FROM Sale INNER JOIN(Product INNER JOIN SaleDetail ON Product.ID = SaleDetail.ProductID) ON Sale.InvoiceNo = SaleDetail.InvoiceNo WHERE Sale.SaleDate=#" + dt + "# GROUP BY Sale.SaleDate", cm);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sc.Count = ds.Tables[0].Rows.Count;
+            sc.dataTable = ds.Tables[0];
+            return sc;
+        }
+
+        public Server2Client getProfitLoss(DateTime dtFR, DateTime dtTO)
+        {
+            Server2Client sc = new Server2Client();
+            OleDbCommand cmd = new OleDbCommand("SELECT Sale.SaleDate, SUM(Product.SellingValue*SaleDetail.Quantity) AS TotalSellingValue, SUM(Product.BuyingValue*SaleDetail.Quantity) AS TotalBuyingValue, TotalSellingValue -  TotalBuyingValue AS Profit FROM Sale INNER JOIN(Product INNER JOIN SaleDetail ON Product.ID = SaleDetail.ProductID) ON Sale.InvoiceNo = SaleDetail.InvoiceNo WHERE Sale.SaleDate BETWEEN #" + dtFR + "# AND #" + dtTO + "# GROUP BY Sale.SaleDate", cm);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sc.Count = ds.Tables[0].Rows.Count;
+            sc.dataTable = ds.Tables[0];
+            return sc;
+        }
     }
 }

@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using Skynet.Classes;
+
+namespace Skynet.Controls
+{
+    public partial class ucDashboard : XtraUserControl
+    {
+        public ucDashboard()
+        {
+            InitializeComponent();
+
+            LoadChart();
+        }
+
+        private void bRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadChart();
+        }
+
+        void LoadChart()
+        {
+            Server2Client sc = new Server2Client();
+            Dashboard db = new Dashboard();
+
+            sc = db.SalesByCategory(DateTime.Now.Month);
+
+            chartSalesByCategory.DataSource = sc.dataTable;
+        }
+    }
+}

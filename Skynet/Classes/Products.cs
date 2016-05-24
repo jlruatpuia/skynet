@@ -59,7 +59,7 @@ namespace Skynet.Classes
         public Server2Client GetProductByCategory(int CategoryID)
         {
             Server2Client sc = new Server2Client();
-            OleDbCommand cmd = new OleDbCommand("SELECT ID, ProductName, BuyingValue, SellingValue, SUM(Quantity) AS Quantity FROM Product WHERE CategoryID=" + CategoryID + " GROUP BY ID, ProductName, BuyingValue, SellingValue", cm);
+            OleDbCommand cmd = new OleDbCommand("SELECT ID, ProductName, BuyingValue, SellingValue, SUM(Quantity) AS Quantity FROM Product WHERE CategoryID=" + CategoryID + " AND Quantity > 0 GROUP BY ID, ProductName, BuyingValue, SellingValue", cm);
             OleDbDataAdapter da = new OleDbDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -117,8 +117,10 @@ namespace Skynet.Classes
         {
             Server2Client sc = new Server2Client();
             sc.Message = null;
-            OleDbCommand cmd = new OleDbCommand("INSERT INTO Product (CategoryID, ProductName, BuyingValue, SellingValue, Quantity, BarCode) VALUES (@CID, @PNM, @BVL, @SVL, @QTY, @BCD)", cm);
+            OleDbCommand cmd = new OleDbCommand("INSERT INTO Product (CategoryID, SupplierID, ProductCode, ProductName, BuyingValue, SellingValue, Quantity, BarCode) VALUES (@CID, @SID, @PCD, @PNM, @BVL, @SVL, @QTY, @BCD)", cm);
             cmd.Parameters.AddWithValue("@CID", prd.CategoryID);
+            cmd.Parameters.AddWithValue("@SID", prd.SupplierID);
+            cmd.Parameters.AddWithValue("@PCD", prd.ProductCode);
             cmd.Parameters.AddWithValue("@PNM", prd.ProductName);
             cmd.Parameters.AddWithValue("@BVL", prd.BuyingValue);
             cmd.Parameters.AddWithValue("@SVL", prd.SellingValue);

@@ -25,6 +25,14 @@ namespace Skynet.Forms
             Check();
         }
 
+        public frmSelect(bool tt)
+        {
+            InitializeComponent();
+            Check();
+            rdoInv.Enabled = false;
+            txtInv.Enabled = false;
+        }
+
         void Check()
         {
             if (rdoDtOn.Checked)

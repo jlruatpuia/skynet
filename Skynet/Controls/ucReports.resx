@@ -1003,6 +1003,46 @@
         ngJd/reAJ71fwDASDCPBMBIM41B6AgaSgNCuruYWAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="bInvoiceNo.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAbdEVYdFRpdGxlAFBhcmFtO1Vua25vd247UmVwb3J0
+        O+PcE1EAAADASURBVDhPnY6xDcIwEEVDwQDMwiDQwCAUsIAl2AAxAROkSkuZFRgAClY47lv+lu0cskPx
+        5Nz5/xd3IhJxzqVIQbxLO9nw7jdZkXtrhyzOtCylwCLNmgJ8H+/XCcyBV7/Vw+cWcQnB53EAkzJgDhlk
+        OZsCzPvzcFEkMDDXJNA/LoNgpZyCZI0cBXyZKeBOSzvlqdy4qwo4Ay2OaRmFWYKSJoESd+EFI8vNAl5S
+        wBk0CSp4geJ7lqDKT8FMcsF/SPcF1duibcMJa2QAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="bInvoiceNo.LargeGlyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAbdEVYdFRpdGxlAFBhcmFtO1Vua25vd247UmVwb3J0
+        O+PcE1EAAAEqSURBVFhH7ZO9DcIwFIQDGzALK9BThREYgAIoKSLBBogJ6Oio0lKyAgtQsIK5F/kkx3r8
+        GdsIRPGJ5Jx7d34ShTHmo6hiTlQxJ6r4iKqqFsB4iKZ+fw9VfARD/fdkBTB454Q8i3jUeS6qKJz3Q3M5
+        TPDYuuGrFDJDZnGujyoKXoHgDcQqEMzbBSwyKITG/3sFRsu6BDUwDjP/OxC3wHS7bkDYxgsnc5x3OYP+
+        aAVEtwVmoLTPPXACUmBDP8469EfdgJzJL7EFLrbA2J1Bf/QN8BsE9gFvv6JO6I9agCDw5s25HfpTFpBw
+        vLa9WQr4MNSF/pQbONotNP+I5AU4WM4ROrDhQu0GE/qTFBAQnHcDAfwLRCvwFt9bICb+fKKKOVHFnKhi
+        TlQxH6a4AudvJPNayzQ/AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="bProducts.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAASdEVYdFRpdGxlAExpc3Q7QnVsbGV0O1FzfzkAAABd
+        SURBVDhPY/j//z9FGEz4Nu0oAOIHIBpdASEMJqCa/4NomERLS8t/fBimDmYAhguAivBiFAOwYWyakDFM
+        HYomcjCYwOYFYjGYgGoeDcRBF4jEYqyCpGCsgsTj/wwALyKvml3UvwkAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="bProducts.LargeGlyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAASdEVYdFRpdGxlAExpc3Q7QnVsbGV0O1FzfzkAAACp
+        SURBVFhH7dNBCoNADEZhL9ilFypzqC69WepABtLJE0TSv124+Ba+YiIdXczspzAqYVTCqIRRCaMSRqUU
+        Hs/XutvcOv9eLQVfbG4bvbVmFca84eOi+4cHwCPYby4Rd3UpqGFUwkjo7zyDZkUpVL8DcTZJwRffn2HZ
+        Ecziri6FIzTsinluCmoYlVKofgfibJKCL74/w3QE34JRCaMSRiWMShiVMCph1LHlDZQcFf50vG5IAAAA
+        AElFTkSuQmCC
+</value>
+  </data>
   <data name="printPreviewRibbonPageGroup7.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m

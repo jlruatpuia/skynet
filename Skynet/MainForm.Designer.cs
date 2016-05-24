@@ -37,6 +37,7 @@
             this.bbPurchaseProduct = new DevExpress.XtraBars.BarButtonItem();
             this.bCreditPayment = new DevExpress.XtraBars.BarButtonItem();
             this.bDebitPayment = new DevExpress.XtraBars.BarButtonItem();
+            this.bClose = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgSales = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgProduct = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -65,10 +66,12 @@
             this.bbSellProduct,
             this.bbPurchaseProduct,
             this.bCreditPayment,
-            this.bDebitPayment});
+            this.bDebitPayment,
+            this.bClose});
             this.MainRibbon.Location = new System.Drawing.Point(0, 0);
-            this.MainRibbon.MaxItemId = 10;
+            this.MainRibbon.MaxItemId = 11;
             this.MainRibbon.Name = "MainRibbon";
+            this.MainRibbon.PageHeaderItemLinks.Add(this.bClose);
             this.MainRibbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.MainRibbon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
@@ -133,6 +136,15 @@
             this.bDebitPayment.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bDebitPayment.LargeGlyph")));
             this.bDebitPayment.Name = "bDebitPayment";
             this.bDebitPayment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bDebitPayment_ItemClick);
+            // 
+            // bClose
+            // 
+            this.bClose.Caption = "Close";
+            this.bClose.Glyph = ((System.Drawing.Image)(resources.GetObject("bClose.Glyph")));
+            this.bClose.Id = 10;
+            this.bClose.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bClose.LargeGlyph")));
+            this.bClose.Name = "bClose";
+            this.bClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bClose_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -219,7 +231,7 @@
             // 
             // nbiViewProducts
             // 
-            this.nbiViewProducts.Caption = "View";
+            this.nbiViewProducts.Caption = "Products";
             this.nbiViewProducts.LargeImage = ((System.Drawing.Image)(resources.GetObject("nbiViewProducts.LargeImage")));
             this.nbiViewProducts.Name = "nbiViewProducts";
             this.nbiViewProducts.SmallImage = ((System.Drawing.Image)(resources.GetObject("nbiViewProducts.SmallImage")));
@@ -282,6 +294,7 @@
         private DevExpress.XtraBars.BarButtonItem bCreditPayment;
         private DevExpress.XtraBars.BarButtonItem bDebitPayment;
         private DevExpress.XtraNavBar.NavBarItem nbiViewReports;
+        private DevExpress.XtraBars.BarButtonItem bClose;
     }
 }
 

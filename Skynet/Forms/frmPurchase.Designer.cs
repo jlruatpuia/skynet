@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPurchase));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.dtpPDT = new DevExpress.XtraEditors.DateEdit();
             this.txtINV = new DevExpress.XtraEditors.ButtonEdit();
@@ -221,7 +221,7 @@
             this.txtINV.Location = new System.Drawing.Point(97, 12);
             this.txtINV.Name = "txtINV";
             this.txtINV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("txtINV.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("txtINV.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.txtINV.Size = new System.Drawing.Size(143, 22);
             this.txtINV.StyleController = this.layoutControl1;
             this.txtINV.TabIndex = 25;
@@ -281,6 +281,7 @@
             this.txtPAM.Size = new System.Drawing.Size(140, 20);
             this.txtPAM.StyleController = this.layoutControl1;
             this.txtPAM.TabIndex = 21;
+            this.txtPAM.EditValueChanged += new System.EventHandler(this.txtPAM_EditValueChanged);
             // 
             // txtAMT
             // 
@@ -532,7 +533,7 @@
             this.txtBCD1.Location = new System.Drawing.Point(456, 168);
             this.txtBCD1.Name = "txtBCD1";
             this.txtBCD1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("txtBCD1.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("txtBCD1.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.txtBCD1.Size = new System.Drawing.Size(253, 22);
             this.txtBCD1.StyleController = this.layoutControl1;
             this.txtBCD1.TabIndex = 9;
@@ -609,6 +610,7 @@
             this.lueSUP.Size = new System.Drawing.Size(624, 20);
             this.lueSUP.StyleController = this.layoutControl1;
             this.lueSUP.TabIndex = 4;
+            this.lueSUP.EditValueChanged += new System.EventHandler(this.lueSUP_EditValueChanged);
             // 
             // slueSUP
             // 
@@ -705,7 +707,7 @@
             this.txtBCD2.Location = new System.Drawing.Point(456, 168);
             this.txtBCD2.Name = "txtBCD2";
             this.txtBCD2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("txtBCD2.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("txtBCD2.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.txtBCD2.Size = new System.Drawing.Size(253, 22);
             this.txtBCD2.StyleController = this.layoutControl1;
             this.txtBCD2.TabIndex = 15;

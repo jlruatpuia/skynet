@@ -20,6 +20,8 @@ namespace Skynet.Forms
         DataTable dt = new DataTable();
 
         public double TotalAmount { get; private set; }
+        public double SupplierBalance { get; set; }
+
 
         void InitInvoice()
         {
@@ -62,6 +64,7 @@ namespace Skynet.Forms
         public frmPurchase()
         {
             InitializeComponent();
+            InitInvoice();
             dtpPDT.DateTime = DateTime.Now.Date;
             InitDataTable();
             InitSuppliers();
@@ -115,7 +118,10 @@ namespace Skynet.Forms
                 grd.DataSource = dt;
                 grd.Refresh();
 
-                txtAMT.EditValue = colAMT.SummaryText;
+                //txtAMT.EditValue = colAMT.SummaryText;
+                double TotalAmount = Convert.ToDouble(colAMT.SummaryText);
+                txtAMT.Text = TotalAmount.ToString();
+                txtPAM.Text = TotalAmount.ToString();
             }
         }
 
@@ -135,6 +141,10 @@ namespace Skynet.Forms
 
                 grd.DataSource = dt;
                 grd.Refresh();
+
+                double TotalAmount = Convert.ToDouble(colAMT.SummaryText);
+                txtAMT.Text = TotalAmount.ToString();
+                txtPAM.Text = TotalAmount.ToString();
             }
         }
 
@@ -177,13 +187,15 @@ namespace Skynet.Forms
             Server2Client sc = new Server2Client();
             Purchases purc = new Purchases();
             Purchase prc = new Purchase();
+            Products prd = new Products();
+
             prc.InvoiceNo = txtINV.Text;
             prc.PurchaseDate = dtpPDT.DateTime;
             prc.SupplierID = Convert.ToInt32(lueSUP.EditValue);
             prc.Amount = Convert.ToDouble(txtAMT.EditValue);
             prc.Payment = Convert.ToDouble(txtPAM.EditValue);
             prc.Balance = Convert.ToDouble(txtBAL.EditValue);
-
+                        
             sc = purc.addPurchase(prc);
             if(sc.Message != null)
             {
@@ -191,6 +203,24 @@ namespace Skynet.Forms
                 return;
             }
 
+            SupplierAccounts sac = new SupplierAccounts();
+            SupplierAccount sa = new SupplierAccount();
+            Supplier sup = new Supplier();
+            
+            sa.SupplierID  = Convert.ToInt32(lueSUP.EditValue);
+            sa.TransDate = dtpPDT.DateTime;
+            sa.Description = "Invoice No " + txtINV.Text;
+            sa.Debit = Convert.ToDouble(txtBAL.EditValue);
+            sa.Credit = 0;
+            sa.Balance = SupplierBalance + Convert.ToDouble(txtBAL.Text);
+            sc = sac.addTrans(sa);
+            if (sc.Message != null)
+            {
+                XtraMessageBox.Show(sc.Message);
+                return;
+            }
+
+            Guid g;
             for(int i= 0; i <= grv.RowCount  -1; i++)
             {
                 int cid = Convert.ToInt32(grv.GetRowCellValue(i, colCID));
@@ -201,22 +231,67 @@ namespace Skynet.Forms
                 double amt = Convert.ToDouble(grv.GetRowCellValue(i, colAMT));
                 string bcd = grv.GetRowCellValue(i, colBCD).ToString();
 
-                //PurchaseDetail pdt = new PurchaseDetail();
-                //pdt.InvoiceNo = txtINV.Text;
-                //pdt.ProductID = 
+                PurchaseDetail pdt = new PurchaseDetail();
+                pdt.InvoiceNo = txtINV.Text;
+                g = Guid.NewGuid();
+                pdt.ProductCode = g.ToString();
+                pdt.BuyingValue = bvl;
+                pdt.SellingValue = svl;
+                pdt.Quantity = qty;
+                pdt.Amount = amt;
+                sc = purc.addPurchaseDetails(pdt);
+                if(sc.Message != null)
+                {
+                    XtraMessageBox.Show(sc.Message);
+                    return;
+                }
 
-                //Product p = new Product();
-                //p.CategoryID = cid;
-                //p.ProductName = pnm;
-                //p.BuyingValue = bvl;
-                //p.SellingValue = svl;
-                //p.SupplierID = Convert.ToInt32(lueSUP.EditValue);
-                //p.Quantity = qty;
-                //p.BarCode = bcd;
-                
+                Product p = new Product();
+                p.CategoryID = cid;
+                p.SupplierID = Convert.ToInt32(lueSUP.EditValue);
+                p.ProductCode = g.ToString();
+                p.ProductName = pnm;
+                p.BuyingValue = bvl;
+                p.SellingValue = svl;
+                p.SupplierID = Convert.ToInt32(lueSUP.EditValue);
+                p.Quantity = qty;
+                p.BarCode = bcd;
+
+                sc = prd.AddProduct(p);
+                if (sc.Message != null)
+                {
+                    XtraMessageBox.Show(sc.Message);
+                    return;
+                }
             }
         }
 
-        
+        private void txtPAM_EditValueChanged(object sender, EventArgs e)
+        {
+            double Amount = 0;
+            double Paid = 0;
+            if (txtAMT.EditValue != null || txtAMT.Text != "")
+                Amount = Convert.ToDouble(txtAMT.EditValue);
+            else
+                Amount = 0;
+
+            if (txtPAM.EditValue != null || txtPAM.Text != "")
+                Paid = Convert.ToDouble(txtPAM.EditValue);
+            else
+                Paid = 0;
+
+            txtBAL.Text = (Amount - Paid).ToString();
+        }
+
+        private void lueSUP_EditValueChanged(object sender, EventArgs e)
+        {
+            int id = lueSUP.EditValue == null ? 0 : Convert.ToInt32(lueSUP.EditValue);
+            Server2Client sc = new Server2Client();
+            SupplierAccounts sa = new SupplierAccounts();
+            Suppliers sup = new Suppliers();
+            //c = cus.getCustomer(id);
+            sc = sa.getSupplierBalance(id);
+            SupplierBalance = sc.Value;
+        }
     }
 }

@@ -17,6 +17,17 @@ namespace Skynet
         public MainForm()
         {
             InitializeComponent();
+
+            LoadDashboard();
+        }
+
+        void LoadDashboard()
+        {
+            ucDashboard uc = new ucDashboard() { Dock = DockStyle.Fill };
+            LoadControl(uc);
+            MainRibbon.MergeRibbon(uc.ribbonControl1);
+            MainRibbon.SelectedPage = MainRibbon.MergedRibbon.SelectedPage;
+            bClose.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
         private void LoadControl(XtraUserControl ctrl)
@@ -24,6 +35,7 @@ namespace Skynet
             ctrl.Dock = DockStyle.Fill;
             splt.Panel2.Controls.Clear();
             splt.Panel2.Controls.Add(ctrl);
+            bClose.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
         }
         private void bbNewProduct_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -83,6 +95,11 @@ namespace Skynet
             LoadControl(uc);
             MainRibbon.MergeRibbon(uc.ribbonControl1);
             MainRibbon.SelectedPage = MainRibbon.MergedRibbon.SelectedPage;
+        }
+
+        private void bClose_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadDashboard();
         }
     }
 }

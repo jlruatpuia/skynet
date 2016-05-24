@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using Skynet.Forms;
 using Skynet.Classes;
 using DevExpress.XtraReports.UI;
+using Skynet.Reports;
 
 namespace Skynet.Controls
 {
@@ -22,6 +23,61 @@ namespace Skynet.Controls
 
             if (dv.Document == null)
                 rpPreview.Visible = false;
+        }
+
+        private void bProductList_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void bCustomersList_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Server2Client sc = new Server2Client();
+            Customers cus = new Customers();
+            sc = cus.getCustomersFull();
+
+            rptCustomers rpt = new rptCustomers() { DataSource = sc.dataTable };
+            
+            XRSummary tbal = new XRSummary();
+
+            rpt.lbCNM.DataBindings.Add("Text", null, "CustomerName");
+            rpt.lbADR.DataBindings.Add("Text", null, "Address");
+            rpt.lbPHN.DataBindings.Add("Text", null, "Phone");
+            rpt.lbEML.DataBindings.Add("Text", null, "Email");
+            rpt.lbBAL.DataBindings.Add("Text", null, "Balance", "{0:C2}");
+            rpt.lbTBAL.DataBindings.Add("Text", null, "Balance", "{0:C2}");
+
+            tbal.FormatString = "{0:C2}";
+            tbal.Running = SummaryRunning.Report;
+            rpt.lbTBAL.Summary = tbal;
+
+            dv.PrintingSystem = rpt.PrintingSystem;
+            rpt.CreateDocument(true);
+        }
+
+        private void bSuppliersList_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Server2Client sc = new Server2Client();
+            Suppliers sup = new Suppliers();
+            sc = sup.getSuppliersFull();
+
+            rptSuppliers rpt = new rptSuppliers() { DataSource = sc.dataTable };
+
+            XRSummary tbal = new XRSummary();
+
+            rpt.lbCNM.DataBindings.Add("Text", null, "SupplierName");
+            rpt.lbADR.DataBindings.Add("Text", null, "Address");
+            rpt.lbPHN.DataBindings.Add("Text", null, "Phone");
+            rpt.lbEML.DataBindings.Add("Text", null, "Email");
+            rpt.lbBAL.DataBindings.Add("Text", null, "Balance", "{0:C2}");
+            rpt.lbTBAL.DataBindings.Add("Text", null, "Balance", "{0:C2}");
+
+            tbal.FormatString = "{0:C2}";
+            tbal.Running = SummaryRunning.Report;
+            rpt.lbTBAL.Summary = tbal;
+
+            dv.PrintingSystem = rpt.PrintingSystem;
+            rpt.CreateDocument(true);
         }
 
         private void bSoldProducts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -106,6 +162,63 @@ namespace Skynet.Controls
                 }
             }
         }
+        
+        private void bPurchasedProducts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+        private void bProfitLoss_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmSelect frm = new frmSelect(false);
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                Server2Client sc = new Server2Client();
+                string dt = null;
+                if (frm.RetVal == 0)
+                {
+                    Sales s = new Sales();
+                    sc = s.getProfitLoss(frm.DateOn);
+                    dt = "Date " + frm.DateOn.ToShortDateString();
+                }
+                else
+                {
+                    Sales s = new Sales();
+                    sc = s.getProfitLoss(frm.DateFrom, frm.DateTo);
+                    dt = "Between " + frm.DateFrom.ToShortDateString() + " and " + frm.DateTo.ToShortDateString();
+                }
+
+                rptPL rpt = new rptPL() { DataSource = sc.dataTable };
+
+                XRSummary gsv = new XRSummary();
+                XRSummary gbv = new XRSummary();
+                XRSummary gpf = new XRSummary();
+
+                rpt.lbDT.Text = dt;
+                rpt.lbSDT.DataBindings.Add("Text", null, "SaleDate", "{0:dd-MM-yyyy}");
+                rpt.lbSVL.DataBindings.Add("Text", null, "TotalSellingValue", "{0:C2}");
+                rpt.lbBVL.DataBindings.Add("Text", null, "TotalBuyingValue", "{0:C2}");
+                rpt.lbPFT.DataBindings.Add("Text", null, "Profit", "{0:C2}");
+                rpt.lbGSV.DataBindings.Add("Text", null, "TotalSellingValue", "{0:C2}");
+                rpt.lbGBV.DataBindings.Add("Text", null, "TotalBuyingValue", "{0:C2}");
+                rpt.lbGPF.DataBindings.Add("Text", null, "Profit", "{0:C2}");
+
+                gsv.FormatString = "{0:C2}";
+                gbv.FormatString = "{0:C2}";
+                gpf.FormatString = "{0:C2}";
+
+
+                gsv.Running = SummaryRunning.Report;
+                gbv.Running = SummaryRunning.Report;
+                gpf.Running = SummaryRunning.Report;
+
+                rpt.lbGSV.Summary = gsv;
+                rpt.lbGBV.Summary = gbv;
+                rpt.lbGPF.Summary = gpf;
+
+                dv.PrintingSystem = rpt.PrintingSystem;
+                rpt.CreateDocument(true);
+            }
+        }
 
         private void bCreditPayment_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -134,7 +247,10 @@ namespace Skynet.Controls
                 rpt.CreateDocument(true);
             }
         }
+        private void bDebitPayment_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
 
+        }
         private void dv_DocumentChanged(object sender, EventArgs e)
         {
             if(dv.Document != null)
@@ -142,6 +258,122 @@ namespace Skynet.Controls
                 rpPreview.Visible = true;
                 ribbonControl1.SelectedPage = rpPreview;
             }
+        }
+
+        private void bPCATS_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Server2Client sc = new Server2Client();
+            ProductDetails pd = new ProductDetails();
+            sc = pd.ProductListByCategorySimplified();
+
+            rptProductByCat rpt = new rptProductByCat() { DataSource = sc.dataTable };
+
+            GroupField grp = new GroupField("CategoryName");
+
+            rpt.groupHeader.GroupFields.Add(grp);
+
+            rpt.lbCAT.DataBindings.Add("Text", null, "CategoryName");
+            rpt.lbPNM.DataBindings.Add("Text", null, "ProductName");
+            rpt.lbBVL.DataBindings.Add("Text", null, "BuyingValue", "{0:C2}");
+            rpt.lbSVL.DataBindings.Add("Text", null, "SellingValue", "{0:C2}");
+            rpt.lbQTY.DataBindings.Add("Text", null, "SumOfQuantity");
+            rpt.lbBCD.Text = "";
+            //rpt.lbSBVL.DataBindings.Add("Text", null, "BuyingValue", "{0:C2}");
+            //rpt.lbSSVL.DataBindings.Add("Text", null, "SellingValue", "{0:C2}");
+            //rpt.lbSQTY.DataBindings.Add("Text", null, "Quantity");
+            //rpt.lbGBVL.DataBindings.Add("Text", null, "BuyingValue", "{0:C2}");
+            //rpt.lbGSVL.DataBindings.Add("Text", null, "SellingValue", "{0:C2}");
+            //rpt.lbGQTY.DataBindings.Add("Text", null, "Quantity");
+
+            //sbvl.FormatString = "{0:C2}";
+            //ssvl.FormatString = "{0:C2}";
+            //gbvl.FormatString = "{0:C2}";
+            //gsvl.FormatString = "{0:C2}";
+
+            //sbvl.Running = SummaryRunning.Group;
+            //ssvl.Running = SummaryRunning.Group;
+            //sqty.Running = SummaryRunning.Group;
+
+            //gbvl.Running = SummaryRunning.Report;
+            //gsvl.Running = SummaryRunning.Report;
+            //gqty.Running = SummaryRunning.Report;
+
+            //rpt.lbSBVL.Summary = sbvl;
+            //rpt.lbSSVL.Summary = ssvl;
+            //rpt.lbSQTY.Summary = sqty;
+
+            //rpt.lbGBVL.Summary = gbvl;
+            //rpt.lbGSVL.Summary = gsvl;
+            //rpt.lbGQTY.Summary = gqty;
+
+            dv.PrintingSystem = rpt.PrintingSystem;
+            rpt.CreateDocument(true);
+        }
+
+        private void bPCATX_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Server2Client sc = new Server2Client();
+            ProductDetails pd = new ProductDetails();
+            sc = pd.ProductListByCategoryExtended();
+
+            rptProductByCat rpt = new rptProductByCat() { DataSource = sc.dataTable };
+
+            GroupField grp = new GroupField("CategoryName");
+
+            rpt.groupHeader.GroupFields.Add(grp);
+
+            rpt.lbCAT.DataBindings.Add("Text", null, "CategoryName");
+            rpt.lbPNM.DataBindings.Add("Text", null, "ProductName");
+            rpt.lbBVL.DataBindings.Add("Text", null, "BuyingValue", "{0:C2}");
+            rpt.lbSVL.DataBindings.Add("Text", null, "SellingValue", "{0:C2}");
+            rpt.lbQTY.DataBindings.Add("Text", null, "Quantity");
+            rpt.lbBCD.DataBindings.Add("Text", null, "BarCode");
+            dv.PrintingSystem = rpt.PrintingSystem;
+            rpt.CreateDocument(true);
+        }
+
+        private void bPSUPS_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Server2Client sc = new Server2Client();
+            ProductDetails pd = new ProductDetails();
+            sc = pd.ProductListBySupplierSimple();
+
+            rptProductBySup rpt = new rptProductBySup() { DataSource = sc.dataTable };
+
+            GroupField grp = new GroupField("SupplierName");
+
+            rpt.groupHeader.GroupFields.Add(grp);
+
+            rpt.lbSUP.DataBindings.Add("Text", null, "SupplierName");
+            rpt.lbPNM.DataBindings.Add("Text", null, "ProductName");
+            rpt.lbBVL.DataBindings.Add("Text", null, "BuyingValue", "{0:C2}");
+            rpt.lbSVL.DataBindings.Add("Text", null, "SellingValue", "{0:C2}");
+            rpt.lbQTY.DataBindings.Add("Text", null, "SumOfQuantity");
+            rpt.lbBCD.Text = "";
+            dv.PrintingSystem = rpt.PrintingSystem;
+            rpt.CreateDocument(true);
+        }
+
+        private void bPSUPX_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Server2Client sc = new Server2Client();
+            ProductDetails pd = new ProductDetails();
+            sc = pd.ProductListBySupplierExtended();
+
+            rptProductBySup rpt = new rptProductBySup() { DataSource = sc.dataTable };
+
+            GroupField grp = new GroupField("SupplierName");
+
+            rpt.groupHeader.GroupFields.Add(grp);
+
+            rpt.lbSUP.DataBindings.Add("Text", null, "SupplierName");
+            rpt.lbPNM.DataBindings.Add("Text", null, "ProductName");
+            rpt.lbBVL.DataBindings.Add("Text", null, "BuyingValue", "{0:C2}");
+            rpt.lbSVL.DataBindings.Add("Text", null, "SellingValue", "{0:C2}");
+            rpt.lbQTY.DataBindings.Add("Text", null, "Quantity");
+            rpt.lbBCD.DataBindings.Add("Text", null, "BarCode");
+            dv.PrintingSystem = rpt.PrintingSystem;
+            rpt.CreateDocument(true);
         }
     }
 }

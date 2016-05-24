@@ -25,6 +25,18 @@ namespace Skynet.Classes
             sc.dataTable = ds.Tables[0];
             return sc;
         }
+
+        public Server2Client getSuppliersFull()
+        {
+            sc = new Server2Client();
+            OleDbCommand cmd = new OleDbCommand("SELECT Supplier.ID, Supplier.SupplierName, Supplier.Address, Supplier.Phone, Supplier.Email, SUM(SupplierAccount.Debit) - SUM(SupplierAccount.Credit) AS Balance FROM Supplier LEFT OUTER JOIN SupplierAccount ON Supplier.ID=SupplierAccount.SupplierID GROUP BY Supplier.ID, Supplier.SupplierName, Supplier.Address, Supplier.Phone, Supplier.Email", cm);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sc.Count = ds.Tables[0].Rows.Count;
+            sc.dataTable = ds.Tables[0];
+            return sc;
+        }
         public Server2Client getMaxID()
         {
             sc = new Server2Client();

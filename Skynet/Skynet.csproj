@@ -66,6 +66,8 @@
     <Reference Include="DevExpress.XtraBars.v15.1" />
     <Reference Include="DevExpress.Sparkline.v15.1.Core" />
     <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v15.1.UI, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v15.1.Wizard, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v15.1" />
     <Reference Include="DevExpress.XtraGauges.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -90,6 +92,7 @@
     <Compile Include="Classes\Categories.cs" />
     <Compile Include="Classes\CustomerAccounts.cs" />
     <Compile Include="Classes\Customers.cs" />
+    <Compile Include="Classes\Dashboard.cs" />
     <Compile Include="Classes\ProductDetails.cs" />
     <Compile Include="Classes\Products.cs" />
     <Compile Include="Classes\Purchases.cs" />
@@ -101,6 +104,12 @@
     </Compile>
     <Compile Include="Controls\ucCustomers.Designer.cs">
       <DependentUpon>ucCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ucDashboard.Designer.cs">
+      <DependentUpon>ucDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ucProducts.cs">
       <SubType>UserControl</SubType>
@@ -214,19 +223,40 @@
     <Compile Include="Reports\rptDebitPayment.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\rptPL.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptPL.Designer.cs">
+      <DependentUpon>rptPL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptProductBySup.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptProductBySup.Designer.cs">
+      <DependentUpon>rptProductBySup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptProductByCat.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptProductByCat.Designer.cs">
+      <DependentUpon>rptProductByCat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\rptSoldProducts.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\XtraReport1.cs">
+    <Compile Include="Reports\rptSuppliers.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\XtraReport1.Designer.cs">
-      <DependentUpon>XtraReport1.cs</DependentUpon>
+    <Compile Include="Reports\rptSuppliers.Designer.cs">
+      <DependentUpon>rptSuppliers.cs</DependentUpon>
     </Compile>
     <Compile Include="Server2Client.cs" />
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="Controls\ucCustomers.resx">
       <DependentUpon>ucCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ucDashboard.resx">
+      <DependentUpon>ucDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ucProducts.resx">
       <DependentUpon>ucProducts.cs</DependentUpon>
@@ -299,8 +329,20 @@
     <EmbeddedResource Include="Reports\rptDebitPayment.resx">
       <DependentUpon>rptDebitPayment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptPL.resx">
+      <DependentUpon>rptPL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptProductBySup.resx">
+      <DependentUpon>rptProductBySup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptProductByCat.resx">
+      <DependentUpon>rptProductByCat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptSoldProducts.resx">
       <DependentUpon>rptSoldProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptSuppliers.resx">
+      <DependentUpon>rptSuppliers.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
@@ -312,11 +354,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\x86\Debug\ims.mdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
