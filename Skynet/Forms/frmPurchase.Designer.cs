@@ -386,6 +386,7 @@
             this.btnAdd1.StyleController = this.layoutControl1;
             this.btnAdd1.TabIndex = 16;
             this.btnAdd1.Text = "&Add";
+            this.btnAdd1.Click += new System.EventHandler(this.btnAdd1_Click);
             // 
             // grd
             // 

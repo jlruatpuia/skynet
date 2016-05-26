@@ -293,5 +293,10 @@ namespace Skynet.Forms
             sc = sa.getSupplierBalance(id);
             SupplierBalance = sc.Value;
         }
+
+        private void btnAdd1_Click(object sender, EventArgs e)
+        {
+            txtBCD1_KeyDown(null, null);
+        }
     }
 }

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Skynet.Forms;
 using Skynet.Controls;
 using DevExpress.XtraEditors;
+using Skynet.Classes;
 
 namespace Skynet
 {
@@ -17,7 +11,8 @@ namespace Skynet
         public MainForm()
         {
             InitializeComponent();
-
+            dlaf.LookAndFeel.SkinName = Properties.Settings.Default.WindowTheme;
+            Settings.GeometryFromString(Properties.Settings.Default.WindowGeometry, this);
             LoadDashboard();
         }
 
@@ -100,6 +95,19 @@ namespace Skynet
         private void bClose_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             LoadDashboard();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.WindowTheme = dlaf.LookAndFeel.ActiveSkinName;
+            Properties.Settings.Default.WindowGeometry = Settings.GeometryToString(this);
+            Properties.Settings.Default.Save();
+        }
+
+        private void bCAT_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmCategory frm = new frmCategory();
+            frm.ShowDialog();
         }
     }
 }

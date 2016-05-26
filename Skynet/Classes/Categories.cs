@@ -21,6 +21,19 @@ namespace Skynet.Classes
             return sc;
         }
 
+        public Server2Client GetProductCategories()
+        {
+            Server2Client sc = new Server2Client();
+            OleDbCommand cmd = new OleDbCommand("SELECT Category.ID, Category.CategoryName, IIF(Sum(Product.Quantity) IS NULL, 0, Sum(Product.Quantity)) AS NoOfProducts FROM Category LEFT JOIN Product ON Category.ID = Product.CategoryID GROUP BY Category.ID, Category.CategoryName", cm);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sc.Count = ds.Tables[0].Rows.Count;
+            sc.dataSet = ds;
+            sc.dataTable = ds.Tables[0];
+            return sc;
+        }
+
         public Category GetCategory(int CategoryID)
         {
             Category cat = new Category();

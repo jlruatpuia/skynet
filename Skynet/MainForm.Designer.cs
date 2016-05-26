@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainRibbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
@@ -38,6 +39,7 @@
             this.bCreditPayment = new DevExpress.XtraBars.BarButtonItem();
             this.bDebitPayment = new DevExpress.XtraBars.BarButtonItem();
             this.bClose = new DevExpress.XtraBars.BarButtonItem();
+            this.bCAT = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgSales = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgProduct = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -49,6 +51,7 @@
             this.nbiViewProducts = new DevExpress.XtraNavBar.NavBarItem();
             this.nbiViewCustomer = new DevExpress.XtraNavBar.NavBarItem();
             this.nbiViewReports = new DevExpress.XtraNavBar.NavBarItem();
+            this.dlaf = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.MainRibbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splt)).BeginInit();
             this.splt.SuspendLayout();
@@ -67,9 +70,10 @@
             this.bbPurchaseProduct,
             this.bCreditPayment,
             this.bDebitPayment,
-            this.bClose});
+            this.bClose,
+            this.bCAT});
             this.MainRibbon.Location = new System.Drawing.Point(0, 0);
-            this.MainRibbon.MaxItemId = 11;
+            this.MainRibbon.MaxItemId = 12;
             this.MainRibbon.Name = "MainRibbon";
             this.MainRibbon.PageHeaderItemLinks.Add(this.bClose);
             this.MainRibbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -146,6 +150,15 @@
             this.bClose.Name = "bClose";
             this.bClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bClose_ItemClick);
             // 
+            // bCAT
+            // 
+            this.bCAT.Caption = "Category";
+            this.bCAT.Glyph = ((System.Drawing.Image)(resources.GetObject("bCAT.Glyph")));
+            this.bCAT.Id = 11;
+            this.bCAT.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bCAT.LargeGlyph")));
+            this.bCAT.Name = "bCAT";
+            this.bCAT.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bCAT_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -170,6 +183,7 @@
             // 
             this.rpgProduct.ItemLinks.Add(this.bbNewProduct);
             this.rpgProduct.ItemLinks.Add(this.bbExtProduct);
+            this.rpgProduct.ItemLinks.Add(this.bCAT);
             this.rpgProduct.Name = "rpgProduct";
             this.rpgProduct.ShowCaptionButton = false;
             this.rpgProduct.Text = "Products";
@@ -264,6 +278,7 @@
             this.Name = "MainForm";
             this.Ribbon = this.MainRibbon;
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.MainRibbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splt)).EndInit();
             this.splt.ResumeLayout(false);
@@ -295,6 +310,8 @@
         private DevExpress.XtraBars.BarButtonItem bDebitPayment;
         private DevExpress.XtraNavBar.NavBarItem nbiViewReports;
         private DevExpress.XtraBars.BarButtonItem bClose;
+        private DevExpress.LookAndFeel.DefaultLookAndFeel dlaf;
+        private DevExpress.XtraBars.BarButtonItem bCAT;
     }
 }
 

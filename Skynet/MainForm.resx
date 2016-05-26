@@ -272,6 +272,22 @@
         0CuHg4gA6P6xXODHf0p/lZPA3xFYj7T5BN17IBCO78cXAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="bCAT.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAQdEVYdFRpdGxlAEdyaWQ7Q2FyZDuRESn+AAAAOElE
+        QVQ4T2P4//8/RRirICmYwbdpx388GK/8qAEIA8jGg8cLWCWheCgYACIowVgFScFYBYnH/xkAF/2XhS49
+        xt4AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="bCAT.LargeGlyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAQdEVYdFRpdGxlAEdyaWQ7Q2FyZDuRESn+AAAAUUlE
+        QVRYR+3OsQkAIAxEURd0Kadyu5NcnUIMmOYX/4pA4A1JrXnm2nqp+hsBAAAAgKczTya8qfobAQAAAICn
+        M08mvKn6GwEAAACAp7P0+C+NA9ZjlStGtpehAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="nbiViewProducts.LargeImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAABd0RVh0VGl0
@@ -339,4 +355,7 @@
         XxsUC3IUC6TfQZHAgNAdVmCwc5LgkazgJaHgG1RdV4SbvlieG1wAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="dlaf.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>
