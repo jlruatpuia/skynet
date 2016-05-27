@@ -86,7 +86,6 @@
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.simpleLabelItem1 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lblInfo = new DevExpress.XtraLayout.SimpleLabelItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -99,6 +98,8 @@
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lblInfo = new System.Windows.Forms.Label();
+            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBAL.Properties)).BeginInit();
@@ -135,7 +136,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
@@ -148,10 +148,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.lblInfo);
             this.layoutControl1.Controls.Add(this.btnCancel);
             this.layoutControl1.Controls.Add(this.btnSell);
             this.layoutControl1.Controls.Add(this.txtBAL);
@@ -626,7 +628,7 @@
             this.txtBCD.Name = "txtBCD";
             this.txtBCD.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("txtBCD.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-            this.txtBCD.Size = new System.Drawing.Size(284, 22);
+            this.txtBCD.Size = new System.Drawing.Size(279, 22);
             this.txtBCD.StyleController = this.layoutControl1;
             this.txtBCD.TabIndex = 6;
             this.txtBCD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBCD_KeyDown);
@@ -722,7 +724,7 @@
             this.layoutControlItem4,
             this.simpleLabelItem1,
             this.layoutControlItem3,
-            this.lblInfo});
+            this.layoutControlItem18});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 52);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(714, 165);
@@ -806,17 +808,9 @@
             this.layoutControlItem3.Control = this.txtBCD;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(391, 26);
+            this.layoutControlItem3.Size = new System.Drawing.Size(386, 26);
             this.layoutControlItem3.Text = "Scan Bar Code Here:";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(100, 13);
-            // 
-            // lblInfo
-            // 
-            this.lblInfo.AllowHotTrack = false;
-            this.lblInfo.Location = new System.Drawing.Point(391, 0);
-            this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(299, 26);
-            this.lblInfo.TextSize = new System.Drawing.Size(100, 13);
             // 
             // layoutControlItem10
             // 
@@ -928,6 +922,24 @@
             this.emptySpaceItem4.Size = new System.Drawing.Size(10, 39);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // lblInfo
+            // 
+            this.lblInfo.Location = new System.Drawing.Point(410, 76);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(300, 22);
+            this.lblInfo.TabIndex = 21;
+            this.lblInfo.Text = "label1";
+            this.lblInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // layoutControlItem18
+            // 
+            this.layoutControlItem18.Control = this.lblInfo;
+            this.layoutControlItem18.Location = new System.Drawing.Point(386, 0);
+            this.layoutControlItem18.Name = "layoutControlItem18";
+            this.layoutControlItem18.Size = new System.Drawing.Size(304, 26);
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem18.TextVisible = false;
+            // 
             // frmSellProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -978,7 +990,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
@@ -991,6 +1002,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1062,8 +1074,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSVL;
         private DevExpress.XtraGrid.Columns.GridColumn colQTY;
         private DevExpress.XtraGrid.Columns.GridColumn colAMT;
-        private DevExpress.XtraLayout.SimpleLabelItem lblInfo;
         private DevExpress.XtraGrid.Columns.GridColumn colDel;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repDel;
+        private System.Windows.Forms.Label lblInfo;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
     }
 }

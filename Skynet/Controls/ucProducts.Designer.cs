@@ -43,6 +43,9 @@
             this.bExport = new DevExpress.XtraBars.BarSubItem();
             this.bPDF = new DevExpress.XtraBars.BarButtonItem();
             this.bXLS = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.bExpand = new DevExpress.XtraBars.BarCheckItem();
             this.rpProducts = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgProducts = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgView = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -56,9 +59,6 @@
             this.colQTY = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTBV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTSV = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.bExpand = new DevExpress.XtraBars.BarCheckItem();
             this.imgCollSmall = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdoView)).BeginInit();
@@ -103,6 +103,7 @@
             this.bAddNew.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N));
             this.bAddNew.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bAddNew.LargeGlyph")));
             this.bAddNew.Name = "bAddNew";
+            this.bAddNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bAddNew_ItemClick);
             // 
             // bAddExt
             // 
@@ -113,6 +114,7 @@
                 | System.Windows.Forms.Keys.N));
             this.bAddExt.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bAddExt.LargeGlyph")));
             this.bAddExt.Name = "bAddExt";
+            this.bAddExt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bAddExt_ItemClick);
             // 
             // bEdit
             // 
@@ -132,6 +134,7 @@
             this.bDelete.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete));
             this.bDelete.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bDelete.LargeGlyph")));
             this.bDelete.Name = "bDelete";
+            this.bDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bDelete_ItemClick);
             // 
             // beiView
             // 
@@ -214,6 +217,30 @@
             this.bXLS.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bXLS.LargeGlyph")));
             this.bXLS.Name = "bXLS";
             this.bXLS.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bXLS_ItemClick);
+            // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "Expand";
+            this.barButtonItem2.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.Glyph")));
+            this.barButtonItem2.Id = 12;
+            this.barButtonItem2.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.LargeGlyph")));
+            this.barButtonItem2.Name = "barButtonItem2";
+            // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "barButtonItem3";
+            this.barButtonItem3.Id = 13;
+            this.barButtonItem3.Name = "barButtonItem3";
+            // 
+            // bExpand
+            // 
+            this.bExpand.Caption = "Expand";
+            this.bExpand.Glyph = ((System.Drawing.Image)(resources.GetObject("bExpand.Glyph")));
+            this.bExpand.Id = 14;
+            this.bExpand.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E));
+            this.bExpand.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bExpand.LargeGlyph")));
+            this.bExpand.Name = "bExpand";
+            this.bExpand.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.bExpand_CheckedChanged);
             // 
             // rpProducts
             // 
@@ -374,30 +401,6 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSellingValue", "{0:C2}")});
             this.colTSV.Visible = true;
             this.colTSV.VisibleIndex = 5;
-            // 
-            // barButtonItem2
-            // 
-            this.barButtonItem2.Caption = "Expand";
-            this.barButtonItem2.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.Glyph")));
-            this.barButtonItem2.Id = 12;
-            this.barButtonItem2.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.LargeGlyph")));
-            this.barButtonItem2.Name = "barButtonItem2";
-            // 
-            // barButtonItem3
-            // 
-            this.barButtonItem3.Caption = "barButtonItem3";
-            this.barButtonItem3.Id = 13;
-            this.barButtonItem3.Name = "barButtonItem3";
-            // 
-            // bExpand
-            // 
-            this.bExpand.Caption = "Expand";
-            this.bExpand.Glyph = ((System.Drawing.Image)(resources.GetObject("bExpand.Glyph")));
-            this.bExpand.Id = 14;
-            this.bExpand.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E));
-            this.bExpand.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bExpand.LargeGlyph")));
-            this.bExpand.Name = "bExpand";
-            this.bExpand.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.bExpand_CheckedChanged);
             // 
             // imgCollSmall
             // 

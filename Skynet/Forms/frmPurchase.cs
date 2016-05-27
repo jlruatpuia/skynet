@@ -118,6 +118,9 @@ namespace Skynet.Forms
                 grd.DataSource = dt;
                 grd.Refresh();
 
+                txtBCD1.Text = "";
+                txtBCD1.Focus();
+
                 //txtAMT.EditValue = colAMT.SummaryText;
                 double TotalAmount = Convert.ToDouble(colAMT.SummaryText);
                 txtAMT.Text = TotalAmount.ToString();
@@ -141,6 +144,9 @@ namespace Skynet.Forms
 
                 grd.DataSource = dt;
                 grd.Refresh();
+
+                txtBCD2.Text = "";
+                txtBCD2.Focus();
 
                 double TotalAmount = Convert.ToDouble(colAMT.SummaryText);
                 txtAMT.Text = TotalAmount.ToString();

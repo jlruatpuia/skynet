@@ -1,19 +1,27 @@
-﻿using Skynet.Classes;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using Skynet.Classes;
 
-namespace Skynet
+namespace Skynet.Forms
 {
-    public partial class frmCustomer : DevExpress.XtraEditors.XtraForm
+    public partial class frmSuppliers : XtraForm
     {
         Server2Client sc;
-        Customers cust;
-        Customer cus;
+        Suppliers sup = new Suppliers();
+        Supplier s = new Supplier();
         Timer tmr = new Timer();
         int counter = 0;
         public int _id { get; set; }
 
-        public frmCustomer()
+        public frmSuppliers()
         {
             InitializeComponent();
             lbMSG.Text = string.Empty;
@@ -21,32 +29,33 @@ namespace Skynet
             tmr.Tick += new EventHandler(this.tmr_tick);
         }
 
-        public frmCustomer(string something)
+        public frmSuppliers(string Something)
         {
             InitializeComponent();
-            btnSave.Text = "&Add";
+            btnOK.Text = "&Add";
         }
 
-        public frmCustomer(int ID)
+        public frmSuppliers(int id)
         {
             InitializeComponent();
+
             lbMSG.Text = string.Empty;
             tmr.Interval = 1000;
             tmr.Tick += new EventHandler(this.tmr_tick);
 
             sc = new Server2Client();
-            cus = new Customer();
-            cust = new Customers();
+            s = new Supplier();
+            sup = new Suppliers();
 
-            cus = cust.getCustomer(ID);
-            _id = ID;
-            txtCNM.Text = cus.CustomerName;
-            txtADR.Text = cus.Address;
-            txtPHN.Text = cus.Phone;
-            txtEML.Text = cus.Email;
+            s = sup.getSupplier(id);
+            _id = id;
+            txtCNM.Text = s.SupplierName;
+            txtADR.Text = s.Address;
+            txtPHN.Text = s.Phone;
+            txtEML.Text = s.Email;
             //txtBAL.Text = cus.Balance.ToString();
 
-            btnSave.Text = "&Update";
+            btnOK.Text = "&Update";
         }
 
         void reset()
@@ -61,56 +70,56 @@ namespace Skynet
         private void tmr_tick(object sender, EventArgs e)
         {
             counter++;
-            if(counter == 2)
+            if (counter == 2)
             {
                 lbMSG.Text = string.Empty;
-                
+
                 tmr.Stop();
                 counter = 0;
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnOK_Click(object sender, EventArgs e)
         {
-            if (btnSave.Text == "&Update")
+            if (btnOK.Text == "&Update")
             {
-                if (dxVP.Validate())
+                if (dxvp.Validate())
                 {
                     sc = new Server2Client();
-                    cus = new Customer();
-                    cust = new Customers();
-                    cus.CustomerID = _id;
-                    cus.CustomerName = txtCNM.Text;
-                    cus.Address = txtADR.Text;
-                    cus.Phone = txtPHN.Text;
-                    cus.Email = txtEML.Text;
+                    s = new Supplier();
+                    sup = new Suppliers();
+                    s.SupplierID = _id;
+                    s.SupplierName = txtCNM.Text;
+                    s.Address = txtADR.Text;
+                    s.Phone = txtPHN.Text;
+                    s.Email = txtEML.Text;
                     //cus.Balance = Convert.ToInt32(txtBAL.Text);
-                    sc = cust.updateCustomer(cus);
+                    sc = sup.updateSupplier(s);
                     if (sc.Message == null)
                     {
-                        lbMSG.Text = "Customer details updated!";
+                        lbMSG.Text = "Supplier details updated!";
                         Close();
                     }
                     else
                         lbMSG.Text = sc.Message;
                 }
             }
-            else if(btnSave.Text == "&Save")
+            else if (btnOK.Text == "&Save")
             {
-                if (dxVP.Validate())
+                if (dxvp.Validate())
                 {
                     sc = new Server2Client();
-                    cus = new Customer();
-                    cust = new Customers();
-                    cus.CustomerName = txtCNM.Text;
-                    cus.Address = txtADR.Text;
-                    cus.Phone = txtPHN.Text;
-                    cus.Email = txtEML.Text;
+                    s = new Supplier();
+                    sup = new Suppliers();
+                    s.SupplierName = txtCNM.Text;
+                    s.Address = txtADR.Text;
+                    s.Phone = txtPHN.Text;
+                    s.Email = txtEML.Text;
                     //cus.Balance = Convert.ToInt32(txtBAL.Text);
-                    sc = cust.addCustomer(cus);
+                    sc = sup.addSupplier(s);
                     if (sc.Message == null)
                     {
-                        lbMSG.Text = "New Customer added!";
+                        lbMSG.Text = "New Supplier added!";
                         reset();
                     }
                     else
@@ -121,22 +130,22 @@ namespace Skynet
             }
             else
             {
-                if (dxVP.Validate())
+                if (dxvp.Validate())
                 {
                     sc = new Server2Client();
-                    cus = new Customer();
-                    cust = new Customers();
-                    cus.CustomerName = txtCNM.Text;
-                    cus.Address = txtADR.Text;
-                    cus.Phone = txtPHN.Text;
-                    cus.Email = txtEML.Text;
+                    s = new Supplier();
+                    sup = new Suppliers();
+                    s.SupplierName = txtCNM.Text;
+                    s.Address = txtADR.Text;
+                    s.Phone = txtPHN.Text;
+                    s.Email = txtEML.Text;
                     //cus.Balance = Convert.ToInt32(txtBAL.Text);
-                    sc = cust.addCustomer(cus);
+                    sc = sup.addSupplier(s);
                     if (sc.Message == null)
                     {
                         sc = new Server2Client();
-                        cust = new Customers();
-                        sc = cust.getMaxID();
+                        sup = new Suppliers();
+                        sc = sup.getMaxID();
                         _id = sc.Count;
                         Close();
                     }
@@ -146,12 +155,19 @@ namespace Skynet
             }
         }
 
+        private void btnOKN_Click(object sender, EventArgs e)
+        {
+            if (!dxvp.Validate()) return;
+            //dt.Rows.Add(UName, Address, Phone, Email);
+            
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
         }
 
-        private void frmCustomer_FormClosing(object sender, FormClosingEventArgs e)
+        private void frmSupCus_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult = DialogResult.OK;
         }

@@ -63,6 +63,13 @@ namespace Skynet
             frmPurchase frm = new frmPurchase();
             frm.ShowDialog();
         }
+        private void nbiViewSuppliers_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            ucSuppliers uc = new ucSuppliers() { Dock = DockStyle.Fill };
+            LoadControl(uc);
+            MainRibbon.MergeRibbon(uc.ribbonControl);
+            MainRibbon.SelectedPage = MainRibbon.MergedRibbon.SelectedPage;
+        }
 
         private void nbiViewCustomer_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
@@ -109,5 +116,7 @@ namespace Skynet
             frmCategory frm = new frmCategory();
             frm.ShowDialog();
         }
+
+        
     }
 }

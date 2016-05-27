@@ -134,5 +134,23 @@ namespace Skynet.Controls
                 bExpand.LargeGlyph = DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/stretch_32x32.png");
             }
         }
+
+        private void bAddNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmNewProduct frm = new frmNewProduct();
+            frm.ShowDialog();
+        }
+
+        private void bAddExt_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmExtProduct frm = new frmExtProduct();
+            frm.ShowDialog();
+        }
+
+        private void bDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmDeleteProduct frm = new frmDeleteProduct();
+            frm.ShowDialog();
+        }
     }
 }

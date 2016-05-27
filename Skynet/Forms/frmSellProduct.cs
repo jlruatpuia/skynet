@@ -90,7 +90,7 @@ namespace Skynet.Forms
 
             InitDataTable();
 
-            lblInfo.Text = "";
+            lblInfo.Text = string.Empty;
             dtpSDT.DateTime = DateTime.Now.Date;
 
             InitInvoiceNo();
@@ -125,6 +125,13 @@ namespace Skynet.Forms
                     dt.Rows.Add(r);
                     grd.DataSource = dt;
                     grd.Refresh();
+
+                    double TotalAmount = Convert.ToDouble(colAMT.SummaryText);
+                    txtAMT.Text = TotalAmount.ToString();
+                    txtPAM.Text = TotalAmount.ToString();
+
+                    txtBCD.Text = "";
+                    txtBCD.Focus();
                 }
                 else
                 {

@@ -16,7 +16,7 @@ namespace Skynet
             txtPDT.DateTime = DateTime.Now.Date;
             sc = new Server2Client();
             s = new Suppliers();
-            sc = s.getSuppliers();
+            sc = s.getSuppliersFull();
 
             lueSNM.Properties.DataSource = sc.dataTable;
             lueSNM.Properties.DisplayMember = "SupplierName";

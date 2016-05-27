@@ -52,6 +52,7 @@
             this.nbiViewCustomer = new DevExpress.XtraNavBar.NavBarItem();
             this.nbiViewReports = new DevExpress.XtraNavBar.NavBarItem();
             this.dlaf = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.nbiViewSuppliers = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainRibbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splt)).BeginInit();
             this.splt.SuspendLayout();
@@ -79,7 +80,7 @@
             this.MainRibbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.MainRibbon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
-            this.MainRibbon.Size = new System.Drawing.Size(758, 143);
+            this.MainRibbon.Size = new System.Drawing.Size(1049, 143);
             // 
             // skinRibbonGalleryBarItem1
             // 
@@ -209,7 +210,7 @@
             this.splt.Panel1.Controls.Add(this.navBarControl1);
             this.splt.Panel1.Text = "Panel1";
             this.splt.Panel2.Text = "Panel2";
-            this.splt.Size = new System.Drawing.Size(758, 372);
+            this.splt.Size = new System.Drawing.Size(1049, 553);
             this.splt.SplitterPosition = 234;
             this.splt.TabIndex = 1;
             this.splt.Text = "splitContainerControl1";
@@ -223,12 +224,13 @@
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.nbiViewProducts,
             this.nbiViewCustomer,
-            this.nbiViewReports});
+            this.nbiViewReports,
+            this.nbiViewSuppliers});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 234;
             this.navBarControl1.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarControl1.Size = new System.Drawing.Size(234, 372);
+            this.navBarControl1.Size = new System.Drawing.Size(234, 553);
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -239,6 +241,7 @@
             this.navBarGroup1.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsList;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.nbiViewProducts),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.nbiViewSuppliers),
             new DevExpress.XtraNavBar.NavBarItemLink(this.nbiViewCustomer),
             new DevExpress.XtraNavBar.NavBarItemLink(this.nbiViewReports)});
             this.navBarGroup1.Name = "navBarGroup1";
@@ -267,12 +270,20 @@
             this.nbiViewReports.SmallImage = ((System.Drawing.Image)(resources.GetObject("nbiViewReports.SmallImage")));
             this.nbiViewReports.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiViewReports_LinkClicked);
             // 
+            // nbiViewSuppliers
+            // 
+            this.nbiViewSuppliers.Caption = "Suppliers";
+            this.nbiViewSuppliers.LargeImage = ((System.Drawing.Image)(resources.GetObject("nbiViewSuppliers.LargeImage")));
+            this.nbiViewSuppliers.Name = "nbiViewSuppliers";
+            this.nbiViewSuppliers.SmallImage = ((System.Drawing.Image)(resources.GetObject("nbiViewSuppliers.SmallImage")));
+            this.nbiViewSuppliers.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiViewSuppliers_LinkClicked);
+            // 
             // MainForm
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 515);
+            this.ClientSize = new System.Drawing.Size(1049, 696);
             this.Controls.Add(this.splt);
             this.Controls.Add(this.MainRibbon);
             this.Name = "MainForm";
@@ -312,6 +323,7 @@
         private DevExpress.XtraBars.BarButtonItem bClose;
         private DevExpress.LookAndFeel.DefaultLookAndFeel dlaf;
         private DevExpress.XtraBars.BarButtonItem bCAT;
+        private DevExpress.XtraNavBar.NavBarItem nbiViewSuppliers;
     }
 }
 

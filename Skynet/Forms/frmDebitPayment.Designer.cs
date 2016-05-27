@@ -58,6 +58,7 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.colBalance = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPDT.Properties.CalendarTimeProperties)).BeginInit();
@@ -202,7 +203,8 @@
             this.colID,
             this.colName,
             this.colAddress,
-            this.colPhone});
+            this.colPhone,
+            this.colBalance});
             this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -367,6 +369,16 @@
             this.layoutControlItem8.Text = "Date:";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(81, 13);
             // 
+            // colBalance
+            // 
+            this.colBalance.Caption = "Balance";
+            this.colBalance.DisplayFormat.FormatString = "{0:C2}";
+            this.colBalance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colBalance.FieldName = "Balance";
+            this.colBalance.Name = "colBalance";
+            this.colBalance.Visible = true;
+            this.colBalance.VisibleIndex = 3;
+            // 
             // frmDebitPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -438,5 +450,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
+        private DevExpress.XtraGrid.Columns.GridColumn colBalance;
     }
 }
