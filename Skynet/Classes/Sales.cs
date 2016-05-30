@@ -103,6 +103,18 @@ namespace Skynet.Classes
             return sc;
         }
 
+        public Server2Client getSoldProducts(string InvoiceNo)
+        {
+            Server2Client sc = new Server2Client();
+            OleDbCommand cmd = new OleDbCommand("SELECT Customer.CustomerName, Customer.Address, Customer.Phone, Sale.InvoiceNo, Sale.SaleDate, Product.ProductName, IIF(Product.BarCode IS NOT NULL, 'S/N: ' + Product.BarCode, ' ') AS BarCode, SaleDetail.Quantity, SaleDetail.SellingValue, SaleDetail.Amount FROM(Customer INNER JOIN Sale ON Customer.ID = Sale.CustomerID) INNER JOIN(Product INNER JOIN SaleDetail ON Product.ID = SaleDetail.ProductID) ON Sale.InvoiceNo = SaleDetail.InvoiceNo WHERE Sale.InvoiceNo='" + InvoiceNo + "'", cm);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sc.Count = ds.Tables[0].Rows.Count;
+            sc.dataTable = ds.Tables[0];
+            return sc;
+        }
+
         public Server2Client getProfitLoss(DateTime dt)
         {
             Server2Client sc = new Server2Client();
@@ -119,6 +131,19 @@ namespace Skynet.Classes
         {
             Server2Client sc = new Server2Client();
             OleDbCommand cmd = new OleDbCommand("SELECT Sale.SaleDate, SUM(Product.SellingValue*SaleDetail.Quantity) AS TotalSellingValue, SUM(Product.BuyingValue*SaleDetail.Quantity) AS TotalBuyingValue, TotalSellingValue -  TotalBuyingValue AS Profit FROM Sale INNER JOIN(Product INNER JOIN SaleDetail ON Product.ID = SaleDetail.ProductID) ON Sale.InvoiceNo = SaleDetail.InvoiceNo WHERE Sale.SaleDate BETWEEN #" + dtFR + "# AND #" + dtTO + "# GROUP BY Sale.SaleDate", cm);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sc.Count = ds.Tables[0].Rows.Count;
+            sc.dataTable = ds.Tables[0];
+            return sc;
+        }
+
+        public Server2Client SalesToCustomer(int CustomerID)
+        {
+            Server2Client sc = new Server2Client();
+            //OleDbCommand cmd = new OleDbCommand("SELECT Customer.CustomerName, Customer.Address, Customer.Phone, Sale.SaleDate, Product.ProductName, SaleDetail.SellingValue, SaleDetail.Quantity, SaleDetail.Amount, Sale.Payment, Sale.Balance FROM Product INNER JOIN((Customer INNER JOIN Sale ON Customer.ID = Sale.CustomerID) INNER JOIN SaleDetail ON Sale.InvoiceNo = SaleDetail.InvoiceNo) ON Product.ID = SaleDetail.ProductID WHERE Customer.ID=" + CustomerID, cm);
+            OleDbCommand cmd = new OleDbCommand("SELECT Customer.CustomerName, Customer.Address, Customer.Phone, Sale.SaleDate, Product.ProductName, Product.BarCode, SaleDetail.SellingValue, Sum(SaleDetail.Quantity) AS TotalQuantity, [SaleDetail].[SellingValue]*[SaleDetail].[Quantity] AS Amount FROM Product INNER JOIN((Customer INNER JOIN Sale ON Customer.ID = Sale.CustomerID) INNER JOIN SaleDetail ON Sale.InvoiceNo = SaleDetail.InvoiceNo) ON Product.ID = SaleDetail.ProductID WHERE Customer.ID=" + CustomerID + " GROUP BY Customer.CustomerName, Customer.Address, Customer.Phone, Sale.SaleDate, Product.ProductName, Product.BarCode, SaleDetail.SellingValue, [SaleDetail].[SellingValue]*[SaleDetail].[Quantity]", cm);
             OleDbDataAdapter da = new OleDbDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);

@@ -44,10 +44,27 @@ namespace Skynet.Forms
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string j = "";
-            for(int i = 0; i <= grv.SelectedRowsCount; i++)
+            if (grv.RowCount > 0)
             {
-                int h = Convert.ToInt32(grv.GetSelectedRows());
+                for (int i = 0; i < grv.SelectedRowsCount; i++)
+                {
+                    if (grv.GetSelectedRows()[i] >= 0)
+                    {
+                        int x = Convert.ToInt32(grv.GetSelectedRows()[i]);
+                        int id = Convert.ToInt32(grv.GetRowCellValue(x, colPID));
+                        sc = new Server2Client();
+                        prd = new Products();
+
+                        sc = prd.deleteProduct(id);
+                        if (sc.Message != null)
+                            XtraMessageBox.Show(sc.Message);
+                    }
+                }
+                lueCAT_EditValueChanged(null, null);
+            }
+            else
+            {
+                XtraMessageBox.Show("Nothing to delete");
             }
         }
     }

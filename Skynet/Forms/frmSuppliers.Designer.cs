@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.lbMSG = new System.Windows.Forms.Label();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.txtEML = new DevExpress.XtraEditors.TextEdit();
@@ -46,9 +47,8 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.dxvp = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.lbMSG = new System.Windows.Forms.Label();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dxvp = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtEML.Properties)).BeginInit();
@@ -64,8 +64,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxvp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxvp)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -86,6 +86,14 @@
             this.layoutControl1.Size = new System.Drawing.Size(532, 152);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // lbMSG
+            // 
+            this.lbMSG.Location = new System.Drawing.Point(12, 120);
+            this.lbMSG.Name = "lbMSG";
+            this.lbMSG.Size = new System.Drawing.Size(334, 20);
+            this.lbMSG.TabIndex = 10;
+            this.lbMSG.Text = "label1";
             // 
             // btnCancel
             // 
@@ -140,9 +148,9 @@
             this.txtCNM.Size = new System.Drawing.Size(462, 20);
             this.txtCNM.StyleController = this.layoutControl1;
             this.txtCNM.TabIndex = 4;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Please enter Name";
-            this.dxvp.SetValidationRule(this.txtCNM, conditionValidationRule1);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Please enter Name";
+            this.dxvp.SetValidationRule(this.txtCNM, conditionValidationRule2);
             // 
             // layoutControlGroup1
             // 
@@ -239,14 +247,6 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(338, 12);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // lbMSG
-            // 
-            this.lbMSG.Location = new System.Drawing.Point(12, 120);
-            this.lbMSG.Name = "lbMSG";
-            this.lbMSG.Size = new System.Drawing.Size(334, 20);
-            this.lbMSG.TabIndex = 10;
-            this.lbMSG.Text = "label1";
-            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.lbMSG;
@@ -271,7 +271,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmSupCus";
+            this.Text = "Suppliers";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSupCus_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
@@ -288,8 +288,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxvp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxvp)).EndInit();
             this.ResumeLayout(false);
 
         }

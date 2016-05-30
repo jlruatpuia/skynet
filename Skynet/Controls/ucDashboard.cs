@@ -34,6 +34,18 @@ namespace Skynet.Controls
             sc = db.SalesByCategory(DateTime.Now.Month);
 
             chartSalesByCategory.DataSource = sc.dataTable;
+
+            sc = db.PaymentReceived(DateTime.Now.Month);
+
+            chartPaymentMonth.DataSource = sc.dataTable;
+
+            sc = db.SoldProducts(DateTime.Now.Month);
+
+            grd.DataSource = sc.dataTable;
+
+            sc = db.CreditBalance();
+
+            chartCredit.DataSource = sc.dataTable;
         }
     }
 }

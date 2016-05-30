@@ -40,6 +40,7 @@
             this.bDebitPayment = new DevExpress.XtraBars.BarButtonItem();
             this.bClose = new DevExpress.XtraBars.BarButtonItem();
             this.bCAT = new DevExpress.XtraBars.BarButtonItem();
+            this.btnLogOff = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgSales = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgProduct = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -49,10 +50,10 @@
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.nbiViewProducts = new DevExpress.XtraNavBar.NavBarItem();
+            this.nbiViewSuppliers = new DevExpress.XtraNavBar.NavBarItem();
             this.nbiViewCustomer = new DevExpress.XtraNavBar.NavBarItem();
             this.nbiViewReports = new DevExpress.XtraNavBar.NavBarItem();
             this.dlaf = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.nbiViewSuppliers = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainRibbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splt)).BeginInit();
             this.splt.SuspendLayout();
@@ -72,15 +73,17 @@
             this.bCreditPayment,
             this.bDebitPayment,
             this.bClose,
-            this.bCAT});
+            this.bCAT,
+            this.btnLogOff});
             this.MainRibbon.Location = new System.Drawing.Point(0, 0);
-            this.MainRibbon.MaxItemId = 12;
+            this.MainRibbon.MaxItemId = 13;
             this.MainRibbon.Name = "MainRibbon";
             this.MainRibbon.PageHeaderItemLinks.Add(this.bClose);
             this.MainRibbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.MainRibbon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
             this.MainRibbon.Size = new System.Drawing.Size(1049, 143);
+            this.MainRibbon.Toolbar.ItemLinks.Add(this.btnLogOff);
             // 
             // skinRibbonGalleryBarItem1
             // 
@@ -159,6 +162,14 @@
             this.bCAT.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bCAT.LargeGlyph")));
             this.bCAT.Name = "bCAT";
             this.bCAT.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bCAT_ItemClick);
+            // 
+            // btnLogOff
+            // 
+            this.btnLogOff.Caption = "Log Out";
+            this.btnLogOff.Glyph = global::Skynet.Properties.Resources.log_off_16x16;
+            this.btnLogOff.Id = 12;
+            this.btnLogOff.Name = "btnLogOff";
+            this.btnLogOff.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLogOff_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -254,6 +265,14 @@
             this.nbiViewProducts.SmallImage = ((System.Drawing.Image)(resources.GetObject("nbiViewProducts.SmallImage")));
             this.nbiViewProducts.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiViewProducts_LinkClicked);
             // 
+            // nbiViewSuppliers
+            // 
+            this.nbiViewSuppliers.Caption = "Suppliers";
+            this.nbiViewSuppliers.LargeImage = ((System.Drawing.Image)(resources.GetObject("nbiViewSuppliers.LargeImage")));
+            this.nbiViewSuppliers.Name = "nbiViewSuppliers";
+            this.nbiViewSuppliers.SmallImage = ((System.Drawing.Image)(resources.GetObject("nbiViewSuppliers.SmallImage")));
+            this.nbiViewSuppliers.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiViewSuppliers_LinkClicked);
+            // 
             // nbiViewCustomer
             // 
             this.nbiViewCustomer.Caption = "Customers";
@@ -270,14 +289,6 @@
             this.nbiViewReports.SmallImage = ((System.Drawing.Image)(resources.GetObject("nbiViewReports.SmallImage")));
             this.nbiViewReports.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiViewReports_LinkClicked);
             // 
-            // nbiViewSuppliers
-            // 
-            this.nbiViewSuppliers.Caption = "Suppliers";
-            this.nbiViewSuppliers.LargeImage = ((System.Drawing.Image)(resources.GetObject("nbiViewSuppliers.LargeImage")));
-            this.nbiViewSuppliers.Name = "nbiViewSuppliers";
-            this.nbiViewSuppliers.SmallImage = ((System.Drawing.Image)(resources.GetObject("nbiViewSuppliers.SmallImage")));
-            this.nbiViewSuppliers.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiViewSuppliers_LinkClicked);
-            // 
             // MainForm
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
@@ -286,6 +297,7 @@
             this.ClientSize = new System.Drawing.Size(1049, 696);
             this.Controls.Add(this.splt);
             this.Controls.Add(this.MainRibbon);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Ribbon = this.MainRibbon;
             this.Text = "Form1";
@@ -324,6 +336,7 @@
         private DevExpress.LookAndFeel.DefaultLookAndFeel dlaf;
         private DevExpress.XtraBars.BarButtonItem bCAT;
         private DevExpress.XtraNavBar.NavBarItem nbiViewSuppliers;
+        private DevExpress.XtraBars.BarButtonItem btnLogOff;
     }
 }
 

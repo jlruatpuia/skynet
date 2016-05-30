@@ -117,6 +117,11 @@ namespace Skynet
             frm.ShowDialog();
         }
 
-        
+        private void btnLogOff_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadDashboard();
+            frmLogin frm = new frmLogin();
+            frm.ShowDialog();
+        }
     }
 }

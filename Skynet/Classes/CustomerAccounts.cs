@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
@@ -63,6 +64,69 @@ namespace Skynet.Classes
             da.Fill(ds);
             sc.dataTable = ds.Tables[0];
             sc.Count = ds.Tables[0].Rows.Count;
+            return sc;
+        }
+
+        public Server2Client AccountStatement(int CustomerID, DateTime dtFr, DateTime dtTo)
+        {
+            sc = new Server2Client();
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("TransDate", typeof(DateTime));
+            dt.Columns.Add("Description", typeof(string));
+            dt.Columns.Add("Debit", typeof(string));
+            dt.Columns.Add("Credit", typeof(string));
+            dt.Columns.Add("Balance", typeof(double));
+
+            OleDbCommand cmd = new OleDbCommand("SELECT Sum(Debit)-Sum(Credit) AS OpeningBalance FROM CustomerAccount WHERE CustomerID=" + CustomerID + " AND TransDate < #" + dtFr + "#", cm);
+            double OpeningBalance = 0;
+            try
+            {
+                cm.Open();
+                OpeningBalance = Convert.ToDouble(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cm.Close();
+            }
+
+            dt.Rows.Add(dtFr, "Opening Balance", OpeningBalance, "", OpeningBalance);
+
+            cmd = new OleDbCommand("SELECT TransDate, Description, IIf(Debit=0,'',Debit) AS Dr, IIf(Credit=0,'',Credit) AS Cr, Balance FROM CustomerAccount WHERE CustomerID=" + CustomerID + " AND CustomerAccount.TransDate BETWEEN #" + dtFr + "# AND #" + dtTo + "#", cm);
+
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+
+            for(int i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+            {
+                DateTime dd = DateTime.Parse(ds.Tables[0].Rows[i].ItemArray[0].ToString());
+                string desc = ds.Tables[0].Rows[i].ItemArray[1].ToString();
+                string debit, credit, balance;
+                try
+                {
+                    debit = Convert.ToDouble(ds.Tables[0].Rows[i].ItemArray[2]).ToString();
+                }
+                catch { debit = ""; }
+                try
+                {
+                    credit = Convert.ToDouble(ds.Tables[0].Rows[i].ItemArray[3]).ToString();
+                }
+                catch { credit = ""; }
+                try
+                {
+                    balance = Convert.ToDouble(ds.Tables[0].Rows[i].ItemArray[4]).ToString();
+                }
+                catch { balance = ""; }
+                dt.Rows.Add(dd, desc, debit, credit, balance);
+            }
+
+            sc.dataTable = dt;
+            sc.Count = dt.Rows.Count;
             return sc;
         }
     }

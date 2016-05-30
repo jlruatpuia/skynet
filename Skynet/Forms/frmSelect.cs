@@ -33,6 +33,13 @@ namespace Skynet.Forms
             txtInv.Enabled = false;
         }
 
+        public frmSelect(string ii)
+        {
+            InitializeComponent();
+            Check();
+
+        }
+
         void Check()
         {
             if (rdoDtOn.Checked)

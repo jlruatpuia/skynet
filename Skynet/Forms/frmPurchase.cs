@@ -270,6 +270,15 @@ namespace Skynet.Forms
                     return;
                 }
             }
+
+            XtraMessageBox.Show("Product(s) purchased successfully!");
+            InitInvoice();
+            dtpPDT.DateTime = DateTime.Now.Date;
+            dt = new DataTable();
+            InitDataTable();
+            InitSuppliers();
+            InitCategories();
+            grd.DataSource = null;
         }
 
         private void txtPAM_EditValueChanged(object sender, EventArgs e)
@@ -303,6 +312,16 @@ namespace Skynet.Forms
         private void btnAdd1_Click(object sender, EventArgs e)
         {
             txtBCD1_KeyDown(null, null);
+        }
+
+        private void btnAdd2_Click(object sender, EventArgs e)
+        {
+            txtBCD2_KeyDown(null, null);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
