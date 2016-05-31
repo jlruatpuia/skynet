@@ -52,7 +52,7 @@ namespace Skynet.Classes
         public Server2Client addPurchaseDetails(PurchaseDetail p)
         {
             Server2Client sc = new Server2Client();
-            OleDbCommand cmd = new OleDbCommand("INSERT INTO PurchaseDetail (InvoiceNo, ProductCode, Quantity, BuyingValue, SellingValue, TotalAmount) VALUES (@INV, @PID, @QTY, @BVL, @SVL, @TAM)", cm);
+            OleDbCommand cmd = new OleDbCommand("INSERT INTO PurchaseDetail (InvoiceNo, ProductCode, Quantity, BuyingValue, SellingValue, Amount) VALUES (@INV, @PID, @QTY, @BVL, @SVL, @TAM)", cm);
             cmd.Parameters.AddWithValue("@INV", p.InvoiceNo);
             cmd.Parameters.AddWithValue("@PID", p.ProductCode);
             cmd.Parameters.AddWithValue("@QTY", p.Quantity);
@@ -75,7 +75,7 @@ namespace Skynet.Classes
         public Server2Client getPurchasedProducts(DateTime dt)
         {
             Server2Client sc = new Server2Client();
-            OleDbCommand cmd = new OleDbCommand("SELECT Purchase.PurchaseDate, Product.ProductName, IIF(Product.BarCode IS NOT NULL, 'S/N: ' + Product.BarCode, ' ') AS BarCode, Sum(PurchaseDetail.BuyingValue) AS SumOfBuyingValue, Sum(PurchaseDetail.Quantity) AS SumOfQuantity, Sum(PurchaseDetail.TotalAmount) AS SumOfAmount FROM Purchase INNER JOIN(Product INNER JOIN PurchaseDetail ON Product.ProductCode = PurchaseDetail.ProductCode) ON Purchase.InvoiceNo = PurchaseDetail.InvoiceNo WHERE Purchase.PurchaseDate = #" + dt + "# GROUP BY Purchase.PurchaseDate, Product.ProductName, Product.BarCode", cm);
+            OleDbCommand cmd = new OleDbCommand("SELECT Purchase.PurchaseDate, Product.ProductName, IIF(Product.BarCode IS NOT NULL, 'S/N: ' + Product.BarCode, ' ') AS BarCode, Sum(PurchaseDetail.BuyingValue) AS SumOfBuyingValue, Sum(PurchaseDetail.Quantity) AS SumOfQuantity, Sum(PurchaseDetail.Amount) AS SumOfAmount FROM Purchase INNER JOIN(Product INNER JOIN PurchaseDetail ON Product.ProductCode = PurchaseDetail.ProductCode) ON Purchase.InvoiceNo = PurchaseDetail.InvoiceNo WHERE Purchase.PurchaseDate = #" + dt + "# GROUP BY Purchase.PurchaseDate, Product.ProductName, Product.BarCode", cm);
             OleDbDataAdapter da = new OleDbDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);

@@ -26,5 +26,8 @@
     <Setting Name="ShortName" Type="System.String" Scope="User">
       <Value Profile="(Default)">SKYNET</Value>
     </Setting>
+    <Setting Name="MyAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

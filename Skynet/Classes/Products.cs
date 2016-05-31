@@ -94,19 +94,22 @@ namespace Skynet.Classes
         {
             Product prd = new Product();
             prd.Message = null;
-            OleDbCommand cmd = new OleDbCommand("SELECT TOP 1 ID, CategoryID, ProductName, BuyingValue, SellingValue, BarCode FROM Product WHERE BarCode='" + BarCode + "' ORDER BY ID", cm);
+            OleDbCommand cmd = new OleDbCommand("SELECT ID, CategoryID, ProductName, BuyingValue, SellingValue, Quantity, BarCode FROM Product WHERE BarCode='" + BarCode + "' ORDER BY ID", cm);
             try
             {
                 cm.Open();
                 OleDbDataReader rd = cmd.ExecuteReader();
-                rd.Read();
-                prd.ProductID = Convert.ToInt32(rd[0]);
-                prd.CategoryID = Convert.ToInt32(rd[1]);
-                prd.ProductName = rd[2].ToString();
-                prd.BuyingValue = Convert.ToDouble(rd[3]);
-                prd.SellingValue = Convert.ToDouble(rd[4]);
-                //prd.Quantity = Convert.ToInt32(rd[5]);
-                prd.BarCode = rd[5].ToString();
+                if (rd.HasRows)
+                {
+                    rd.Read();
+                    prd.ProductID = Convert.ToInt32(rd[0]);
+                    prd.CategoryID = Convert.ToInt32(rd[1]);
+                    prd.ProductName = rd[2].ToString();
+                    prd.BuyingValue = Convert.ToDouble(rd[3]);
+                    prd.SellingValue = Convert.ToDouble(rd[4]);
+                    prd.Quantity = Convert.ToInt32(rd[5]);
+                    prd.BarCode = rd[6].ToString();
+                }
             }
             catch(Exception ex) { prd.Message = ex.Message; }
             finally { cm.Close(); }

@@ -67,5 +67,10 @@ namespace Skynet.Forms
                 XtraMessageBox.Show("Nothing to delete");
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

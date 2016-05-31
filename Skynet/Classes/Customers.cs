@@ -55,6 +55,24 @@ namespace Skynet.Classes
             return sc;
         }
 
+        public Server2Client GetDefaultCustomer()
+        {
+            sc = new Server2Client();
+            
+            OleDbCommand cmd = new OleDbCommand("SELECT TOP 1 MID(CustomerName, 9) FROM Customer ORDER BY ID DESC", cm);
+            try
+            {
+                cm.Open();
+                sc.Count = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch
+            {
+                sc.Count = 0;
+            }
+            finally { cm.Close(); }
+            return sc;
+        }
+
         public Customer getCustomer(int ID)
         {
             cus = new Customer();
@@ -175,11 +193,17 @@ namespace Skynet.Classes
 
         public DefaultCustomer()
         {
-            ID = -1;
-            CustomerName = "Customer";
+            Customers c = new Customers();
+            Server2Client sc = new Server2Client();
+            sc = c.GetDefaultCustomer();
+
+            CustomerName = "Customer" + (sc.Count + 1).ToString("000000");
             Address = "Address";
             Phone = "0000000000";
             Email = "customer@skynet.com";
+
+            sc = c.getMaxID();
+            ID = sc.Count;
         }
     }
 }

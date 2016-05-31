@@ -111,6 +111,13 @@ namespace Skynet.Forms
                 Product p = new Product();
                 Products prd = new Products();
                 p = prd.GetProductByBarCode(txtBCD.Text);
+                if(p.Quantity < 1)
+                {
+                    lblInfo.Text = "Product not available!";
+                    txtBCD.Text = "";
+                    txtBCD.Focus();
+                    return;
+                }
                 if (p.Message == null)
                 {
                     DataRow r = dt.NewRow();
@@ -288,8 +295,17 @@ namespace Skynet.Forms
             ca.CustomerID = Convert.ToInt32(lueCNM.EditValue);
             ca.TransDate = s.SaleDate;
             ca.Description = s.InvoiceNo;
-            ca.Debit = s.Balance;
-            ca.Credit = 0;
+            if(s.Balance == 0)
+            {
+                ca.Debit = s.Payment;
+                ca.Credit = s.Payment;
+                
+            }
+            else
+            {
+                ca.Debit = s.Amount - s.Discount;
+                ca.Credit = s.Payment;
+            }
             ca.Balance = CustomerBalance + s.Balance;
             sc = cas.addTrans(ca);
 
@@ -340,6 +356,10 @@ namespace Skynet.Forms
             }
             grd.DataSource = null;
             InitInvoiceNo();
+            lueCAT.EditValue = null;
+            luePNM.EditValue = null;
+            lueCAT.Properties.DataSource = null;
+            luePNM.Properties.DataSource = null;
             InitCategories();
             InitProducts();
             Reset();

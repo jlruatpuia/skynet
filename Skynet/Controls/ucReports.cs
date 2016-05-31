@@ -346,9 +346,13 @@ namespace Skynet.Controls
                 CustomerAccounts ca = new CustomerAccounts();
                 Customers cc = new Customers();
                 Customer c = new Customer();
-
+                sc = ca.getCustomerBalance(frm.CustomerID, frm.DateFrom, frm.DateTo);
+                double bal = sc.Value;
                 c = cc.getCustomer(frm.CustomerID);
                 rptCreditPayment rpt = new rptCreditPayment();
+
+                XRSummary tdr = new XRSummary();
+                XRSummary tcr = new XRSummary();
 
                 rpt.lbCNM.Text = c.CustomerName;
                 rpt.lbADR.Text = c.Address;
@@ -370,8 +374,31 @@ namespace Skynet.Controls
                 rpt.lbTDR.DataBindings.Add("Text", null, "Debit", "{0:c}");
                 rpt.lbTCR.DataBindings.Add("Text", null, "Credit", "{0:c}");
                 rpt.lbBAL.DataBindings.Add("Text", null, "Balance", "{0:c}");
+                rpt.lblTDR.DataBindings.Add("Text", null, "Debit", "{0:C2}");
+                rpt.lblTCR.DataBindings.Add("Text", null, "Credit", "{0:C2}");
+                rpt.lblTBL.Text = bal.ToString("c2");
+                tdr.FormatString = "{0:C2}";
+                tcr.FormatString = "{0:C2}";
+                tdr.Running = SummaryRunning.Report;
+                tcr.Running = SummaryRunning.Report;
+                rpt.lblTCR.Summary = tdr;
+                rpt.lblTDR.Summary = tcr;
+                
+                //rpt.lblTBL.Text = (Convert.ToInt32(rpt.lblTDR.Summary.GetResult()) - Convert.ToInt32(rpt.lblTCR.Summary.GetResult())).ToString();
                 dv.PrintingSystem = rpt.PrintingSystem;
                 rpt.CreateDocument(true);
+                //double totDr = 0;
+                //foreach (XRLabel lbl in rpt.lbTDR)
+                //{
+                //    totDr += Convert.ToInt32(lbl.Summary.GetResult());
+                //}
+
+                //double totCr = 0;
+                //foreach(XRLabel lbl in rpt.lbTCR)
+                //{
+                //    totCr += Convert.ToDouble(lbl.Summary.GetResult());
+                //}
+                //rpt.lblTBL.Text = (totDr - totCr).ToString("c2");
             }
         }
         private void bDebitPayment_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -611,7 +638,7 @@ namespace Skynet.Controls
             rpt.lbPNM.DataBindings.Add("Text", null, "ProductName");
             rpt.lbSNO.DataBindings.Add("Text", null, "BarCode");
             rpt.lbSVL.DataBindings.Add("Text", null, "SellingValue", "{0:C2}");
-            rpt.lbQTY.DataBindings.Add("Text", null, "TotalQuantity");
+            rpt.lbQTY.DataBindings.Add("Text", null, "Quantity");
             rpt.lbAMT.DataBindings.Add("Text", null, "Amount", "{0:C2}");
 
             dv.PrintingSystem = rpt.PrintingSystem;

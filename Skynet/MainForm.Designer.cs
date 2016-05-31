@@ -43,6 +43,9 @@
             this.btnLogOff = new DevExpress.XtraBars.BarButtonItem();
             this.bSettings = new DevExpress.XtraBars.BarButtonItem();
             this.bUsers = new DevExpress.XtraBars.BarButtonItem();
+            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
+            this.bbAckup = new DevExpress.XtraBars.BarButtonItem();
+            this.bRestore = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgSales = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgProduct = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -56,9 +59,6 @@
             this.nbiViewCustomer = new DevExpress.XtraNavBar.NavBarItem();
             this.nbiViewReports = new DevExpress.XtraNavBar.NavBarItem();
             this.dlaf = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
-            this.bbAckup = new DevExpress.XtraBars.BarButtonItem();
-            this.bRestore = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainRibbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splt)).BeginInit();
             this.splt.SuspendLayout();
@@ -197,7 +197,33 @@
             this.bUsers.Id = 14;
             this.bUsers.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bUsers.LargeGlyph")));
             this.bUsers.Name = "bUsers";
+            this.bUsers.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.bUsers.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bUsers_ItemClick);
+            // 
+            // barSubItem1
+            // 
+            this.barSubItem1.Caption = "Database";
+            this.barSubItem1.Glyph = ((System.Drawing.Image)(resources.GetObject("barSubItem1.Glyph")));
+            this.barSubItem1.Id = 15;
+            this.barSubItem1.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barSubItem1.LargeGlyph")));
+            this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbAckup),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bRestore)});
+            this.barSubItem1.Name = "barSubItem1";
+            // 
+            // bbAckup
+            // 
+            this.bbAckup.Caption = "Backup";
+            this.bbAckup.Id = 16;
+            this.bbAckup.Name = "bbAckup";
+            this.bbAckup.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbAckup_ItemClick);
+            // 
+            // bRestore
+            // 
+            this.bRestore.Caption = "Restore";
+            this.bRestore.Id = 17;
+            this.bRestore.Name = "bRestore";
+            this.bRestore.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bRestore_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -323,31 +349,6 @@
             this.nbiViewReports.Name = "nbiViewReports";
             this.nbiViewReports.SmallImage = ((System.Drawing.Image)(resources.GetObject("nbiViewReports.SmallImage")));
             this.nbiViewReports.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiViewReports_LinkClicked);
-            // 
-            // barSubItem1
-            // 
-            this.barSubItem1.Caption = "Database";
-            this.barSubItem1.Glyph = ((System.Drawing.Image)(resources.GetObject("barSubItem1.Glyph")));
-            this.barSubItem1.Id = 15;
-            this.barSubItem1.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barSubItem1.LargeGlyph")));
-            this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbAckup),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bRestore)});
-            this.barSubItem1.Name = "barSubItem1";
-            // 
-            // bbAckup
-            // 
-            this.bbAckup.Caption = "Backup";
-            this.bbAckup.Id = 16;
-            this.bbAckup.Name = "bbAckup";
-            this.bbAckup.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbAckup_ItemClick);
-            // 
-            // bRestore
-            // 
-            this.bRestore.Caption = "Restore";
-            this.bRestore.Id = 17;
-            this.bRestore.Name = "bRestore";
-            this.bRestore.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bRestore_ItemClick);
             // 
             // MainForm
             // 

@@ -55,6 +55,43 @@ namespace Skynet.Classes
             return sc;
         }
 
+        public Server2Client getCustomerBalance(int CustomerID, DateTime dtFr, DateTime dtTo)
+        {
+            Server2Client sc = new Server2Client();
+            string df = dtFr.Date.Month.ToString("00") + "/" + dtFr.Date.Day.ToString("00") + "/" + dtFr.Date.Year.ToString();
+            string dt = dtTo.Date.Month.ToString("00") + "/" + dtTo.Date.Day.ToString("00") + "/" + dtTo.Date.Year.ToString();
+            OleDbCommand cmd;
+            cmd = new OleDbCommand("SELECT Sum(Debit)-Sum(Credit) AS OpeningBalance FROM CustomerAccount WHERE CustomerID=" + CustomerID + " AND TransDate < #" + df + "#", cm);
+            double OpeningBalance = 0;
+            try
+            {
+                cm.Open();
+                OpeningBalance = Convert.ToDouble(cmd.ExecuteScalar());
+            }
+            catch
+            {
+                OpeningBalance = 0;
+            }
+            finally
+            {
+                cm.Close();
+            }
+
+            cmd = new OleDbCommand("SELECT SUM(Debit) - SUM(Credit) FROM CustomerAccount WHERE CustomerID=" + CustomerID + " AND TransDate BETWEEN #" + df + "# AND #" + dt + "#", cm);
+            try
+            {
+                cm.Open();
+                sc.Value = Convert.ToDouble(cmd.ExecuteScalar());
+                sc.Value = sc.Value + OpeningBalance;
+            }
+            catch (Exception ex)
+            {
+                sc.Message = ex.Message;
+            }
+            finally { cm.Close(); }
+            return sc;
+        }
+
         public Server2Client getTransactionDetails(int CustomerID)
         {
             sc = new Server2Client();
@@ -74,29 +111,30 @@ namespace Skynet.Classes
             DataTable dt = new DataTable();
             dt.Columns.Add("TransDate", typeof(DateTime));
             dt.Columns.Add("Description", typeof(string));
-            dt.Columns.Add("Debit", typeof(string));
-            dt.Columns.Add("Credit", typeof(string));
+            dt.Columns.Add("Debit", typeof(double));
+            dt.Columns.Add("Credit", typeof(double));
             dt.Columns.Add("Balance", typeof(double));
-
-            OleDbCommand cmd = new OleDbCommand("SELECT Sum(Debit)-Sum(Credit) AS OpeningBalance FROM CustomerAccount WHERE CustomerID=" + CustomerID + " AND TransDate < #" + dtFr + "#", cm);
+            string dtf = dtFr.Date.Month.ToString("00") + "/" + dtFr.Date.Day.ToString("00") + "/" + dtFr.Date.Year.ToString();
+            string dtt = dtTo.Date.Month.ToString("00") + "/" + dtTo.Date.Day.ToString("00") + "/" + dtTo.Date.Year.ToString();
+            OleDbCommand cmd = new OleDbCommand("SELECT Sum(Debit)-Sum(Credit) AS OpeningBalance FROM CustomerAccount WHERE CustomerID=" + CustomerID + " AND TransDate < #" + dtf + "#", cm);
             double OpeningBalance = 0;
             try
             {
                 cm.Open();
                 OpeningBalance = Convert.ToDouble(cmd.ExecuteScalar());
             }
-            catch (Exception ex)
+            catch
             {
-                XtraMessageBox.Show(ex.Message);
+                OpeningBalance = 0;
             }
             finally
             {
                 cm.Close();
             }
 
-            dt.Rows.Add(dtFr, "Opening Balance", OpeningBalance, "", OpeningBalance);
+            dt.Rows.Add(dtFr, "Opening Balance", OpeningBalance, 0, OpeningBalance);
 
-            cmd = new OleDbCommand("SELECT TransDate, Description, IIf(Debit=0,'',Debit) AS Dr, IIf(Credit=0,'',Credit) AS Cr, Balance FROM CustomerAccount WHERE CustomerID=" + CustomerID + " AND CustomerAccount.TransDate BETWEEN #" + dtFr + "# AND #" + dtTo + "#", cm);
+            cmd = new OleDbCommand("SELECT TransDate, Description, IIf(Debit=0,'',Debit) AS Dr, IIf(Credit=0,'',Credit) AS Cr, Balance FROM CustomerAccount WHERE CustomerID=" + CustomerID + " AND CustomerAccount.TransDate BETWEEN #" + dtf + "# AND #" + dtt + "#", cm);
 
             OleDbDataAdapter da = new OleDbDataAdapter(cmd);
             DataSet ds = new DataSet();
@@ -106,22 +144,22 @@ namespace Skynet.Classes
             {
                 DateTime dd = DateTime.Parse(ds.Tables[0].Rows[i].ItemArray[0].ToString());
                 string desc = ds.Tables[0].Rows[i].ItemArray[1].ToString();
-                string debit, credit, balance;
+                double debit, credit, balance;
                 try
                 {
-                    debit = Convert.ToDouble(ds.Tables[0].Rows[i].ItemArray[2]).ToString();
+                    debit = Convert.ToDouble(ds.Tables[0].Rows[i].ItemArray[2]);
                 }
-                catch { debit = ""; }
+                catch { debit = 0; }
                 try
                 {
-                    credit = Convert.ToDouble(ds.Tables[0].Rows[i].ItemArray[3]).ToString();
+                    credit = Convert.ToDouble(ds.Tables[0].Rows[i].ItemArray[3]);
                 }
-                catch { credit = ""; }
+                catch { credit = 0; }
                 try
                 {
-                    balance = Convert.ToDouble(ds.Tables[0].Rows[i].ItemArray[4]).ToString();
+                    balance = Convert.ToDouble(ds.Tables[0].Rows[i].ItemArray[4]);
                 }
-                catch { balance = ""; }
+                catch { balance = 0; }
                 dt.Rows.Add(dd, desc, debit, credit, balance);
             }
 

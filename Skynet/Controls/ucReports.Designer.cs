@@ -289,6 +289,7 @@
             this.printPreviewRibbonPageGroup5 = new DevExpress.XtraPrinting.Preview.PrintPreviewRibbonPageGroup();
             this.printPreviewRibbonPageGroup6 = new DevExpress.XtraPrinting.Preview.PrintPreviewRibbonPageGroup();
             this.printPreviewRibbonPageGroup7 = new DevExpress.XtraPrinting.Preview.PrintPreviewRibbonPageGroup();
+            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentViewerRibbonController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
@@ -1891,22 +1892,20 @@
             // 
             // bCreditPayment
             // 
-            this.bCreditPayment.Caption = "Credit Payment";
+            this.bCreditPayment.Caption = "Customer";
             this.bCreditPayment.Glyph = ((System.Drawing.Image)(resources.GetObject("bCreditPayment.Glyph")));
             this.bCreditPayment.Id = 64;
             this.bCreditPayment.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bCreditPayment.LargeGlyph")));
             this.bCreditPayment.Name = "bCreditPayment";
-            this.bCreditPayment.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             this.bCreditPayment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bCreditPayment_ItemClick);
             // 
             // bDebitPayment
             // 
-            this.bDebitPayment.Caption = "Debit Payment";
+            this.bDebitPayment.Caption = "Supplier";
             this.bDebitPayment.Glyph = ((System.Drawing.Image)(resources.GetObject("bDebitPayment.Glyph")));
             this.bDebitPayment.Id = 65;
             this.bDebitPayment.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bDebitPayment.LargeGlyph")));
             this.bDebitPayment.Name = "bDebitPayment";
-            this.bDebitPayment.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             this.bDebitPayment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bDebitPayment_ItemClick);
             // 
             // bInvoiceNo
@@ -1964,7 +1963,8 @@
             // 
             this.rpReports.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
-            this.ribbonPageGroup2});
+            this.ribbonPageGroup2,
+            this.ribbonPageGroup3});
             this.rpReports.MergeOrder = 0;
             this.rpReports.Name = "rpReports";
             this.rpReports.Text = "Reports";
@@ -1983,8 +1983,6 @@
             this.ribbonPageGroup2.ItemLinks.Add(this.bSoldProducts);
             this.ribbonPageGroup2.ItemLinks.Add(this.bPurchasedProducts);
             this.ribbonPageGroup2.ItemLinks.Add(this.bProfitLoss);
-            this.ribbonPageGroup2.ItemLinks.Add(this.bCreditPayment);
-            this.ribbonPageGroup2.ItemLinks.Add(this.bDebitPayment);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.ShowCaptionButton = false;
             this.ribbonPageGroup2.Text = "Sales && Purchases";
@@ -2095,6 +2093,14 @@
             this.printPreviewRibbonPageGroup7.Name = "printPreviewRibbonPageGroup7";
             this.printPreviewRibbonPageGroup7.ShowCaptionButton = false;
             this.printPreviewRibbonPageGroup7.Text = "Export";
+            // 
+            // ribbonPageGroup3
+            // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.bCreditPayment);
+            this.ribbonPageGroup3.ItemLinks.Add(this.bDebitPayment);
+            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            this.ribbonPageGroup3.ShowCaptionButton = false;
+            this.ribbonPageGroup3.Text = "Account Statement";
             // 
             // ucReports
             // 
@@ -2271,5 +2277,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
     }
 }

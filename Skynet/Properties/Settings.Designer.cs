@@ -46,5 +46,89 @@ namespace Skynet.Properties {
                 this["WindowGeometry"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Skynet Computers")]
+        public string ShopName {
+            get {
+                return ((string)(this["ShopName"]));
+            }
+            set {
+                this["ShopName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("P & Sons Building, Chanmari, Aizawl")]
+        public string Address {
+            get {
+                return ((string)(this["Address"]));
+            }
+            set {
+                this["Address"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9862310857")]
+        public string Phone {
+            get {
+                return ((string)(this["Phone"]));
+            }
+            set {
+                this["Phone"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("tesanga@yahoo.com")]
+        public string Email {
+            get {
+                return ((string)(this["Email"]));
+            }
+            set {
+                this["Email"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://www.facebook.com/skynet.aizawl")]
+        public string Website {
+            get {
+                return ((string)(this["Website"]));
+            }
+            set {
+                this["Website"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SKYNET")]
+        public string ShortName {
+            get {
+                return ((string)(this["ShortName"]));
+            }
+            set {
+                this["ShortName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MyAddress {
+            get {
+                return ((string)(this["MyAddress"]));
+            }
+            set {
+                this["MyAddress"] = value;
+            }
+        }
     }
 }

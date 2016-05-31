@@ -52,6 +52,13 @@ public class rptCreditPayment : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel1;
     private XRLabel xrLabel4;
     private XRLabel xrLabel5;
+    private ReportFooterBand ReportFooter;
+    private XRTable xrTable5;
+    private XRTableRow xrTableRow7;
+    private XRTableCell xrTableCell9;
+    public XRTableCell lblTDR;
+    public XRTableCell lblTCR;
+    public XRTableCell lblTBL;
 
     /// <summary>
     /// Required designer variable.
@@ -132,10 +139,18 @@ public class rptCreditPayment : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
+            this.xrTable5 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lblTDR = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lblTCR = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lblTBL = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -500,6 +515,65 @@ public class rptCreditPayment : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell3.Text = "Balance";
             this.xrTableCell3.Weight = 0.39611729631747983D;
             // 
+            // ReportFooter
+            // 
+            this.ReportFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrTable5});
+            this.ReportFooter.HeightF = 25F;
+            this.ReportFooter.Name = "ReportFooter";
+            // 
+            // xrTable5
+            // 
+            this.xrTable5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.xrTable5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrTable5.Name = "xrTable5";
+            this.xrTable5.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrTableRow7});
+            this.xrTable5.SizeF = new System.Drawing.SizeF(677F, 25F);
+            this.xrTable5.StylePriority.UseFont = false;
+            // 
+            // xrTableRow7
+            // 
+            this.xrTableRow7.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell9,
+            this.lblTDR,
+            this.lblTCR,
+            this.lblTBL});
+            this.xrTableRow7.Name = "xrTableRow7";
+            this.xrTableRow7.Weight = 1D;
+            // 
+            // xrTableCell9
+            // 
+            this.xrTableCell9.Name = "xrTableCell9";
+            this.xrTableCell9.StylePriority.UseTextAlignment = false;
+            this.xrTableCell9.Text = "TOTAL:";
+            this.xrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrTableCell9.Weight = 1.8122746567606398D;
+            // 
+            // lblTDR
+            // 
+            this.lblTDR.Name = "lblTDR";
+            this.lblTDR.StylePriority.UseTextAlignment = false;
+            this.lblTDR.Text = "lblTDR";
+            this.lblTDR.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.lblTDR.Weight = 0.395675388713707D;
+            // 
+            // lblTCR
+            // 
+            this.lblTCR.Name = "lblTCR";
+            this.lblTCR.StylePriority.UseTextAlignment = false;
+            this.lblTCR.Text = "lblTCR";
+            this.lblTCR.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.lblTCR.Weight = 0.39593219616212372D;
+            // 
+            // lblTBL
+            // 
+            this.lblTBL.Name = "lblTBL";
+            this.lblTBL.StylePriority.UseTextAlignment = false;
+            this.lblTBL.Text = "lblTBL";
+            this.lblTBL.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.lblTBL.Weight = 0.39611775836352936D;
+            // 
             // rptCreditPayment
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -507,7 +581,8 @@ public class rptCreditPayment : DevExpress.XtraReports.UI.XtraReport
             this.TopMargin,
             this.BottomMargin,
             this.ReportHeader,
-            this.PageHeader});
+            this.PageHeader,
+            this.ReportFooter});
             this.DisplayName = "Customer Credit Payment";
             this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margins = new System.Drawing.Printing.Margins(75, 75, 75, 75);
@@ -519,6 +594,7 @@ public class rptCreditPayment : DevExpress.XtraReports.UI.XtraReport
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
     }
