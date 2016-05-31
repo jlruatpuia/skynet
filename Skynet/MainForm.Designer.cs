@@ -59,6 +59,7 @@
             this.nbiViewCustomer = new DevExpress.XtraNavBar.NavBarItem();
             this.nbiViewReports = new DevExpress.XtraNavBar.NavBarItem();
             this.dlaf = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.bQuickSell = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainRibbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splt)).BeginInit();
             this.splt.SuspendLayout();
@@ -84,9 +85,10 @@
             this.bUsers,
             this.barSubItem1,
             this.bbAckup,
-            this.bRestore});
+            this.bRestore,
+            this.bQuickSell});
             this.MainRibbon.Location = new System.Drawing.Point(0, 0);
-            this.MainRibbon.MaxItemId = 18;
+            this.MainRibbon.MaxItemId = 19;
             this.MainRibbon.Name = "MainRibbon";
             this.MainRibbon.PageHeaderItemLinks.Add(this.bClose);
             this.MainRibbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -237,7 +239,8 @@
             // 
             // rpgSales
             // 
-            this.rpgSales.ItemLinks.Add(this.bbSellProduct);
+            this.rpgSales.ItemLinks.Add(this.bQuickSell);
+            this.rpgSales.ItemLinks.Add(this.bbSellProduct, true);
             this.rpgSales.ItemLinks.Add(this.bbPurchaseProduct);
             this.rpgSales.ItemLinks.Add(this.bCreditPayment, true);
             this.rpgSales.ItemLinks.Add(this.bDebitPayment);
@@ -350,6 +353,14 @@
             this.nbiViewReports.SmallImage = ((System.Drawing.Image)(resources.GetObject("nbiViewReports.SmallImage")));
             this.nbiViewReports.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiViewReports_LinkClicked);
             // 
+            // bQuickSell
+            // 
+            this.bQuickSell.Caption = "Quick Sell";
+            this.bQuickSell.Glyph = ((System.Drawing.Image)(resources.GetObject("bQuickSell.Glyph")));
+            this.bQuickSell.Id = 18;
+            this.bQuickSell.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bQuickSell.LargeGlyph")));
+            this.bQuickSell.Name = "bQuickSell";
+            // 
             // MainForm
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
@@ -403,6 +414,7 @@
         private DevExpress.XtraBars.BarSubItem barSubItem1;
         private DevExpress.XtraBars.BarButtonItem bbAckup;
         private DevExpress.XtraBars.BarButtonItem bRestore;
+        private DevExpress.XtraBars.BarButtonItem bQuickSell;
     }
 }
 
