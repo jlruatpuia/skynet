@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Security.Cryptography;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace Skynet
     class Utils
     {
         public static string ConnString = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
-
+        public static string UsersCS = ConfigurationManager.ConnectionStrings["us"].ConnectionString;
         public string GUID()
         {
             Guid g;
@@ -81,6 +82,18 @@ namespace Skynet
                 if (i != 0) sb.Append(words3[i - 1]);
             }
             return sb.ToString().TrimEnd();
+        }
+
+        public static string Encrypt(string Password)
+        {
+            SHA1 sha1 = SHA1.Create();
+            byte[] hash = sha1.ComputeHash(Encoding.Default.GetBytes(Password));
+            StringBuilder sb = new StringBuilder();
+            for(int i= 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString());
+            }
+            return sb.ToString();
         }
     }
 }

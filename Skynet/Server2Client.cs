@@ -125,4 +125,13 @@ namespace Skynet
         public double Credit { get; set; }
         public double Balance { get; set; }
     }
+
+    class User
+    {
+        public int ID { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public int AccountType { get; set; }
+        public bool Active { get; set; }
+    }
 }

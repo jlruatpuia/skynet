@@ -661,10 +661,10 @@
             this.txtINV.Name = "txtINV";
             this.txtINV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("txtINV.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
-            this.txtINV.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.txtINV.Size = new System.Drawing.Size(164, 22);
+            this.txtINV.Size = new System.Drawing.Size(220, 22);
             this.txtINV.StyleController = this.layoutControl1;
             this.txtINV.TabIndex = 4;
+            this.txtINV.TabStop = false;
             this.txtINV.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtINV_ButtonClick);
             // 
             // layoutControlGroup1
@@ -698,7 +698,7 @@
             this.layoutControlItem1.Control = this.txtINV;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(271, 26);
+            this.layoutControlItem1.Size = new System.Drawing.Size(327, 26);
             this.layoutControlItem1.Text = "Invoice No:";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(100, 13);
             // 
@@ -716,9 +716,9 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(271, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(327, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(301, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(245, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup2

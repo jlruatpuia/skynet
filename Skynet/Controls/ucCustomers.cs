@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using DevExpress.Utils;
 using DevExpress.XtraEditors;
-using Skynet.Classes;
-using DevExpress.Utils;
 using DevExpress.XtraReports.UI;
+using Skynet.Classes;
+using System;
+using System.Windows.Forms;
 
 namespace Skynet.Controls
 {

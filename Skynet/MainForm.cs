@@ -1,8 +1,10 @@
-﻿using System.Windows.Forms;
+﻿using System.IO;
+using System.Windows.Forms;
 using Skynet.Forms;
 using Skynet.Controls;
 using DevExpress.XtraEditors;
 using Skynet.Classes;
+using System;
 
 namespace Skynet
 {
@@ -122,6 +124,49 @@ namespace Skynet
             LoadDashboard();
             frmLogin frm = new frmLogin();
             frm.ShowDialog();
+        }
+
+        private void bSettings_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmSettings frm = new frmSettings();
+            //frmTesting frm = new frmTesting();
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.ShopName = frm.ShopName;
+                Properties.Settings.Default.Address = frm.Address;
+                Properties.Settings.Default.Phone = frm.PhoneNo;
+                Properties.Settings.Default.Email = frm.Email;
+                Properties.Settings.Default.Website = frm.Website;
+                Properties.Settings.Default.ShortName = frm.ShortName;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private void bUsers_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ucUsers uc = new ucUsers() { Dock = DockStyle.Fill };
+            LoadControl(uc);
+            MainRibbon.MergeRibbon(uc.ribbonControl);
+            MainRibbon.SelectedPage = MainRibbon.MergedRibbon.SelectedPage;
+        }
+
+        private void bbAckup_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.RootFolder = System.Environment.SpecialFolder.Desktop;
+            if(fbd.ShowDialog() == DialogResult.OK)
+            {
+                File.Copy(Application.StartupPath + "/ims.mdb", fbd.SelectedPath + "/DB_BACKUP_" + DateTime.Now.Day.ToString("00") + DateTime.Now.Month.ToString("00") + DateTime.Now.Year.ToString() + ".bkp");
+            }
+        }
+
+        private void bRestore_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenFileDialog sfd = new OpenFileDialog() { Filter = "Backup File (*.bkp)|*.bkp|All Files (*.*)|*.*" };
+            if(sfd.ShowDialog() == DialogResult.OK)
+            {
+                File.Copy(sfd.FileName, Application.StartupPath + "/ims.mdb", true);
+            }
         }
     }
 }

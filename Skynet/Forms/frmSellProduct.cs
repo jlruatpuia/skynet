@@ -31,8 +31,8 @@ namespace Skynet.Forms
         }
         void InitInvoiceNo()
         {
-            Sales sls = new Sales();
-            txtINV.Text = sls.InvoiceNo();
+            //Sales sls = new Sales();
+            txtINV.Text = Settings.GetInvoiceNo(DateTime.Now.Date, "Sale");
         }
 
         void InitCustomers()
@@ -287,7 +287,7 @@ namespace Skynet.Forms
             cas = new CustomerAccounts();
             ca.CustomerID = Convert.ToInt32(lueCNM.EditValue);
             ca.TransDate = s.SaleDate;
-            ca.Description = "Invoice No " + s.InvoiceNo;
+            ca.Description = s.InvoiceNo;
             ca.Debit = s.Balance;
             ca.Credit = 0;
             ca.Balance = CustomerBalance + s.Balance;
@@ -331,13 +331,17 @@ namespace Skynet.Forms
                 rpt.lblQTY.DataBindings.Add("Text", null, "Quantity");
                 rpt.lblPRC.DataBindings.Add("Text", null, "SellingValue", "{0:c}");
                 rpt.lblAMT.DataBindings.Add("Text", null, "Amount", "{0:c}");
-                rpt.lblTTL.Text = s.Amount.ToString("c2");
-                rpt.lblAMW.Text = "Rupees " + Utils.NumbersToWords(Convert.ToInt32(s.Amount)) + " only";
+                rpt.lblDSC.Text = "(-) " + s.Discount.ToString("c2");
+                rpt.lblTTL.Text = s.Payment.ToString("c2");
+                rpt.lblAMW.Text = "Rupees " + Utils.NumbersToWords(Convert.ToInt32(s.Payment)) + " only";
 
                 rpt.ShowPreviewDialog();
 
             }
             grd.DataSource = null;
+            InitInvoiceNo();
+            InitCategories();
+            InitProducts();
             Reset();
         }
 

@@ -8,5 +8,23 @@
     <Setting Name="WindowGeometry" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="ShopName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Skynet Computers</Value>
+    </Setting>
+    <Setting Name="Address" Type="System.String" Scope="User">
+      <Value Profile="(Default)">P &amp; Sons Building, Chanmari, Aizawl</Value>
+    </Setting>
+    <Setting Name="Phone" Type="System.String" Scope="User">
+      <Value Profile="(Default)">9862310857</Value>
+    </Setting>
+    <Setting Name="Email" Type="System.String" Scope="User">
+      <Value Profile="(Default)">tesanga@yahoo.com</Value>
+    </Setting>
+    <Setting Name="Website" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.facebook.com/skynet.aizawl</Value>
+    </Setting>
+    <Setting Name="ShortName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SKYNET</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

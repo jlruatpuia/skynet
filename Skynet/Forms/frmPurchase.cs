@@ -311,12 +311,49 @@ namespace Skynet.Forms
 
         private void btnAdd1_Click(object sender, EventArgs e)
         {
-            txtBCD1_KeyDown(null, null);
+            DataRow r = dt.NewRow();
+            r["Category"] = Convert.ToInt32(lueCAT1.EditValue);
+            r["ProductName"] = luePNM1.Text;
+            r["BuyingValue"] = Convert.ToDouble(txtBVL1.EditValue);
+            r["SellingValue"] = Convert.ToDouble(txtSVL1.EditValue);
+            r["Quantity"] = Convert.ToInt32(txtQTY1.EditValue);
+            r["Amount"] = Convert.ToDouble(txtBVL1.EditValue) * Convert.ToInt32(txtQTY1.EditValue);
+            r["BarCode"] = txtBCD1.Text;
+            dt.Rows.Add(r);
+
+            grd.DataSource = dt;
+            grd.Refresh();
+
+            txtBCD1.Text = "";
+            txtBCD1.Focus();
+
+            //txtAMT.EditValue = colAMT.SummaryText;
+            double TotalAmount = Convert.ToDouble(colAMT.SummaryText);
+            txtAMT.Text = TotalAmount.ToString();
+            txtPAM.Text = TotalAmount.ToString();
         }
 
         private void btnAdd2_Click(object sender, EventArgs e)
         {
-            txtBCD2_KeyDown(null, null);
+            DataRow r = dt.NewRow();
+            r["Category"] = Convert.ToInt32(lueCAT2.EditValue);
+            r["ProductName"] = txtPNM2.Text;
+            r["BuyingValue"] = Convert.ToDouble(txtBVL2.EditValue);
+            r["SellingValue"] = Convert.ToDouble(txtSVL2.EditValue);
+            r["Quantity"] = Convert.ToInt32(txtQTY2.EditValue);
+            r["Amount"] = Convert.ToDouble(txtBVL2.EditValue) * Convert.ToInt32(txtQTY2.EditValue);
+            r["BarCode"] = txtBCD2.Text;
+            dt.Rows.Add(r);
+
+            grd.DataSource = dt;
+            grd.Refresh();
+
+            txtBCD2.Text = "";
+            txtBCD2.Focus();
+
+            double TotalAmount = Convert.ToDouble(colAMT.SummaryText);
+            txtAMT.Text = TotalAmount.ToString();
+            txtPAM.Text = TotalAmount.ToString();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

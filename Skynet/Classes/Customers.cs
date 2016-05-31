@@ -164,4 +164,22 @@ namespace Skynet.Classes
 
         
     }
+
+    class DefaultCustomer
+    {
+        public int ID { get; set; }
+        public string CustomerName { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+
+        public DefaultCustomer()
+        {
+            ID = -1;
+            CustomerName = "Customer";
+            Address = "Address";
+            Phone = "0000000000";
+            Email = "customer@skynet.com";
+        }
+    }
 }

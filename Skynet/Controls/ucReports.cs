@@ -23,13 +23,22 @@ namespace Skynet.Controls
 
             if (dv.Document == null)
                 rpPreview.Visible = false;
-
-            Server2Client sc = new Server2Client();
+            chkALL.Checked = true;
+            checkEdit1.Checked = true;
+            Server2Client sc;
+            sc = new Server2Client();
             Customers cus = new Customers();
             sc = cus.getCustomers();
             lueCUS.Properties.DataSource = sc.dataTable;
             lueCUS.Properties.DisplayMember = "CustomerName";
             lueCUS.Properties.ValueMember = "ID";
+
+            sc = new Server2Client();
+            Suppliers sup = new Suppliers();
+            sc = sup.getSuppliers();
+            lueSUP.Properties.DataSource = sc.dataTable;
+            lueSUP.Properties.DisplayMember = "SupplierName";
+            lueSUP.Properties.ValueMember = "ID";
         }
 
         private void bProductList_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -93,16 +102,18 @@ namespace Skynet.Controls
             if(frm.ShowDialog() == DialogResult.OK)
             {
                 Server2Client sc;
-                if(frm.RetVal == 0)
+                Sales s;
+                
+                rptSoldProducts rpt = new rptSoldProducts();
+
+                if (frm.RetVal == 0)
                 {
                     sc = new Server2Client();
-                    Sales s = new Sales();
+                    s = new Sales();
                     sc = s.getSoldProducts(frm.DateOn);
-                    rptSoldProducts rpt = new rptSoldProducts() { DataSource = sc.dataTable };
+                    rpt.DataSource = sc.dataTable;
 
-
-                    rpt.lbTTL.Text = "Sold Products On " + frm.DateOn.ToShortDateString();
-                    
+                    rpt.lbTTL.Text = "Products sold On " + frm.DateOn.ToShortDateString();
                     XRSummary stt = new XRSummary();
                     XRSummary gtt = new XRSummary();
 
@@ -133,13 +144,11 @@ namespace Skynet.Controls
                 else if(frm.RetVal == 1)
                 {
                     sc = new Server2Client();
-                    Sales s = new Sales();
+                    s = new Sales();
                     sc = s.getSoldProducts(frm.DateFrom, frm.DateTo);
-                    rptSoldProducts rpt = new rptSoldProducts() { DataSource = sc.dataTable };
+                    rpt.DataSource = sc.dataTable;
 
-
-                    rpt.lbTTL.Text = "Sold Products Between " + frm.DateFrom.ToShortDateString() + " and " + frm.DateTo.ToShortDateString();
-
+                    rpt.lbTTL.Text = "Products sold Between " + frm.DateFrom.ToShortDateString() + " and " + frm.DateTo.ToShortDateString();
                     XRSummary stt = new XRSummary();
                     XRSummary gtt = new XRSummary();
 
@@ -170,161 +179,110 @@ namespace Skynet.Controls
                 else
                 {
                     sc = new Server2Client();
-                    Sales ss = new Sales();
+                    s = new Sales();
 
-                    sc = ss.getSoldProducts(frm.InvoiceNo);
+                    sc = s.getSoldProducts(frm.InvoiceNo);
                     XRSummary total = new XRSummary();
 
-                    rptCashMemo rpt = new rptCashMemo() { DataSource = sc.dataTable };
-                    rpt.lblCNM.DataBindings.Add("Text", null, "CustomerName");
-                    rpt.lblADR.DataBindings.Add("Text", null, "Address");
-                    rpt.lblPHN.DataBindings.Add("Text", null, "Phone");
+                    rptCashMemo rpc = new rptCashMemo() { DataSource = sc.dataTable };
+                    rpc.lblCNM.DataBindings.Add("Text", null, "CustomerName");
+                    rpc.lblADR.DataBindings.Add("Text", null, "Address");
+                    rpc.lblPHN.DataBindings.Add("Text", null, "Phone");
 
-                    rpt.lblINV.DataBindings.Add("Text", null, "InvoiceNo");
-                    rpt.lblSDT.DataBindings.Add("Text", null, "SaleDate");
+                    rpc.lblINV.DataBindings.Add("Text", null, "InvoiceNo");
+                    rpc.lblSDT.DataBindings.Add("Text", null, "SaleDate");
 
-                    rpt.lblPNM.DataBindings.Add("Text", null, "ProductName");
-                    rpt.lbSNO.DataBindings.Add("Text", null, "BarCode");
-                    rpt.lblQTY.DataBindings.Add("Text", null, "Quantity");
-                    rpt.lblPRC.DataBindings.Add("Text", null, "SellingValue", "{0:c}");
-                    rpt.lblAMT.DataBindings.Add("Text", null, "Amount", "{0:c}");
-                    rpt.lblTTL.DataBindings.Add("Text", null, "Amount", "{0:c}");
+                    rpc.lblPNM.DataBindings.Add("Text", null, "ProductName");
+                    rpc.lbSNO.DataBindings.Add("Text", null, "BarCode");
+                    rpc.lblQTY.DataBindings.Add("Text", null, "Quantity");
+                    rpc.lblPRC.DataBindings.Add("Text", null, "SellingValue", "{0:c}");
+                    rpc.lblDSC.DataBindings.Add("Text", null, "Discount", "{0:C2}");
+                    rpc.lblAMT.DataBindings.Add("Text", null, "Amount", "{0:c}");
+                    rpc.lblTTL.DataBindings.Add("Text", null, "Payment", "{0:c}");
 
                     total.FormatString = "{0:C2}";
                     total.Running = SummaryRunning.Report;
-                    rpt.lblTTL.Summary = total;
+                    rpc.lblTTL.Summary = total;
                     //rpt.lblTTL.Text = s.Amount.ToString("c2");
                     int amt = 0;
                     for(int i = 0; i <= sc.dataTable.Rows.Count - 1; i++)
                     {
                         amt += Convert.ToInt32(sc.dataTable.Rows[i].ItemArray[9]);
                     }
-                    rpt.lblAMW.Text = "Rupees " + Utils.NumbersToWords(Convert.ToInt32(amt)) + " only";
-                    dv.PrintingSystem = rpt.PrintingSystem;
-                    rpt.CreateDocument(true);
+                    rpc.lblAMW.Text = "Rupees " + Utils.NumbersToWords(Convert.ToInt32(amt)) + " only";
+                    dv.PrintingSystem = rpc.PrintingSystem;
+                    rpc.CreateDocument(true);
                 }
+
+                
             }
         }
         
         private void bPurchasedProducts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            /*
+            
             frmSelect frm = new frmSelect();
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 Server2Client sc;
+                Purchases p = new Purchases();
+                rptPurchasedProducts rpt = new rptPurchasedProducts();
                 if (frm.RetVal == 0)
                 {
                     sc = new Server2Client();
-                    Purchases p = new Purchases();
-                    //sc = 
-                    rptSoldProducts rpt = new rptSoldProducts() { DataSource = sc.dataTable };
+                    p = new Purchases();
+                    sc = p.getPurchasedProducts(frm.DateOn);
+                    rpt.DataSource = sc.dataTable;
 
-
-                    rpt.lbTTL.Text = "Sold Products On " + frm.DateOn.ToShortDateString();
-
-                    XRSummary stt = new XRSummary();
-                    XRSummary gtt = new XRSummary();
-
-                    GroupField grp = new GroupField("SaleDate");
-                    rpt.GroupHeader1.GroupFields.Add(grp);
-
-                    rpt.lbSDT.DataBindings.Add("Text", null, "SaleDate", "{0:dd-MM-yyyy}");
-                    rpt.lbPNM.DataBindings.Add("Text", null, "ProductName");
-                    rpt.lbPID.DataBindings.Add("Text", null, "BarCode");
-                    rpt.lbSVL.DataBindings.Add("Text", null, "SumOfSellingValue", "{0:C2}");
-                    rpt.lbQTY.DataBindings.Add("Text", null, "SumOfQuantity");
-                    rpt.lbAMT.DataBindings.Add("Text", null, "SumOfAmount", "{0:C2}");
-                    rpt.lbSTT.DataBindings.Add("Text", null, "SumOfAmount", "{0:C2}");
-                    rpt.lbGTT.DataBindings.Add("Text", null, "SumOfAmount", "{0:C2}");
-
-                    stt.FormatString = "{0:C2}";
-                    gtt.FormatString = "{0:C2}";
-
-                    stt.Running = SummaryRunning.Group;
-                    gtt.Running = SummaryRunning.Report;
-
-                    rpt.lbSTT.Summary = stt;
-                    rpt.lbGTT.Summary = gtt;
-
-                    dv.PrintingSystem = rpt.PrintingSystem;
-                    rpt.CreateDocument(true);
+                    rpt.lbTTL.Text = "Products purchased On " + frm.DateOn.ToShortDateString();
                 }
                 else if (frm.RetVal == 1)
                 {
                     sc = new Server2Client();
-                    Sales s = new Sales();
-                    sc = s.getSoldProducts(frm.DateFrom, frm.DateTo);
-                    rptSoldProducts rpt = new rptSoldProducts() { DataSource = sc.dataTable };
+                    p = new Purchases();
+                    sc = p.getPurchasedProducts(frm.DateFrom, frm.DateTo);
+                    rpt.DataSource = sc.dataTable;
 
-
-                    rpt.lbTTL.Text = "Sold Products Between " + frm.DateFrom.ToShortDateString() + " and " + frm.DateTo.ToShortDateString();
-
-                    XRSummary stt = new XRSummary();
-                    XRSummary gtt = new XRSummary();
-
-                    GroupField grp = new GroupField("SaleDate");
-                    rpt.GroupHeader1.GroupFields.Add(grp);
-
-                    rpt.lbSDT.DataBindings.Add("Text", null, "SaleDate", "{0:dd-MM-yyyy}");
-                    rpt.lbPNM.DataBindings.Add("Text", null, "ProductName");
-                    rpt.lbPID.DataBindings.Add("Text", null, "BarCode");
-                    rpt.lbSVL.DataBindings.Add("Text", null, "SumOfSellingValue", "{0:C2}");
-                    rpt.lbQTY.DataBindings.Add("Text", null, "SumOfQuantity");
-                    rpt.lbAMT.DataBindings.Add("Text", null, "SumOfAmount", "{0:C2}");
-                    rpt.lbSTT.DataBindings.Add("Text", null, "SumOfAmount", "{0:C2}");
-                    rpt.lbGTT.DataBindings.Add("Text", null, "SumOfAmount", "{0:C2}");
-
-                    stt.FormatString = "{0:C2}";
-                    gtt.FormatString = "{0:C2}";
-
-                    stt.Running = SummaryRunning.Group;
-                    gtt.Running = SummaryRunning.Report;
-
-                    rpt.lbSTT.Summary = stt;
-                    rpt.lbGTT.Summary = gtt;
-
-                    dv.PrintingSystem = rpt.PrintingSystem;
-                    rpt.CreateDocument(true);
+                    rpt.lbTTL.Text = "Products purchased Between " + frm.DateFrom.ToShortDateString() + " and " + frm.DateTo.ToShortDateString();
                 }
                 else
                 {
                     sc = new Server2Client();
-                    Sales ss = new Sales();
+                    p = new Purchases();
+                    sc = p.getPurchasedProducts(frm.InvoiceNo);
+                    rpt.DataSource = sc.dataTable;
 
-                    sc = ss.getSoldProducts(frm.InvoiceNo);
-                    XRSummary total = new XRSummary();
-
-                    rptCashMemo rpt = new rptCashMemo() { DataSource = sc.dataTable };
-                    rpt.lblCNM.DataBindings.Add("Text", null, "CustomerName");
-                    rpt.lblADR.DataBindings.Add("Text", null, "Address");
-                    rpt.lblPHN.DataBindings.Add("Text", null, "Phone");
-
-                    rpt.lblINV.DataBindings.Add("Text", null, "InvoiceNo");
-                    rpt.lblSDT.DataBindings.Add("Text", null, "SaleDate");
-
-                    rpt.lblPNM.DataBindings.Add("Text", null, "ProductName");
-                    rpt.lbSNO.DataBindings.Add("Text", null, "BarCode");
-                    rpt.lblQTY.DataBindings.Add("Text", null, "Quantity");
-                    rpt.lblPRC.DataBindings.Add("Text", null, "SellingValue", "{0:c}");
-                    rpt.lblAMT.DataBindings.Add("Text", null, "Amount", "{0:c}");
-                    rpt.lblTTL.DataBindings.Add("Text", null, "Amount", "{0:c}");
-
-                    total.FormatString = "{0:C2}";
-                    total.Running = SummaryRunning.Report;
-                    rpt.lblTTL.Summary = total;
-                    //rpt.lblTTL.Text = s.Amount.ToString("c2");
-                    int amt = 0;
-                    for (int i = 0; i <= sc.dataTable.Rows.Count - 1; i++)
-                    {
-                        amt += Convert.ToInt32(sc.dataTable.Rows[i].ItemArray[9]);
-                    }
-                    rpt.lblAMW.Text = "Rupees " + Utils.NumbersToWords(Convert.ToInt32(amt)) + " only";
-                    dv.PrintingSystem = rpt.PrintingSystem;
-                    rpt.CreateDocument(true);
+                    rpt.lbTTL.Text = "Purchase detail of Invoice No " + frm.InvoiceNo;
                 }
+
+                XRSummary stt = new XRSummary();
+                XRSummary gtt = new XRSummary();
+
+                GroupField grp = new GroupField("PurchaseDate");
+                rpt.GroupHeader1.GroupFields.Add(grp);
+
+                rpt.lbPDT.DataBindings.Add("Text", null, "PurchaseDate", "{0:dd-MM-yyyy}");
+                rpt.lbPNM.DataBindings.Add("Text", null, "ProductName");
+                rpt.lbPID.DataBindings.Add("Text", null, "BarCode");
+                rpt.lbSVL.DataBindings.Add("Text", null, "SumOfSellingValue", "{0:C2}");
+                rpt.lbQTY.DataBindings.Add("Text", null, "SumOfQuantity");
+                rpt.lbAMT.DataBindings.Add("Text", null, "SumOfAmount", "{0:C2}");
+                rpt.lbSTT.DataBindings.Add("Text", null, "SumOfAmount", "{0:C2}");
+                rpt.lbGTT.DataBindings.Add("Text", null, "SumOfAmount", "{0:C2}");
+
+                stt.FormatString = "{0:C2}";
+                gtt.FormatString = "{0:C2}";
+
+                stt.Running = SummaryRunning.Group;
+                gtt.Running = SummaryRunning.Report;
+
+                rpt.lbSTT.Summary = stt;
+                rpt.lbGTT.Summary = gtt;
+
+                dv.PrintingSystem = rpt.PrintingSystem;
+                rpt.CreateDocument(true);
             }
-            */
+            
         }
         private void bProfitLoss_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -445,6 +403,7 @@ namespace Skynet.Controls
         }
         private void dv_DocumentChanged(object sender, EventArgs e)
         {
+            ribbonStatusBar1.Dispose();
             if(dv.Document != null)
             {
                 rpPreview.Visible = true;
@@ -627,10 +586,20 @@ namespace Skynet.Controls
 
             Server2Client sc = new Server2Client();
             Sales ss = new Sales();
+            rptCustomerSales rpt = new rptCustomerSales();
 
-            sc = ss.SalesToCustomer(CID);
-
-            rptCustomerSales rpt = new rptCustomerSales() { DataSource = sc.dataTable };
+            if (chkALL.Checked)
+            {
+                sc = ss.SalesToCustomer(CID);
+                rpt.DataSource = sc.dataTable;
+                rpt.lbTTL.Text = "Product(s) sold to Customer";
+            }
+            else
+            {
+                sc = ss.SalesToCustomer(CID, dtpFR.DateTime, dtpTO.DateTime);
+                rpt.DataSource = sc.dataTable;
+                rpt.lbTTL.Text = "Product(s) sold to Customer between " + dtpFR.DateTime.ToShortDateString() + " and " + dtpTO.DateTime.ToShortDateString();
+            }
 
             GroupField grp = new GroupField("SaleDate");
             rpt.GroupHeader1.GroupFields.Add(grp);
@@ -649,6 +618,78 @@ namespace Skynet.Controls
             rpt.CreateDocument(true);
 
             popCustomer.HidePopup();
+        }
+
+        private void chkALL_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkALL.Checked)
+            {
+                dtpFR.Enabled = false;
+                dtpTO.Enabled = false;
+            }
+            else
+            {
+                dtpFR.Enabled = true;
+                dtpTO.Enabled = true;
+                dtpFR.DateTime = DateTime.Now.Date;
+                dtpTO.DateTime = DateTime.Now.Date;
+            }
+        }
+
+        private void checkEdit1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkEdit1.Checked)
+            {
+                dtFrm.Enabled = false;
+                dtTos.Enabled = false;
+            }
+            else
+            {
+                dtFrm.Enabled = true;
+                dtTos.Enabled = true;
+                dtFrm.DateTime = DateTime.Now.Date;
+                dtTos.DateTime = DateTime.Now.Date;
+            }
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            int CID = Convert.ToInt32(lueSUP.EditValue);
+
+            Server2Client sc = new Server2Client();
+            Purchases ss = new Purchases();
+            rptSupplierPurchase rpt = new rptSupplierPurchase();
+
+            if (checkEdit1.Checked)
+            {
+                sc = ss.PurchaseFromSupplier(CID);
+                rpt.DataSource = sc.dataTable;
+                rpt.lbTTL.Text = "Product(s) purchased from Supplier";
+            }
+            else
+            {
+                sc = ss.PurchaseFromSupplier(CID, dtFrm.DateTime, dtTos.DateTime);
+                rpt.DataSource = sc.dataTable;
+                rpt.lbTTL.Text = "Product(s) purchased from Supplier between " + dtFrm.DateTime.ToShortDateString() + " and " + dtTos.DateTime.ToShortDateString();
+            }
+
+            GroupField grp = new GroupField("PurchaseDate");
+            rpt.GroupHeader1.GroupFields.Add(grp);
+
+            rpt.lbSNM.DataBindings.Add("Text", null, "SupplierName");
+            rpt.lbADR.DataBindings.Add("Text", null, "Address");
+            rpt.lbPHN.DataBindings.Add("Text", null, "Phone");
+            rpt.lbSDT.DataBindings.Add("Text", null, "PurchaseDate", "{0:dd-MM-yyyy}");
+            rpt.lbPNM.DataBindings.Add("Text", null, "ProductName");
+            rpt.lbSNO.DataBindings.Add("Text", null, "BarCode");
+            rpt.lbSVL.DataBindings.Add("Text", null, "SellingValue", "{0:C2}");
+            rpt.lbQTY.DataBindings.Add("Text", null, "TotalQuantity");
+            rpt.lbAMT.DataBindings.Add("Text", null, "Amount", "{0:C2}");
+
+            dv.PrintingSystem = rpt.PrintingSystem;
+            rpt.CreateDocument(true);
+
+            popSupplier.HidePopup();
         }
     }
 }

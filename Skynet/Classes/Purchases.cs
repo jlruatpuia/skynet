@@ -52,7 +52,7 @@ namespace Skynet.Classes
         public Server2Client addPurchaseDetails(PurchaseDetail p)
         {
             Server2Client sc = new Server2Client();
-            OleDbCommand cmd = new OleDbCommand("INSERT INTO PurchaseDetail (InvoiceNo, ProductCode, Quantity, BuyingValue, SellingValue, Amount) VALUES (@INV, @PID, @QTY, @BVL, @SVL, @TAM)", cm);
+            OleDbCommand cmd = new OleDbCommand("INSERT INTO PurchaseDetail (InvoiceNo, ProductCode, Quantity, BuyingValue, SellingValue, TotalAmount) VALUES (@INV, @PID, @QTY, @BVL, @SVL, @TAM)", cm);
             cmd.Parameters.AddWithValue("@INV", p.InvoiceNo);
             cmd.Parameters.AddWithValue("@PID", p.ProductCode);
             cmd.Parameters.AddWithValue("@QTY", p.Quantity);
@@ -75,7 +75,55 @@ namespace Skynet.Classes
         public Server2Client getPurchasedProducts(DateTime dt)
         {
             Server2Client sc = new Server2Client();
-            OleDbCommand cmd = new OleDbCommand("SELECT Purchase.PurchaseDate, Product.ProductName, IIF(Product.BarCode IS NOT NULL, 'S/N: ' + Product.BarCode, ' ') AS BarCode, Sum(PurchaseDetail.BuyingValue) AS SumOfBuyingValue, Sum(PurchaseDetail.Quantity) AS SumOfQuantity, Sum(PurchaseDetail.Amount) AS SumOfAmount FROM Purchase INNER JOIN(Product INNER JOIN PurchaseDetail ON Product.ID = PurchaseDetail.ProductID) ON Purchase.InvoiceNo = PurchaseDetail.InvoiceNo WHERE Purchase.PurchaseDate = #" + dt + "# GROUP BY Purchase.SaleDate, Product.ProductName, Product.BarCode", cm);
+            OleDbCommand cmd = new OleDbCommand("SELECT Purchase.PurchaseDate, Product.ProductName, IIF(Product.BarCode IS NOT NULL, 'S/N: ' + Product.BarCode, ' ') AS BarCode, Sum(PurchaseDetail.BuyingValue) AS SumOfBuyingValue, Sum(PurchaseDetail.Quantity) AS SumOfQuantity, Sum(PurchaseDetail.TotalAmount) AS SumOfAmount FROM Purchase INNER JOIN(Product INNER JOIN PurchaseDetail ON Product.ProductCode = PurchaseDetail.ProductCode) ON Purchase.InvoiceNo = PurchaseDetail.InvoiceNo WHERE Purchase.PurchaseDate = #" + dt + "# GROUP BY Purchase.PurchaseDate, Product.ProductName, Product.BarCode", cm);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sc.Count = ds.Tables[0].Rows.Count;
+            sc.dataTable = ds.Tables[0];
+            return sc;
+        }
+
+        public Server2Client getPurchasedProducts(DateTime dtFr, DateTime dtTo)
+        {
+            Server2Client sc = new Server2Client();
+            OleDbCommand cmd = new OleDbCommand("SELECT Purchase.PurchaseDate, Product.ProductName, IIF(Product.BarCode IS NOT NULL, 'S/N: ' + Product.BarCode, ' ') AS BarCode, Sum(PurchaseDetail.BuyingValue) AS SumOfBuyingValue, Sum(PurchaseDetail.Quantity) AS SumOfQuantity, Sum(PurchaseDetail.TotalAmount) AS SumOfAmount FROM Purchase INNER JOIN(Product INNER JOIN PurchaseDetail ON Product.ProductCode = PurchaseDetail.ProductCode) ON Purchase.InvoiceNo = PurchaseDetail.InvoiceNo WHERE Purchase.PurchaseDate BETWEEN #" + dtFr + "# AND #" + dtTo + "# GROUP BY Purchase.PurchaseDate, Product.ProductName, Product.BarCode", cm);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sc.Count = ds.Tables[0].Rows.Count;
+            sc.dataTable = ds.Tables[0];
+            return sc;
+        }
+
+        public Server2Client getPurchasedProducts(string InvoiceNo)
+        {
+            Server2Client sc = new Server2Client();
+            OleDbCommand cmd = new OleDbCommand("SELECT Purchase.PurchaseDate, Product.ProductName, IIF(Product.BarCode IS NOT NULL, 'S/N: ' + Product.BarCode, ' ') AS BarCode, Sum(PurchaseDetail.BuyingValue) AS SumOfBuyingValue, Sum(PurchaseDetail.Quantity) AS SumOfQuantity, Sum(PurchaseDetail.TotalAmount) AS SumOfAmount FROM Purchase INNER JOIN(Product INNER JOIN PurchaseDetail ON Product.ProductCode = PurchaseDetail.ProductCode) ON Purchase.InvoiceNo = PurchaseDetail.InvoiceNo WHERE Purchase.InvoiceNo = '" + InvoiceNo + "' GROUP BY Purchase.PurchaseDate, Product.ProductName, Product.BarCode", cm);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sc.Count = ds.Tables[0].Rows.Count;
+            sc.dataTable = ds.Tables[0];
+            return sc;
+        }
+
+        public Server2Client PurchaseFromSupplier(int SupplierID)
+        {
+            Server2Client sc = new Server2Client();
+            OleDbCommand cmd = new OleDbCommand("SELECT Supplier.SupplierName, Supplier.Address, Supplier.Phone, Purchase.PurchaseDate, Product.ProductName, Product.BarCode, PurchaseDetail.SellingValue, Sum(PurchaseDetail.Quantity) AS TotalQuantity, [PurchaseDetail].[SellingValue]*[PurchaseDetail].[Quantity] AS Amount FROM Product INNER JOIN((Supplier INNER JOIN Purchase ON Supplier.ID = Purchase.SupplierID) INNER JOIN PurchaseDetail ON Purchase.InvoiceNo = PurchaseDetail.InvoiceNo) ON Product.ProductCode = PurchaseDetail.ProductCode WHERE Supplier.ID=" + SupplierID + " GROUP BY Supplier.SupplierName, Supplier.Address, Supplier.Phone, Purchase.PurchaseDate, Product.ProductName, Product.BarCode, PurchaseDetail.SellingValue, [PurchaseDetail].[SellingValue]*[PurchaseDetail].[Quantity]", cm);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sc.Count = ds.Tables[0].Rows.Count;
+            sc.dataTable = ds.Tables[0];
+            return sc;
+        }
+
+        public Server2Client PurchaseFromSupplier(int SupplierID, DateTime dtFr, DateTime dtTo)
+        {
+            Server2Client sc = new Server2Client();
+            OleDbCommand cmd = new OleDbCommand("SELECT Supplier.SupplierName, Supplier.Address, Supplier.Phone, Purchase.PurchaseDate, Product.ProductName, Product.BarCode, PurchaseDetail.SellingValue, Sum(PurchaseDetail.Quantity) AS TotalQuantity, [PurchaseDetail].[SellingValue]*[PurchaseDetail].[Quantity] AS Amount FROM Product INNER JOIN((Supplier INNER JOIN Purchase ON Supplier.ID = Purchase.SupplierID) INNER JOIN PurchaseDetail ON Purchase.InvoiceNo = PurchaseDetail.InvoiceNo) ON Product.ProductCode = PurchaseDetail.ProductCode WHERE Supplier.ID=" + SupplierID + " AND Purchase.PurchaseDate BETWEEN #" + dtFr + "# AND #" + dtTo + "# GROUP BY Supplier.SupplierName, Supplier.Address, Supplier.Phone, Purchase.PurchaseDate, Product.ProductName, Product.BarCode, PurchaseDetail.SellingValue, [PurchaseDetail].[SellingValue]*[PurchaseDetail].[Quantity]", cm);
             OleDbDataAdapter da = new OleDbDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
