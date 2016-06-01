@@ -75,8 +75,10 @@ namespace Skynet.Classes
 
         public Server2Client getSoldProducts(DateTime dt)
         {
+            string df = dt.Date.Month.ToString("00") + "/" + dt.Date.Day.ToString("00") + "/" + dt.Date.Year.ToString();
+            //string dt = dtTo.Date.Month.ToString("00") + "/" + dtTo.Date.Day.ToString("00") + "/" + dtTo.Date.Year.ToString();
             Server2Client sc = new Server2Client();
-            OleDbCommand cmd = new OleDbCommand("SELECT Sale.SaleDate, Product.ProductName, IIF(Product.BarCode IS NOT NULL, 'S/N: ' + Product.BarCode, ' ') AS BarCode, Sum(SaleDetail.SellingValue) AS SumOfSellingValue, Sum(SaleDetail.Quantity) AS SumOfQuantity, Sum(SaleDetail.Amount) AS SumOfAmount FROM Sale INNER JOIN(Product INNER JOIN SaleDetail ON Product.ID = SaleDetail.ProductID) ON Sale.InvoiceNo = SaleDetail.InvoiceNo WHERE Sale.SaleDate = #" + dt + "# GROUP BY Sale.SaleDate, Product.ProductName, Product.BarCode", cm);
+            OleDbCommand cmd = new OleDbCommand("SELECT Sale.SaleDate, Product.ProductName, IIF(Product.BarCode IS NOT NULL, 'S/N: ' + Product.BarCode, ' ') AS BarCode, Sum(SaleDetail.SellingValue) AS SumOfSellingValue, Sum(SaleDetail.Quantity) AS SumOfQuantity, Sum(SaleDetail.Amount) AS SumOfAmount FROM Sale INNER JOIN(Product INNER JOIN SaleDetail ON Product.ID = SaleDetail.ProductID) ON Sale.InvoiceNo = SaleDetail.InvoiceNo WHERE Sale.SaleDate = #" + df + "# GROUP BY Sale.SaleDate, Product.ProductName, Product.BarCode", cm);
             OleDbDataAdapter da = new OleDbDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -87,6 +89,8 @@ namespace Skynet.Classes
 
         public Server2Client getSoldProducts(DateTime dtFR, DateTime dtTO)
         {
+            string df = dtFR.Date.Month.ToString("00") + "/" + dtFR.Date.Day.ToString("00") + "/" + dtFR.Date.Year.ToString();
+            string dt = dtTO.Date.Month.ToString("00") + "/" + dtTO.Date.Day.ToString("00") + "/" + dtTO.Date.Year.ToString();
             Server2Client sc = new Server2Client();
             OleDbCommand cmd = new OleDbCommand("SELECT Sale.SaleDate, Product.ProductName, IIF(Product.BarCode IS NOT NULL, 'S/N: ' + Product.BarCode, ' ') AS BarCode, Sum(SaleDetail.SellingValue) AS SumOfSellingValue, Sum(SaleDetail.Quantity) AS SumOfQuantity, Sum(SaleDetail.Amount) AS SumOfAmount FROM Sale INNER JOIN(Product INNER JOIN SaleDetail ON Product.ID = SaleDetail.ProductID) ON Sale.InvoiceNo = SaleDetail.InvoiceNo WHERE Sale.SaleDate BETWEEN #" + dtFR + "# AND #" + dtTO + "# GROUP BY Sale.SaleDate, Product.ProductName, Product.BarCode", cm);
             //OleDbCommand cmd = new OleDbCommand();

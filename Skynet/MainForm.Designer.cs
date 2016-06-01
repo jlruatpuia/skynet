@@ -46,6 +46,7 @@
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             this.bbAckup = new DevExpress.XtraBars.BarButtonItem();
             this.bRestore = new DevExpress.XtraBars.BarButtonItem();
+            this.bQuickSell = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgSales = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgProduct = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -59,7 +60,6 @@
             this.nbiViewCustomer = new DevExpress.XtraNavBar.NavBarItem();
             this.nbiViewReports = new DevExpress.XtraNavBar.NavBarItem();
             this.dlaf = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.bQuickSell = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainRibbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splt)).BeginInit();
             this.splt.SuspendLayout();
@@ -227,6 +227,15 @@
             this.bRestore.Name = "bRestore";
             this.bRestore.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bRestore_ItemClick);
             // 
+            // bQuickSell
+            // 
+            this.bQuickSell.Caption = "Quick Sell";
+            this.bQuickSell.Glyph = ((System.Drawing.Image)(resources.GetObject("bQuickSell.Glyph")));
+            this.bQuickSell.Id = 18;
+            this.bQuickSell.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bQuickSell.LargeGlyph")));
+            this.bQuickSell.Name = "bQuickSell";
+            this.bQuickSell.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bQuickSell_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -352,14 +361,6 @@
             this.nbiViewReports.Name = "nbiViewReports";
             this.nbiViewReports.SmallImage = ((System.Drawing.Image)(resources.GetObject("nbiViewReports.SmallImage")));
             this.nbiViewReports.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nbiViewReports_LinkClicked);
-            // 
-            // bQuickSell
-            // 
-            this.bQuickSell.Caption = "Quick Sell";
-            this.bQuickSell.Glyph = ((System.Drawing.Image)(resources.GetObject("bQuickSell.Glyph")));
-            this.bQuickSell.Id = 18;
-            this.bQuickSell.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bQuickSell.LargeGlyph")));
-            this.bQuickSell.Name = "bQuickSell";
             // 
             // MainForm
             // 

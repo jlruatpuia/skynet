@@ -112,7 +112,7 @@ namespace Skynet.Classes
             int inv_no;
             string inv_yr = "";
             OleDbConnection cm = new OleDbConnection(Utils.ConnString);
-            OleDbCommand cmd = new OleDbCommand("SELECT TOP 1 MID(InvoiceNo, 11, 5) FROM " + Table + " ORDER BY InvoiceNo DESC", cm);
+            OleDbCommand cmd = new OleDbCommand("SELECT TOP 1 MID(InvoiceNo, 11, 5) FROM " + Table + " WHERE MID(InvoiceNo, 8, 2) = 'RI' ORDER BY InvoiceNo DESC", cm);
             try
             {
                 cm.Open();
@@ -129,7 +129,7 @@ namespace Skynet.Classes
 
             string yr = inv_yr == GetFinancialYear(dt) ? inv_yr : GetFinancialYear(dt);
 
-            cmd = new OleDbCommand("SELECT TOP 1 MID(InvoiceNo, 17) FROM " + Table + " WHERE MID(InvoiceNo, 11, 5)='" + yr +"' ORDER BY InvoiceNo DESC", cm);
+            cmd = new OleDbCommand("SELECT TOP 1 MID(InvoiceNo, 17) FROM " + Table + " WHERE MID(InvoiceNo, 8, 2) = 'RI' AND MID(InvoiceNo, 11, 5)='" + yr +"' ORDER BY InvoiceNo DESC", cm);
             try
             {
                 cm.Open();
@@ -148,5 +148,49 @@ namespace Skynet.Classes
 
             return ShortName + "/RI/" + yr + "/" + (inv_no + 1).ToString("0000");
         }
+
+        public static string GetInvoiceNo(DateTime dt)
+        {
+            //string inv_no = "";
+            int inv_no;
+            string inv_yr = "";
+            OleDbConnection cm = new OleDbConnection(Utils.ConnString);
+            OleDbCommand cmd = new OleDbCommand("SELECT TOP 1 MID(InvoiceNo, 11, 5) FROM Sale WHERE MID(InvoiceNo, 8, 2) = 'SI' ORDER BY InvoiceNo DESC", cm);
+            try
+            {
+                cm.Open();
+                OleDbDataReader rd = cmd.ExecuteReader();
+                rd.Read();
+                inv_yr = rd[0].ToString();
+                inv_yr = inv_yr.Substring(0, 5);
+            }
+            catch
+            {
+                inv_yr = GetFinancialYear(dt);
+            }
+            finally { cm.Close(); }
+
+            string yr = inv_yr == GetFinancialYear(dt) ? inv_yr : GetFinancialYear(dt);
+
+            cmd = new OleDbCommand("SELECT TOP 1 MID(InvoiceNo, 17) FROM Sale WHERE MID(InvoiceNo, 8, 2) = 'SI' AND MID(InvoiceNo, 11, 5)='" + yr + "' ORDER BY InvoiceNo DESC", cm);
+            try
+            {
+                cm.Open();
+                OleDbDataReader rd = cmd.ExecuteReader();
+                rd.Read();
+                string i = rd[0].ToString();
+                inv_no = Convert.ToInt32(rd[0]); //.ToString();
+            }
+            catch
+            {
+                inv_no = 0;
+            }
+            finally { cm.Close(); }
+
+            string ShortName = Properties.Settings.Default.ShortName;
+
+            return ShortName + "/SI/" + yr + "/" + (inv_no + 1).ToString("0000");
+        }
+
     }
 }

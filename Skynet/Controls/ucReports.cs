@@ -346,8 +346,7 @@ namespace Skynet.Controls
                 CustomerAccounts ca = new CustomerAccounts();
                 Customers cc = new Customers();
                 Customer c = new Customer();
-                sc = ca.getCustomerBalance(frm.CustomerID, frm.DateFrom, frm.DateTo);
-                double bal = sc.Value;
+                double bal = 0;
                 c = cc.getCustomer(frm.CustomerID);
                 rptCreditPayment rpt = new rptCreditPayment();
 
@@ -361,11 +360,15 @@ namespace Skynet.Controls
 
                 if (!frm.DateSelected)
                 {
+                    sc = ca.getCustomerBalance(frm.CustomerID);
+                    bal = sc.Value;
                     sc = ca.getTransactionDetails(frm.CustomerID);
                     rpt.DataSource = sc.dataTable;
                 }
                 else
                 {
+                    sc = ca.getCustomerBalance(frm.CustomerID, frm.DateFrom, frm.DateTo);
+                    bal = sc.Value;
                     sc = ca.AccountStatement(frm.CustomerID, frm.DateFrom, frm.DateTo);
                     rpt.DataSource = sc.dataTable;
                 }

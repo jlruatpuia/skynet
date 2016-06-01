@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
-namespace Skynet.Forms
+namespace Skynet.Controls
 {
-    public partial class XtraForm1 : DevExpress.XtraEditors.XtraForm
+    public partial class XtraUserControl1 : XtraUserControl
     {
-        public XtraForm1()
+        public XtraUserControl1()
         {
             InitializeComponent();
+            //dashboardViewer1.DashboardSource = Application.StartupPath + "/Dashboard.xml";
         }
     }
 }

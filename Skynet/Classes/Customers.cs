@@ -11,10 +11,12 @@ namespace Skynet.Classes
     class Customers
     {
         OleDbConnection cm = new OleDbConnection(Utils.ConnString);
+        Server2Client sc;
+        Customer cus;
         public Server2Client getCustomers()
         {
-            Server2Client sc = new Server2Client();
-            OleDbCommand cmd = new OleDbCommand("SELECT ID, CustomerName, Address, Phone, Email FROM Customer", cm);
+            sc = new Server2Client();
+            OleDbCommand cmd = new OleDbCommand("SELECT ID, CustomerName, Address, Phone, Email FROM Customer WHERE CustomerName NOT LIKE 'DefaultCustomer%'", cm);
             OleDbDataAdapter da = new OleDbDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -23,13 +25,10 @@ namespace Skynet.Classes
             return sc;
         }
 
-        Server2Client sc;
-        Customer cus;
-
         public Server2Client getCustomersFull()
         {
             sc = new Server2Client();
-            OleDbCommand cmd = new OleDbCommand("SELECT Customer.ID, Customer.CustomerName, Customer.Address, Customer.Phone, Customer.Email, SUM(CustomerAccount.Debit) - SUM(CustomerAccount.Credit) AS Balance FROM Customer LEFT OUTER JOIN CustomerAccount ON Customer.ID=CustomerAccount.CustomerID GROUP BY Customer.ID, Customer.CustomerName, Customer.Address, Customer.Phone, Customer.Email", cm);
+            OleDbCommand cmd = new OleDbCommand("SELECT Customer.ID, Customer.CustomerName, Customer.Address, Customer.Phone, Customer.Email, SUM(CustomerAccount.Debit) - SUM(CustomerAccount.Credit) AS Balance FROM Customer LEFT OUTER JOIN CustomerAccount ON Customer.ID=CustomerAccount.CustomerID WHERE Customer.CustomerName NOT LIKE 'DefaultCustomer%' GROUP BY Customer.ID, Customer.CustomerName, Customer.Address, Customer.Phone, Customer.Email", cm);
             OleDbDataAdapter da = new OleDbDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -55,23 +54,23 @@ namespace Skynet.Classes
             return sc;
         }
 
-        public Server2Client GetDefaultCustomer()
-        {
-            sc = new Server2Client();
+        //public Server2Client GetDefaultCustomer()
+        //{
+        //    sc = new Server2Client();
             
-            OleDbCommand cmd = new OleDbCommand("SELECT TOP 1 MID(CustomerName, 9) FROM Customer ORDER BY ID DESC", cm);
-            try
-            {
-                cm.Open();
-                sc.Count = Convert.ToInt32(cmd.ExecuteScalar());
-            }
-            catch
-            {
-                sc.Count = 0;
-            }
-            finally { cm.Close(); }
-            return sc;
-        }
+        //    OleDbCommand cmd = new OleDbCommand("SELECT TOP 1 MID(CustomerName, 9) FROM Customer ORDER BY ID DESC", cm);
+        //    try
+        //    {
+        //        cm.Open();
+        //        sc.Count = Convert.ToInt32(cmd.ExecuteScalar());
+        //    }
+        //    catch
+        //    {
+        //        sc.Count = 0;
+        //    }
+        //    finally { cm.Close(); }
+        //    return sc;
+        //}
 
         public Customer getCustomer(int ID)
         {
@@ -164,7 +163,7 @@ namespace Skynet.Classes
             OleDbCommand cmd;
             OleDbDataAdapter da;
             DataSet ds = new DataSet();
-            cmd = new OleDbCommand("SELECT ID, CustomerName, Address, Phone, Email FROM Customer", cm);
+            cmd = new OleDbCommand("SELECT ID, CustomerName, Address, Phone, Email FROM Customer WHERE CustomerName NOT LIKE 'DefaultCustomer%'", cm);
             da = new OleDbDataAdapter(cmd);
             da.Fill(ds, "Customer");
 
@@ -179,31 +178,48 @@ namespace Skynet.Classes
             sc.dataSet = ds;
             return sc;
         }
-
-        
-    }
-
-    class DefaultCustomer
-    {
-        public int ID { get; set; }
-        public string CustomerName { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-
-        public DefaultCustomer()
+        public Server2Client CreateDefaultCustomer()
         {
-            Customers c = new Customers();
-            Server2Client sc = new Server2Client();
-            sc = c.GetDefaultCustomer();
+            sc = new Server2Client();
+            int id = GetDefaultCustomer();
+            string query1 = "INSERT INTO Customer (CustomerName, Address, Phone, Email) VALUES (@CNM, @ADR, @PHN, @EML)";
+            string query2 = "SELECT @@Identity";
+            
+            using (OleDbCommand cmd = new OleDbCommand(query1, cm))
+            {
+                cmd.Parameters.AddWithValue("@CNM", "DefaultCustomer" + id.ToString("0000000000"));
+                cmd.Parameters.AddWithValue("@ADR", "Skynet Computers");
+                cmd.Parameters.AddWithValue("@PHN", "0000000000");
+                cmd.Parameters.AddWithValue("@EML", "customer@skynetcomputers.com");
+                cm.Open();
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = query2;
+                sc.Count = (int)cmd.ExecuteScalar();
+            }
+            return sc;
+        }
 
-            CustomerName = "Customer" + (sc.Count + 1).ToString("000000");
-            Address = "Address";
-            Phone = "0000000000";
-            Email = "customer@skynet.com";
-
-            sc = c.getMaxID();
-            ID = sc.Count;
+        private int GetDefaultCustomer()
+        {
+            int id = 0;
+            OleDbCommand cmd = new OleDbCommand("SELECT TOP 1 MID(CustomerName, 16) FROM Customer WHERE CustomerName LIKE 'DefaultCustomer%' ORDER BY ID DESC", cm);
+            try
+            {
+                cm.Open();
+                OleDbDataReader rd = cmd.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    rd.Read();
+                    id = Convert.ToInt32(rd[0]);
+                }
+                else
+                {
+                    id = 0;
+                }
+            }
+            catch { id = 0; }
+            finally { cm.Close(); }
+            return id + 1;
         }
     }
 }

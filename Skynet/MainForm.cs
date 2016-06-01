@@ -168,5 +168,11 @@ namespace Skynet
                 File.Copy(sfd.FileName, Application.StartupPath + "/ims.mdb", true);
             }
         }
+
+        private void bQuickSell_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmQuickSell frm = new frmQuickSell();
+            frm.ShowDialog();
+        }
     }
 }

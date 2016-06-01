@@ -189,6 +189,8 @@ namespace Skynet.Forms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (Convert.ToInt32(txtQTY.Text) <= 0) return;
+
             DataRow r = dt.NewRow();
             r["ProductID"] = Convert.ToInt32(luePNM.EditValue);
             r["ProductName"] = luePNM.Text;
@@ -205,6 +207,8 @@ namespace Skynet.Forms
             double TotalAmount = Convert.ToDouble(colAMT.SummaryText);
             txtAMT.Text = TotalAmount.ToString();
             txtPAM.Text = TotalAmount.ToString();
+
+            luePNM.EditValue = null;
         }
 
         private void grv_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
