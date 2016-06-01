@@ -171,8 +171,8 @@ namespace Skynet
 
         private void bQuickSell_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmQuickSell frm = new frmQuickSell();
-            frm.ShowDialog();
+            //frmQuickSell frm = new frmQuickSell();
+            //frm.ShowDialog();
         }
     }
 }

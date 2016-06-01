@@ -110,7 +110,7 @@ namespace Skynet.Classes
         public Server2Client getSoldProducts(string InvoiceNo)
         {
             Server2Client sc = new Server2Client();
-            OleDbCommand cmd = new OleDbCommand("SELECT Customer.CustomerName, Customer.Address, Customer.Phone, Sale.InvoiceNo, Sale.SaleDate, Product.ProductName, IIF(Product.BarCode IS NOT NULL, 'S/N: ' + Product.BarCode, ' ') AS BarCode, SaleDetail.Quantity, SaleDetail.SellingValue, Sale.Amount, Sale.Discount, Sale.Payment FROM(Customer INNER JOIN Sale ON Customer.ID = Sale.CustomerID) INNER JOIN(Product INNER JOIN SaleDetail ON Product.ID = SaleDetail.ProductID) ON Sale.InvoiceNo = SaleDetail.InvoiceNo WHERE Sale.InvoiceNo='" + InvoiceNo + "'", cm);
+            OleDbCommand cmd = new OleDbCommand("SELECT Customer.CustomerName, Customer.Address, Customer.Phone, Sale.InvoiceNo, Sale.SaleDate, Product.ProductName, Product.BarCode, SaleDetail.Quantity, SaleDetail.SellingValue, Sale.Amount, Sale.Discount, Sale.Payment FROM(Customer INNER JOIN Sale ON Customer.ID = Sale.CustomerID) INNER JOIN(Product INNER JOIN SaleDetail ON Product.ID = SaleDetail.ProductID) ON Sale.InvoiceNo = SaleDetail.InvoiceNo WHERE Sale.InvoiceNo='" + InvoiceNo + "'", cm);
             OleDbDataAdapter da = new OleDbDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);

@@ -387,45 +387,83 @@ namespace Skynet.Controls
                 rpt.lblTCR.Summary = tdr;
                 rpt.lblTDR.Summary = tcr;
                 
-                //rpt.lblTBL.Text = (Convert.ToInt32(rpt.lblTDR.Summary.GetResult()) - Convert.ToInt32(rpt.lblTCR.Summary.GetResult())).ToString();
                 dv.PrintingSystem = rpt.PrintingSystem;
                 rpt.CreateDocument(true);
-                //double totDr = 0;
-                //foreach (XRLabel lbl in rpt.lbTDR)
-                //{
-                //    totDr += Convert.ToInt32(lbl.Summary.GetResult());
-                //}
-
-                //double totCr = 0;
-                //foreach(XRLabel lbl in rpt.lbTCR)
-                //{
-                //    totCr += Convert.ToDouble(lbl.Summary.GetResult());
-                //}
-                //rpt.lblTBL.Text = (totDr - totCr).ToString("c2");
             }
         }
         private void bDebitPayment_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            //frmSelectSupplier frm = new frmSelectSupplier();
+            //if (frm.ShowDialog() == DialogResult.OK)
+            //{
+            //    Server2Client sc = new Server2Client();
+            //    SupplierAccounts sa = new SupplierAccounts();
+
+            //    sc = sa.getTransactionDetails(frm.SupplierID);
+
+            //    rptDebitPayment rpt = new rptDebitPayment() { DataSource = sc.dataTable };
+
+            //    rpt.lbSNM.DataBindings.Add("Text", null, "SupplierName");
+            //    rpt.lbADR.DataBindings.Add("Text", null, "Address");
+            //    rpt.lbPHN.DataBindings.Add("Text", null, "Phone");
+            //    rpt.lbEML.DataBindings.Add("Text", null, "Email");
+
+            //    rpt.lbTDT.DataBindings.Add("Text", null, "TransDate", "{0:dd-MM-yyyy}");
+            //    rpt.lbRMK.DataBindings.Add("Text", null, "Description");
+            //    rpt.lbTDR.DataBindings.Add("Text", null, "Debit", "{0:c}");
+            //    rpt.lbTCR.DataBindings.Add("Text", null, "Credit", "{0:c}");
+            //    rpt.lbBAL.DataBindings.Add("Text", null, "Balance", "{0:c}");
+
+            //    dv.PrintingSystem = rpt.PrintingSystem;
+            //    rpt.CreateDocument(true);
+
             frmSelectSupplier frm = new frmSelectSupplier();
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 Server2Client sc = new Server2Client();
-                SupplierAccounts sa = new SupplierAccounts();
+                SupplierAccounts ca = new SupplierAccounts();
+                Suppliers cc = new Suppliers();
+                Supplier c = new Supplier();
+                double bal = 0;
+                c = cc.getSupplier(frm.SupplierID);
+                rptDebitPayment rpt = new rptDebitPayment();
 
-                sc = sa.getTransactionDetails(frm.SupplierID);
+                XRSummary tdr = new XRSummary();
+                XRSummary tcr = new XRSummary();
 
-                rptDebitPayment rpt = new rptDebitPayment() { DataSource = sc.dataTable };
+                rpt.lbSNM.Text = c.SupplierName;
+                rpt.lbADR.Text = c.Address;
+                rpt.lbPHN.Text = c.Phone;
+                rpt.lbEML.Text = c.Email;
 
-                rpt.lbSNM.DataBindings.Add("Text", null, "SupplierName");
-                rpt.lbADR.DataBindings.Add("Text", null, "Address");
-                rpt.lbPHN.DataBindings.Add("Text", null, "Phone");
-                rpt.lbEML.DataBindings.Add("Text", null, "Email");
-
+                if (!frm.DateSelected)
+                {
+                    sc = ca.getSupplierBalance(frm.SupplierID);
+                    bal = sc.Value;
+                    sc = ca.getTransactionDetails(frm.SupplierID);
+                    rpt.DataSource = sc.dataTable;
+                }
+                else
+                {
+                    sc = ca.getSupplierBalance(frm.SupplierID, frm.DateFrom, frm.DateTo);
+                    bal = sc.Value;
+                    sc = ca.AccountStatement(frm.SupplierID, frm.DateFrom, frm.DateTo);
+                    rpt.DataSource = sc.dataTable;
+                }
                 rpt.lbTDT.DataBindings.Add("Text", null, "TransDate", "{0:dd-MM-yyyy}");
                 rpt.lbRMK.DataBindings.Add("Text", null, "Description");
                 rpt.lbTDR.DataBindings.Add("Text", null, "Debit", "{0:c}");
                 rpt.lbTCR.DataBindings.Add("Text", null, "Credit", "{0:c}");
                 rpt.lbBAL.DataBindings.Add("Text", null, "Balance", "{0:c}");
+                rpt.lblTDR.DataBindings.Add("Text", null, "Debit", "{0:C2}");
+                rpt.lblTCR.DataBindings.Add("Text", null, "Credit", "{0:C2}");
+                rpt.lblTBL.Text = bal.ToString("c2");
+                tdr.FormatString = "{0:C2}";
+                tcr.FormatString = "{0:C2}";
+                tdr.Running = SummaryRunning.Report;
+                tcr.Running = SummaryRunning.Report;
+                rpt.lblTCR.Summary = tdr;
+                rpt.lblTDR.Summary = tcr;
 
                 dv.PrintingSystem = rpt.PrintingSystem;
                 rpt.CreateDocument(true);

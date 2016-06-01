@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.DXErrorProvider.CompareAgainstControlValidationRule compareAgainstControlValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.CompareAgainstControlValidationRule();
-            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.dtTo = new DevExpress.XtraEditors.DateEdit();
+            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.dtFr = new DevExpress.XtraEditors.DateEdit();
             this.chkSelect = new DevExpress.XtraEditors.CheckEdit();
             this.lueCNM = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -55,10 +55,10 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.dxValidationProvider2 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
-            this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
+            this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtFr.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSelect.Properties)).BeginInit();
@@ -78,6 +78,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider2)).BeginInit();
             this.SuspendLayout();
             // 
+            // dtTo
+            // 
+            this.dtTo.EditValue = null;
+            this.dtTo.Location = new System.Drawing.Point(254, 36);
+            this.dtTo.Name = "dtTo";
+            this.dtTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtTo.Size = new System.Drawing.Size(118, 20);
+            this.dtTo.StyleController = this.layoutControl1;
+            this.dtTo.TabIndex = 11;
+            // 
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.dtTo);
@@ -94,19 +107,6 @@
             this.layoutControl1.Size = new System.Drawing.Size(384, 119);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
-            // 
-            // dtTo
-            // 
-            this.dtTo.EditValue = null;
-            this.dtTo.Location = new System.Drawing.Point(254, 36);
-            this.dtTo.Name = "dtTo";
-            this.dtTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtTo.Size = new System.Drawing.Size(118, 20);
-            this.dtTo.StyleController = this.layoutControl1;
-            this.dtTo.TabIndex = 11;
             // 
             // dtFr
             // 
@@ -350,10 +350,10 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Select Customer";
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
-            this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
+            this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtFr.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSelect.Properties)).EndInit();

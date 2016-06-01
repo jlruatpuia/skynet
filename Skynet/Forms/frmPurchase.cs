@@ -25,8 +25,7 @@ namespace Skynet.Forms
 
         void InitInvoice()
         {
-            Purchases prc = new Purchases();
-            txtINV.Text = prc.InvoiceNo();
+            txtINV.Text = Settings.GetInvoiceNo(DateTime.Now.Date, "Purchase");
         }
         void InitDataTable()
         {
@@ -216,8 +215,8 @@ namespace Skynet.Forms
             sa.SupplierID  = Convert.ToInt32(lueSUP.EditValue);
             sa.TransDate = dtpPDT.DateTime;
             sa.Description = "Invoice No " + txtINV.Text;
-            sa.Debit = Convert.ToDouble(txtBAL.EditValue);
-            sa.Credit = 0;
+            sa.Debit = Convert.ToDouble(txtAMT.EditValue);
+            sa.Credit = Convert.ToDouble(txtPAM.EditValue);
             sa.Balance = SupplierBalance + Convert.ToDouble(txtBAL.Text);
             sc = sac.addTrans(sa);
             if (sc.Message != null)

@@ -303,7 +303,6 @@ namespace Skynet.Forms
             {
                 ca.Debit = s.Payment;
                 ca.Credit = s.Payment;
-                
             }
             else
             {
