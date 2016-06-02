@@ -169,5 +169,37 @@ namespace Skynet.Classes
             sc.dataTable = ds.Tables[0];
             return sc;
         }
+
+        //public Server2Client GetSoldByInvoiceNo(string InvoiceNo)
+        //{
+        //    Server2Client sc;
+        //    Customer cus = new Customer();
+        //    OleDbCommand cmd;
+        //    cmd = new OleDbCommand("SELECT CustomerName, Address, Phone FROM Customer INNER JOIN Sale ON Customer.ID = Sale.CustomerID WHERE InvoiceNo='" + InvoiceNo + "'", cm);
+        //    try
+        //    {
+        //        cm.Open();
+        //        OleDbDataReader rd = cmd.ExecuteReader();
+        //        rd.Read();
+        //        cus.CustomerName = rd[0].ToString();
+        //        cus.Address = rd[1].ToString();
+        //        cus.Phone = rd[2].ToString();
+        //    }
+        //    catch
+        //    {
+        //        cus.CustomerName = "";
+        //        cus.Address = "";
+        //        cus.Phone = "";
+        //    }
+        //    finally { cm.Close(); }
+
+        //    //cmd = new OleDbCommand("");
+
+        //    cmd = new OleDbCommand("SELECT Sale.InvoiceNo, Sale.SaleDate, Product.ProductName, Product.BarCode, SaleDetail.Quantity, SaleDetail.SellingValue, Sale.Amount, Sale.Discount, Sale.Payment FROM Sale INNER JOIN(Product INNER JOIN SaleDetail ON Product.ID = SaleDetail.ProductID) ON Sale.InvoiceNo = SaleDetail.InvoiceNo WHERE Sale.InvoiceNo='" + InvoiceNo + "'", cm);
+        //    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+        //    DataSet ds = new DataSet();
+        //    da.Fill(ds);
+
+        //}
     }
 }

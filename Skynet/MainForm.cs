@@ -171,8 +171,11 @@ namespace Skynet
 
         private void bQuickSell_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //frmQuickSell frm = new frmQuickSell();
-            //frm.ShowDialog();
+            frmQuickSell frm = new frmQuickSell();
+            frm.ShowDialog();
+            //Server2Client sc = new Server2Client();
+            //Sales s = new Sales();
+            //sc = s.getDT("SKYNET/RI/16-17/0011");
         }
     }
 }
